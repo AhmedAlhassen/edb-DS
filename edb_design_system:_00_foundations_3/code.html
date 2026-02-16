@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EDB Design System - 00 Foundations</title>
+<meta content="Design System Foundations for Export Development Bank (EDB) Sudan" name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#1d4fd7", secondary: "#1d4ed8", "background-light": "#f6f6f8", "background-dark": "#111521", "surface-light": "#ffffff", "surface-dark": "#1e293b", "text-main-light": "#0f172a", "text-main-dark": "#f8fafc", "text-muted-light": "#64748b", "text-muted-dark": "#94a3b8", "border-light": "#e2e8f0", "border-dark": "#334155"}, fontFamily: {sans: ["Inter", "Noto Sans Arabic", "sans-serif"], display: "Inter", arabic: ["Noto Sans Arabic", "sans-serif"]}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {"128": "32rem"}}}};</script>
+<style>::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        .checkerboard {
+            background-color: #f9fafb;
+            background-image:
+                linear-gradient(45deg, #e5e7eb 25%, transparent 25%),
+                linear-gradient(-45deg, #e5e7eb 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #e5e7eb 75%),
+                linear-gradient(-45deg, transparent 75%, #e5e7eb 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+        .dark .checkerboard {
+            background-color: #111827;
+            background-image:
+                linear-gradient(45deg, #1f2937 25%, transparent 25%),
+                linear-gradient(-45deg, #1f2937 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #1f2937 75%),
+                linear-gradient(-45deg, transparent 75%, #1f2937 75%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark font-sans antialiased transition-colors duration-200">
+<header class="fixed top-0 w-full z-50 bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-md border-b border-border-light dark:border-border-dark">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="h-8 w-8 bg-primary text-white flex items-center justify-center rounded font-bold">DS</div>
+<h1 class="text-sm font-semibold tracking-wide uppercase text-text-muted-light dark:text-text-muted-dark">EDB Design System <span class="mx-2 text-border-light dark:text-border-dark">|</span> <span class="text-primary dark:text-blue-400">00 Foundations</span></h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-text-muted-light dark:text-text-muted-dark" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-icons-round text-xl dark:hidden">dark_mode</span>
+<span class="material-icons-round text-xl hidden dark:block">light_mode</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+<div class="mb-12 border-b border-border-light dark:border-border-dark pb-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="text-xs font-bold tracking-wider text-primary uppercase mb-2 block">Version 1.2.0</span>
+<h2 class="text-4xl font-bold tracking-tight mb-4">Foundations</h2>
+<p class="text-text-muted-light dark:text-text-muted-dark max-w-2xl text-lg">
+                        The core visual elements of the Export Development Bank Sudan design language. These tokens ensure consistency across all digital touchpoints.
+                    </p>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-xs font-medium border border-green-200 dark:border-green-800">Stable</span>
+<span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 rounded-full text-xs font-medium border border-blue-200 dark:border-blue-800">Figma Linked</span>
+</div>
+</div>
+</div>
+<section class="mb-20">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-icons-round text-primary">verified</span>
+<h3 class="text-2xl font-bold">1. Brand Identity</h3>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden shadow-sm">
+<div class="p-4 border-b border-border-light dark:border-border-dark bg-gray-50 dark:bg-gray-800/50 flex justify-between items-center">
+<span class="font-medium text-sm">Primary Logo Configuration</span>
+<span class="text-xs text-text-muted-light dark:text-text-muted-dark">Asset: logo-primary.svg</span>
+</div>
+<div class="p-12 flex items-center justify-center checkerboard min-h-[300px]">
+<div class="relative group">
+<div class="absolute -inset-4 border border-dashed border-red-400 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none flex items-center justify-center">
+<span class="bg-red-400 text-white text-[10px] px-1 absolute -top-2 left-1/2 -translate-x-1/2 rounded">Safe Zone</span>
+</div>
+<img alt="EDB Sudan Logo" class="h-24 md:h-32 object-contain filter dark:brightness-110 drop-shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRNUGp0B7vYkl5eIDcD-KDhHZ3Gfy5Ya9xFXGytL1Kh3inFBgFz88kO4N3nzK_t2t2f-7IS6iKe9SFYnwQD-HC2V_rpdduWO_g6FEJAVvqg7IWbK_Gniu8irJYIset9nW1aY-NNHJydKEZxHueupO382jWS2oqnstkuOHqi3BmcwsHodE5wfaKjKofBGA1yBOi4w5Jwz5JDJfti5NvACWieQtrErmVBz1EdKUCi7FYIXjT5bDNIC3Fglp3u-ixNaHVF6vICNeX-Zc1"/>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-6">
+<h4 class="font-semibold mb-4 text-sm uppercase tracking-wide text-text-muted-light dark:text-text-muted-dark">Clearspace &amp; Minimum Size</h4>
+<div class="flex gap-8 items-end">
+<div class="flex flex-col gap-2">
+<div class="w-24 h-24 border border-dashed border-primary flex items-center justify-center bg-blue-50 dark:bg-blue-900/20 rounded">
+<span class="text-2xl font-bold text-primary">x</span>
+</div>
+<span class="text-xs text-center text-text-muted-light dark:text-text-muted-dark">x = Height of 'E'</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="border-l border-b border-border-light dark:border-border-dark h-12 w-12 relative">
+<span class="absolute bottom-1 right-[-40px] text-xs font-mono">32px Min</span>
+</div>
+<span class="text-xs text-center text-text-muted-light dark:text-text-muted-dark">Digital Min Height</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-primary p-6 rounded-xl flex items-center justify-center border border-primary">
+<div class="text-white font-bold text-xl tracking-widest">EDB</div>
+<div class="absolute bottom-2 left-4 text-[10px] text-white/70">On Primary</div>
+</div>
+<div class="bg-surface-dark p-6 rounded-xl flex items-center justify-center border border-gray-700">
+<div class="text-white font-bold text-xl tracking-widest">EDB</div>
+<div class="absolute bottom-2 left-4 text-[10px] text-gray-400">On Dark</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-20">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-icons-round text-primary">palette</span>
+<h3 class="text-2xl font-bold">2. Color Tokens</h3>
+</div>
+<div class="mb-8">
+<h4 class="text-sm font-semibold mb-4">Brand Palette</h4>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+<div class="space-y-2">
+<div class="h-20 w-full rounded-lg bg-blue-900 shadow-sm"></div>
+<div class="flex justify-between text-xs">
+<span class="font-medium">Primary 900</span>
+<span class="text-text-muted-light dark:text-text-muted-dark">#1E3A8A</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="h-20 w-full rounded-lg bg-blue-800 shadow-sm relative">
+<span class="absolute top-2 right-2 bg-white/20 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">Default</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="font-medium">Primary 800</span>
+<span class="text-text-muted-light dark:text-text-muted-dark">#1E40AF</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="h-20 w-full rounded-lg bg-blue-600 shadow-sm"></div>
+<div class="flex justify-between text-xs">
+<span class="font-medium">Primary 600</span>
+<span class="text-text-muted-light dark:text-text-muted-dark">#2563EB</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="h-20 w-full rounded-lg bg-blue-400 shadow-sm"></div>
+<div class="flex justify-between text-xs">
+<span class="font-medium">Primary 400</span>
+<span class="text-text-muted-light dark:text-text-muted-dark">#60A5FA</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="h-20 w-full rounded-lg bg-blue-100 shadow-sm border border-gray-200"></div>
+<div class="flex justify-between text-xs">
+<span class="font-medium">Primary 100</span>
+<span class="text-text-muted-light dark:text-text-muted-dark">#DBEAFE</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<h4 class="text-sm font-semibold mb-4">Functional Colors</h4>
+<div class="space-y-3">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-green-600 shadow-sm"></div>
+<div class="flex-1">
+<p class="text-sm font-medium">Success</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark font-mono">token: semantic.success</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-amber-500 shadow-sm"></div>
+<div class="flex-1">
+<p class="text-sm font-medium">Warning</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark font-mono">token: semantic.warning</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-red-600 shadow-sm"></div>
+<div class="flex-1">
+<p class="text-sm font-medium">Error / Destructive</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark font-mono">token: semantic.error</p>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h4 class="text-sm font-semibold mb-4">Neutrals (Surface)</h4>
+<div class="grid grid-cols-5 gap-2">
+<div class="h-12 bg-slate-900 rounded"></div>
+<div class="h-12 bg-slate-700 rounded"></div>
+<div class="h-12 bg-slate-500 rounded"></div>
+<div class="h-12 bg-slate-300 rounded"></div>
+<div class="h-12 bg-slate-100 rounded border border-gray-200"></div>
+</div>
+<div class="mt-4 p-4 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg text-sm">
+<span class="block mb-1 text-text-muted-light dark:text-text-muted-dark text-xs uppercase font-bold">Usage Note</span>
+                        Use neutral scale for text, borders, and dividers. Never use pure black (#000000).
+                    </div>
+</div>
+</div>
+</section>
+<section class="mb-20">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-icons-round text-primary">data_object</span>
+<h3 class="text-2xl font-bold">3. Semantic Mapping</h3>
+</div>
+<div class="overflow-x-auto rounded-xl border border-border-light dark:border-border-dark">
+<table class="w-full text-left text-sm">
+<thead class="bg-gray-50 dark:bg-gray-800 text-text-muted-light dark:text-text-muted-dark border-b border-border-light dark:border-border-dark">
+<tr>
+<th class="px-6 py-4 font-semibold">Token Name</th>
+<th class="px-6 py-4 font-semibold">Role</th>
+<th class="px-6 py-4 font-semibold">Light Value</th>
+<th class="px-6 py-4 font-semibold">Dark Value</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light dark:divide-border-dark bg-surface-light dark:bg-surface-dark">
+<tr class="group hover:bg-gray-50 dark:hover:bg-gray-800/50">
+<td class="px-6 py-4 font-mono text-primary">bg-surface</td>
+<td class="px-6 py-4">Page background</td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-white border border-gray-200"></div> #FFFFFF</div></td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-slate-900 border border-gray-700"></div> #0F172A</div></td>
+</tr>
+<tr class="group hover:bg-gray-50 dark:hover:bg-gray-800/50">
+<td class="px-6 py-4 font-mono text-primary">bg-surface-raised</td>
+<td class="px-6 py-4">Cards, Modals</td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-white border border-gray-200"></div> #FFFFFF</div></td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-slate-800 border border-gray-700"></div> #1E293B</div></td>
+</tr>
+<tr class="group hover:bg-gray-50 dark:hover:bg-gray-800/50">
+<td class="px-6 py-4 font-mono text-primary">text-primary</td>
+<td class="px-6 py-4">Headings, Body</td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-slate-900"></div> #0F172A</div></td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-slate-50"></div> #F8FAFC</div></td>
+</tr>
+<tr class="group hover:bg-gray-50 dark:hover:bg-gray-800/50">
+<td class="px-6 py-4 font-mono text-primary">border-interactive</td>
+<td class="px-6 py-4">Inputs, Buttons</td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-gray-300"></div> #CBD5E1</div></td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-slate-600"></div> #475569</div></td>
+</tr>
+<tr class="group hover:bg-gray-50 dark:hover:bg-gray-800/50">
+<td class="px-6 py-4 font-mono text-primary">action-primary</td>
+<td class="px-6 py-4">Primary CTA</td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-primary"></div> #1E3A8A</div></td>
+<td class="px-6 py-4"><div class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-blue-600"></div> #2563EB</div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="mb-20">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-icons-round text-primary">text_fields</span>
+<h3 class="text-2xl font-bold">4. Typography</h3>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-xl p-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div>
+<div class="flex items-center justify-between mb-6 border-b border-border-light dark:border-border-dark pb-2">
+<span class="text-sm font-bold text-text-muted-light dark:text-text-muted-dark uppercase tracking-wider">English (Inter)</span>
+<span class="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">Latin Subset</span>
+</div>
+<div class="space-y-8">
+<div class="flex gap-4 items-baseline">
+<span class="w-16 text-xs text-text-muted-light dark:text-text-muted-dark font-mono">Display</span>
+<div>
+<p class="text-5xl font-bold tracking-tight">EDB Banking</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark mt-1">Bold / 48px / 1.1</p>
+</div>
+</div>
+<div class="flex gap-4 items-baseline">
+<span class="w-16 text-xs text-text-muted-light dark:text-text-muted-dark font-mono">H1</span>
+<div>
+<p class="text-4xl font-bold tracking-tight">Corporate</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark mt-1">Bold / 36px / 1.2</p>
+</div>
+</div>
+<div class="flex gap-4 items-baseline">
+<span class="w-16 text-xs text-text-muted-light dark:text-text-muted-dark font-mono">H2</span>
+<div>
+<p class="text-3xl font-semibold">Services</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark mt-1">SemiBold / 30px / 1.3</p>
+</div>
+</div>
+<div class="flex gap-4 items-baseline">
+<span class="w-16 text-xs text-text-muted-light dark:text-text-muted-dark font-mono">Body Lg</span>
+<div>
+<p class="text-lg leading-relaxed">The quick brown fox jumps over the lazy dog. Efficient banking solutions for everyone.</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark mt-1">Regular / 18px / 1.6</p>
+</div>
+</div>
+</div>
+</div>
+<div dir="rtl">
+<div class="flex items-center justify-between mb-6 border-b border-border-light dark:border-border-dark pb-2">
+<span class="text-sm font-bold text-text-muted-light dark:text-text-muted-dark uppercase tracking-wider font-sans">Arabic (Noto Sans)</span>
+<span class="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded font-sans">Arabic Subset</span>
+</div>
+<div class="space-y-8 font-arabic">
+<div class="flex gap-4 items-baseline">
+<span class="w-16 text-xs text-text-muted-light dark:text-text-muted-dark font-mono text-left font-sans ml-4">Display</span>
+<div>
+<p class="text-5xl font-bold tracking-tight">بنك التنمية</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark mt-1 font-sans text-left" dir="ltr">Bold / 48px / 1.2</p>
+</div>
+</div>
+<div class="flex gap-4 items-baseline">
+<span class="w-16 text-xs text-text-muted-light dark:text-text-muted-dark font-mono text-left font-sans ml-4">H1</span>
+<div>
+<p class="text-4xl font-bold tracking-tight">خدمات الشركات</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark mt-1 font-sans text-left" dir="ltr">Bold / 36px / 1.3</p>
+</div>
+</div>
+<div class="flex gap-4 items-baseline">
+<span class="w-16 text-xs text-text-muted-light dark:text-text-muted-dark font-mono text-left font-sans ml-4">H2</span>
+<div>
+<p class="text-3xl font-semibold">المعاملات المالية</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark mt-1 font-sans text-left" dir="ltr">SemiBold / 30px / 1.4</p>
+</div>
+</div>
+<div class="flex gap-4 items-baseline">
+<span class="w-16 text-xs text-text-muted-light dark:text-text-muted-dark font-mono text-left font-sans ml-4">Body Lg</span>
+<div>
+<p class="text-lg leading-relaxed">يوفر البنك حلولاً مصرفية متكاملة لتلبية احتياجات المصدرين والمستوردين في السودان.</p>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark mt-1 font-sans text-left" dir="ltr">Regular / 18px / 1.7</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-20">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-icons-round text-primary">space_dashboard</span>
+<h3 class="text-2xl font-bold">5. Structure &amp; Spacing</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="md:col-span-1 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-xl p-6">
+<h4 class="font-semibold mb-4 text-sm">4px Grid System</h4>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-4 h-4 bg-primary rounded-sm"></div>
+<span class="text-sm font-mono">space-1 (4px)</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-8 h-4 bg-primary rounded-sm"></div>
+<span class="text-sm font-mono">space-2 (8px)</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-16 h-4 bg-primary rounded-sm"></div>
+<span class="text-sm font-mono">space-4 (16px)</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-24 h-4 bg-primary rounded-sm"></div>
+<span class="text-sm font-mono">space-6 (24px)</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-32 h-4 bg-primary rounded-sm"></div>
+<span class="text-sm font-mono">space-8 (32px)</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-2 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-xl p-6">
+<h4 class="font-semibold mb-6 text-sm">Border Radius Tokens</h4>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+<div class="flex flex-col items-center gap-2">
+<div class="w-16 h-16 border-2 border-primary bg-blue-50 dark:bg-blue-900/20 rounded-none"></div>
+<span class="font-mono text-xs">rounded-none</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-16 h-16 border-2 border-primary bg-blue-50 dark:bg-blue-900/20 rounded"></div>
+<span class="font-mono text-xs">rounded (4px)</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-16 h-16 border-2 border-primary bg-blue-50 dark:bg-blue-900/20 rounded-md"></div>
+<span class="font-mono text-xs">rounded-md (6px)</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-16 h-16 border-2 border-primary bg-blue-50 dark:bg-blue-900/20 rounded-full"></div>
+<span class="font-mono text-xs">rounded-full</span>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-border-light dark:border-border-dark">
+<h4 class="font-semibold mb-4 text-sm">Interactive States</h4>
+<div class="flex gap-4 flex-wrap">
+<button class="px-6 py-2 bg-primary text-white rounded hover:bg-primary/90 transition-colors">Normal</button>
+<button class="px-6 py-2 bg-primary text-white rounded hover:bg-blue-800 transition-colors cursor-pointer ring-2 ring-offset-2 ring-blue-500 dark:ring-offset-slate-900">Focus</button>
+<button class="px-6 py-2 bg-gray-200 dark:bg-gray-700 text-gray-400 dark:text-gray-500 rounded cursor-not-allowed">Disabled</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section>
+<div class="flex items-center gap-2 mb-6">
+<span class="material-icons-round text-primary">accessibility_new</span>
+<h3 class="text-2xl font-bold">6. Accessibility (A11y)</h3>
+</div>
+<div class="bg-indigo-50 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-900 rounded-xl p-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex gap-4">
+<div class="bg-white dark:bg-indigo-950 p-3 rounded-lg h-fit shadow-sm">
+<span class="material-icons-round text-indigo-600 dark:text-indigo-400">contrast</span>
+</div>
+<div>
+<h4 class="font-bold text-indigo-900 dark:text-indigo-200">Contrast Ratio</h4>
+<p class="text-sm text-indigo-800/80 dark:text-indigo-300/80 mt-1">All text-to-background combinations must meet WCAG AA standards (4.5:1 ratio).</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="bg-white dark:bg-indigo-950 p-3 rounded-lg h-fit shadow-sm">
+<span class="material-icons-round text-indigo-600 dark:text-indigo-400">touch_app</span>
+</div>
+<div>
+<h4 class="font-bold text-indigo-900 dark:text-indigo-200">Touch Targets</h4>
+<p class="text-sm text-indigo-800/80 dark:text-indigo-300/80 mt-1">Interactive elements must be at least 44x44px for mobile devices.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="bg-white dark:bg-indigo-950 p-3 rounded-lg h-fit shadow-sm">
+<span class="material-icons-round text-indigo-600 dark:text-indigo-400">keyboard_tab</span>
+</div>
+<div>
+<h4 class="font-bold text-indigo-900 dark:text-indigo-200">Focus Visible</h4>
+<p class="text-sm text-indigo-800/80 dark:text-indigo-300/80 mt-1">Keyboard navigation must always show a visible focus ring.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-surface-light dark:bg-surface-dark border-t border-border-light dark:border-border-dark py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 bg-primary text-white flex items-center justify-center rounded text-xs font-bold">EDB</div>
+<span class="text-sm text-text-muted-light dark:text-text-muted-dark">© 2023 Export Development Bank. Internal Use Only.</span>
+</div>
+<div class="text-sm text-text-muted-light dark:text-text-muted-dark font-mono">
+                System v1.2.0 • Build 8923
+            </div>
+</div>
+</footer>
+</body></html>

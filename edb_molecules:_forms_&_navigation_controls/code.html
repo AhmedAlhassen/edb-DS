@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EDB Molecules: Forms &amp; Navigation Controls</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1d4fd7",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111521",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .token-badge { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+        .rtl { direction: rtl; font-family: 'Inter', sans-serif; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="text-white font-bold text-xs">EDB</span>
+</div>
+<div>
+<h1 class="font-display font-bold text-lg leading-none">02 Molecules</h1>
+<p class="text-xs text-slate-500 mt-1 uppercase tracking-wider">Phase 2: Forms &amp; Navigation Controls</p>
+</div>
+<span class="ml-4 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold border border-primary/20">v2.1.0</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-icons-round text-xl">search</span>
+</button>
+<button class="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary/90 transition-all shadow-sm">
+                    Export Assets
+                </button>
+</div>
+</div>
+</header>
+<div class="max-w-7xl mx-auto px-6 py-8 flex gap-8">
+<!-- Sidebar Navigation -->
+<aside class="w-64 flex-shrink-0 hidden lg:block sticky top-24 h-fit">
+<nav class="space-y-1">
+<p class="px-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Components</p>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-primary bg-primary/10 rounded-lg" href="#form-field">
+<span class="material-icons-round text-sm">edit_note</span> Form Field Wrapper
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#input-group">
+<span class="material-icons-round text-sm">input</span> Input Group
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#search">
+<span class="material-icons-round text-sm">search</span> Search Molecule
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#validation">
+<span class="material-icons-round text-sm">report_problem</span> Validation Summary
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#navigation">
+<span class="material-icons-round text-sm">navigation</span> Nav Controls
+                </a>
+</nav>
+<div class="mt-12 p-4 bg-slate-900 rounded-xl text-white">
+<p class="text-xs font-bold text-primary mb-2">TECHNICAL INFO</p>
+<div class="flex items-center gap-2 mb-3">
+<span class="text-[10px] bg-slate-700 px-1.5 py-0.5 rounded">Radix UI</span>
+<span class="text-[10px] bg-slate-700 px-1.5 py-0.5 rounded">Slots</span>
+</div>
+<p class="text-[11px] text-slate-400 leading-relaxed italic">All molecules are built with Slot mapping for flexible injection of sub-atoms while maintaining semantic structure.</p>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 space-y-12">
+<!-- 1. Form Field Wrapper -->
+<section class="scroll-mt-24" id="form-field">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold font-display">Form Field Wrapper</h2>
+<div class="flex gap-2">
+<span class="text-[10px] bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded font-mono">molecule/form-field</span>
+</div>
+</div>
+<div class="grid lg:grid-cols-2 gap-8">
+<!-- Anatomy & Description -->
+<div class="space-y-6">
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-8 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-3 flex gap-2">
+<span class="w-2 h-2 rounded-full bg-slate-200"></span>
+<span class="w-2 h-2 rounded-full bg-slate-200"></span>
+<span class="w-2 h-2 rounded-full bg-slate-200"></span>
+</div>
+<!-- Anatomy Mockup -->
+<div class="space-y-4 max-w-sm">
+<div>
+<label class="block text-xs font-semibold text-slate-500 mb-1 flex items-center">
+                                        Full Name <span class="text-red-500 ml-1 font-bold text-xs">*</span>
+<span class="ml-2 text-[9px] bg-primary/10 text-primary px-1 rounded">Label Slot</span>
+</label>
+<div class="relative">
+<input class="w-full h-11 border-2 border-primary rounded-lg px-4 text-sm focus:ring-0 focus:border-primary" placeholder="e.g. Ahmed Ali" type="text"/>
+<span class="absolute -right-40 top-1/2 -translate-y-1/2 text-[9px] font-bold text-primary flex items-center gap-1">
+<span class="w-8 h-[1px] bg-primary"></span> Input Slot
+                                        </span>
+</div>
+<div class="mt-2 flex items-center justify-between">
+<p class="text-[10px] text-slate-400 italic">Please enter your legal name as per ID</p>
+<span class="text-[9px] font-bold text-primary flex items-center gap-1">
+<span class="w-4 h-[1px] bg-primary"></span> Hint Slot
+                                        </span>
+</div>
+</div>
+</div>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400">The primary wrapper for all user inputs. It manages the layout of labels, error states, and helper text consistently across the design system.</p>
+</div>
+<!-- LTR/RTL Parity -->
+<div class="space-y-6">
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
+<div class="flex border-b border-slate-200 dark:border-slate-800">
+<div class="px-6 py-3 text-xs font-bold border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50">LTR Layout</div>
+<div class="px-6 py-3 text-xs font-bold text-slate-500">English Context</div>
+</div>
+<div class="p-6">
+<div class="space-y-4">
+<div class="max-w-xs">
+<label class="block text-sm font-medium mb-1.5">Email Address</label>
+<input class="w-full h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-700 dark:bg-slate-800 text-sm" placeholder="name@bankedb.com" type="email"/>
+</div>
+</div>
+</div>
+<div class="flex border-y border-slate-200 dark:border-slate-800">
+<div class="px-6 py-3 text-xs font-bold border-r border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50">RTL Layout</div>
+<div class="px-6 py-3 text-xs font-bold text-slate-500">Arabic Context</div>
+</div>
+<div class="p-6 rtl">
+<div class="space-y-4">
+<div class="max-w-xs">
+<label class="block text-sm font-medium mb-1.5">البريد الإلكتروني</label>
+<input class="w-full h-10 px-3 rounded-lg border border-slate-200 dark:border-slate-700 dark:bg-slate-800 text-sm text-right" placeholder="name@bankedb.com" type="email"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Input Group -->
+<section class="scroll-mt-24" id="input-group">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold font-display">Input Group</h2>
+<span class="text-[10px] bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded font-mono">molecule/input-group</span>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-8">
+<div class="grid md:grid-cols-2 gap-12">
+<!-- Left: Variations -->
+<div class="space-y-8">
+<div class="space-y-2">
+<p class="text-xs font-bold text-slate-400 uppercase">Prefix / Suffix</p>
+<div class="flex flex-col gap-4">
+<!-- Amount with Prefix -->
+<div class="flex items-center">
+<span class="inline-flex items-center px-3 h-10 rounded-l-lg border border-r-0 border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-500 text-sm font-medium">SDG</span>
+<input class="flex-1 h-10 border-slate-200 dark:border-slate-700 dark:bg-slate-900 rounded-r-lg text-sm focus:ring-primary focus:border-primary" type="number" value="150000"/>
+</div>
+<!-- Account with Icon -->
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-icons-round text-slate-400 text-lg">account_balance_wallet</span>
+<input class="w-full h-10 pl-10 pr-4 border-slate-200 dark:border-slate-700 dark:bg-slate-900 rounded-lg text-sm" placeholder="Account Number" type="text"/>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<p class="text-xs font-bold text-slate-400 uppercase">Actionable Slots</p>
+<div class="space-y-4">
+<!-- Password reveal -->
+<div class="relative">
+<input class="w-full h-10 px-4 border-slate-200 dark:border-slate-700 dark:bg-slate-900 rounded-lg text-sm" type="password" value="secret123"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-primary">
+<span class="material-icons-round text-lg">visibility_off</span>
+</button>
+</div>
+<!-- Clear action -->
+<div class="relative">
+<input class="w-full h-10 px-4 border-slate-200 dark:border-slate-700 dark:bg-slate-900 rounded-lg text-sm pr-10" type="text" value="Search for transactions..."/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-500 hover:text-red-500">
+<span class="material-icons-round text-xs">close</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Tech Spec Table -->
+<div class="bg-slate-50 dark:bg-slate-950/50 rounded-lg p-6 border border-slate-200 dark:border-slate-800">
+<h4 class="text-sm font-bold mb-4 flex items-center gap-2">
+<span class="material-icons-round text-primary text-sm">settings_input_component</span>
+                                Radix Slot Mapping
+                            </h4>
+<table class="w-full text-[11px] leading-relaxed">
+<thead class="border-b border-slate-200 dark:border-slate-800">
+<tr class="text-slate-500 text-left">
+<th class="pb-2 font-semibold">Slot Name</th>
+<th class="pb-2 font-semibold">Radix Primitive</th>
+<th class="pb-2 font-semibold">Description</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr>
+<td class="py-2 font-mono text-primary">prefix</td>
+<td class="py-2">Slot</td>
+<td class="py-2 text-slate-500">Prepended static or interactive element</td>
+</tr>
+<tr>
+<td class="py-2 font-mono text-primary">control</td>
+<td class="py-2">Input / Textarea</td>
+<td class="py-2 text-slate-500">The primary interactive form element</td>
+</tr>
+<tr>
+<td class="py-2 font-mono text-primary">suffix</td>
+<td class="py-2">Slot / Button</td>
+<td class="py-2 text-slate-500">Appended action (e.g., eye, clear)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Search Field Molecule -->
+<section class="scroll-mt-24" id="search">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold font-display">Search Molecule</h2>
+<span class="text-[10px] bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded font-mono">molecule/search-field</span>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-12 flex flex-col items-center justify-center relative overflow-hidden">
+<div class="w-full max-w-md relative z-10">
+<div class="relative shadow-xl rounded-xl">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 material-icons-round text-slate-400">search</span>
+<input class="w-full h-14 pl-12 pr-12 rounded-xl border-2 border-primary bg-white dark:bg-slate-800 shadow-sm focus:ring-0 focus:border-primary" placeholder="Search accounts, transactions, or contacts..." type="text"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-300 hover:text-slate-500">
+<span class="material-icons-round text-sm">cancel</span>
+</button>
+</div>
+<!-- Suggestions Dropdown Simulation -->
+<div class="mt-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-2xl overflow-hidden divide-y divide-slate-100 dark:divide-slate-700">
+<div class="px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 cursor-pointer flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<span class="material-icons-round text-slate-400 group-hover:text-primary transition-colors">history</span>
+<span class="text-sm">Monthly utility payment <span class="text-primary font-bold">Jan 2024</span></span>
+</div>
+<span class="text-[10px] text-slate-400">Transaction</span>
+</div>
+<div class="px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 cursor-pointer flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<span class="material-icons-round text-slate-400 group-hover:text-primary transition-colors">person</span>
+<span class="text-sm">Ahmed <span class="text-primary font-bold">Abdelrahman</span></span>
+</div>
+<span class="text-[10px] text-slate-400">Recipient</span>
+</div>
+<div class="px-4 py-3 bg-slate-50 dark:bg-slate-900/50 flex items-center justify-between">
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Press Enter to see all results</p>
+<span class="text-[10px] px-1.5 py-0.5 rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-500 shadow-sm">↵ Enter</span>
+</div>
+</div>
+</div>
+<!-- Background decor -->
+<div class="absolute inset-0 opacity-5 pointer-events-none flex items-center justify-center">
+<span class="material-icons-round text-[300px]">manage_search</span>
+</div>
+</div>
+</section>
+<!-- 4. Validation Summary Block -->
+<section class="scroll-mt-24" id="validation">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold font-display">Validation Summary</h2>
+<span class="text-[10px] bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded font-mono">molecule/validation-summary</span>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<!-- Error State -->
+<div class="bg-red-50 dark:bg-red-900/10 border-l-4 border-red-500 rounded-r-lg p-5">
+<div class="flex items-start gap-3">
+<span class="material-icons-round text-red-500">error_outline</span>
+<div>
+<h4 class="text-sm font-bold text-red-900 dark:text-red-400 mb-2">Please fix the following 3 issues:</h4>
+<ul class="text-sm text-red-800 dark:text-red-300/80 space-y-1 list-disc list-inside marker:text-red-500">
+<li>Invalid IBAN format for Sudanese banks.</li>
+<li>Amount exceeds daily transfer limit of 2,000,000 SDG.</li>
+<li>Account description must be less than 50 characters.</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Warning State -->
+<div class="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 rounded-r-lg p-5">
+<div class="flex items-start gap-3">
+<span class="material-icons-round text-amber-500">warning_amber</span>
+<div>
+<h4 class="text-sm font-bold text-amber-900 dark:text-amber-400 mb-2">Account Review Needed</h4>
+<p class="text-sm text-amber-800 dark:text-amber-300/80 leading-relaxed">
+                                    Your KYC documents will expire in 15 days. Please update your information to avoid temporary suspension of export permits.
+                                </p>
+<button class="mt-3 text-xs font-bold text-amber-900 dark:text-amber-400 underline decoration-2 underline-offset-4 hover:text-amber-700 transition-colors">
+                                    UPDATE NOW
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Navigation Controls (Breadcrumbs & Pagination) -->
+<section class="scroll-mt-24" id="navigation">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold font-display">Navigation Controls</h2>
+<span class="text-[10px] bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded font-mono">molecule/nav-controls</span>
+</div>
+<div class="space-y-6">
+<!-- Breadcrumbs Card -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-8">
+<div class="flex flex-col gap-10">
+<!-- LTR Breadcrumbs -->
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Breadcrumbs (LTR)</p>
+<div class="flex gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-slate-200"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-slate-200"></span>
+</div>
+</div>
+<nav class="flex items-center text-sm font-medium">
+<a class="text-slate-400 hover:text-primary transition-colors flex items-center" href="#">
+<span class="material-icons-round text-lg">home</span>
+</a>
+<span class="material-icons-round text-slate-300 mx-2 text-base">chevron_right</span>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">Dashboard</a>
+<span class="material-icons-round text-slate-300 mx-2 text-base">chevron_right</span>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">Trade Finance</a>
+<span class="material-icons-round text-slate-300 mx-2 text-base">chevron_right</span>
+<span class="text-primary font-semibold">Letters of Credit</span>
+</nav>
+</div>
+<hr class="border-slate-100 dark:border-slate-800"/>
+<!-- RTL Breadcrumbs -->
+<div class="space-y-4 rtl">
+<div class="flex items-center justify-between">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest">مسار التنقل (RTL)</p>
+</div>
+<nav class="flex items-center text-sm font-medium">
+<a class="text-slate-400 hover:text-primary transition-colors flex items-center" href="#">
+<span class="material-icons-round text-lg">home</span>
+</a>
+<span class="material-icons-round text-slate-300 mx-2 text-base">chevron_left</span>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">لوحة التحكم</a>
+<span class="material-icons-round text-slate-300 mx-2 text-base">chevron_left</span>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">التمويل التجاري</a>
+<span class="material-icons-round text-slate-300 mx-2 text-base">chevron_left</span>
+<span class="text-primary font-semibold">الاعتمادات المستندية</span>
+</nav>
+</div>
+</div>
+</div>
+<!-- Pagination Card -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-8">
+<div class="space-y-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="space-y-2">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Interactive Pagination</p>
+<p class="text-[11px] text-slate-500">Showing 1-10 of 245 transactions</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-300 cursor-not-allowed" disabled="">
+<span class="material-icons-round text-lg">first_page</span>
+</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-300 cursor-not-allowed" disabled="">
+<span class="material-icons-round text-lg">chevron_left</span>
+</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg bg-primary text-white font-bold text-sm shadow-md">1</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-sm font-medium transition-colors">2</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-sm font-medium transition-colors">3</button>
+<span class="px-2 text-slate-300 text-xs">...</span>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-sm font-medium transition-colors">25</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors">
+<span class="material-icons-round text-lg">chevron_right</span>
+</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 transition-colors">
+<span class="material-icons-round text-lg">last_page</span>
+</button>
+</div>
+</div>
+<div class="rtl border-t border-slate-100 dark:border-slate-800 pt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="space-y-2">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest">الترقيم (RTL)</p>
+<p class="text-[11px] text-slate-500">عرض ١-١٠ من أصل ٢٤٥ عملية</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition-colors">
+<span class="material-icons-round text-lg">first_page</span>
+</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition-colors">
+<span class="material-icons-round text-lg">chevron_right</span>
+</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg bg-primary text-white font-bold text-sm shadow-md">١</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-slate-100 text-sm font-medium">٢</button>
+<span class="px-2 text-slate-300 text-xs">...</span>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-slate-100 text-sm font-medium">٢٥</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50">
+<span class="material-icons-round text-lg">chevron_left</span>
+</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50">
+<span class="material-icons-round text-lg">last_page</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Footer Meta -->
+<footer class="mt-20 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark py-12">
+<div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
+<div class="col-span-2">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center">
+<span class="material-icons-round text-primary text-xs">info</span>
+</div>
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">System Guidelines</span>
+</div>
+<p class="text-sm text-slate-500 max-w-md leading-relaxed">All molecules in the EDB Design System are built to be accessible (WCAG 2.1 AA) and support bi-directional (LTR/RTL) rendering out of the box. Use the provided Radix UI slot mappings for consistent DOM structure.</p>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Resources</p>
+<ul class="text-sm space-y-2 text-primary font-medium">
+<li><a class="hover:underline" href="#">Figma UI Kit</a></li>
+<li><a class="hover:underline" href="#">React Component Library</a></li>
+<li><a class="hover:underline" href="#">Brand Guidelines</a></li>
+</ul>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Status</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-sm font-medium">Live / Production Ready</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

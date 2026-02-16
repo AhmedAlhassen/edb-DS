@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EDB Atoms: Forms &amp; Selection Controls</title>
+<meta content="Design System Components for Export Development Bank (EDB) Sudan. Phase 2: 01 Components / 01 Atoms." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Noto+Sans+Arabic:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#1d4fd7", secondary: "#1d4ed8", "background-light": "#f6f6f8", "background-dark": "#111521", "surface-light": "#ffffff", "surface-dark": "#1e293b", "text-main-light": "#0f172a", "text-main-dark": "#f8fafc", "text-muted-light": "#64748b", "text-muted-dark": "#94a3b8", "border-light": "#e2e8f0", "border-dark": "#334155", "success": "#16a34a", "warning": "#eab308", "error": "#dc2626"}, fontFamily: {sans: ["Inter", "Noto Sans Arabic", "sans-serif"], display: "Inter", arabic: ["Noto Sans Arabic", "sans-serif"]}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {"128": "32rem"}}}};</script>
+<style>
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        .pattern-grid {
+            background-size: 20px 20px;
+            background-image: radial-gradient(circle, #00000010 1px, transparent 1px);
+        }
+        .dark .pattern-grid {
+            background-image: radial-gradient(circle, #ffffff10 1px, transparent 1px);
+        }.toggle-checkbox:checked {
+            right: 0;
+            border-color: #1d4fd7;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #1d4fd7;
+        }.checkbox-indeterminate:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 2px;
+            background-color: white;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark font-sans antialiased transition-colors duration-200">
+<header class="fixed top-0 w-full z-50 bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-md border-b border-border-light dark:border-border-dark">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="h-8 w-8 bg-primary text-white flex items-center justify-center rounded font-bold">DS</div>
+<h1 class="text-sm font-semibold tracking-wide uppercase text-text-muted-light dark:text-text-muted-dark">EDB Design System <span class="mx-2 text-border-light dark:text-border-dark">|</span> <span class="text-primary dark:text-blue-400">01 Atoms</span></h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-text-muted-light dark:text-text-muted-dark" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-icons-round text-xl dark:hidden">dark_mode</span>
+<span class="material-icons-round text-xl hidden dark:block">light_mode</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+<div class="mb-12 border-b border-border-light dark:border-border-dark pb-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="text-xs font-bold tracking-wider text-primary uppercase mb-2 block">Phase 2: Components</span>
+<h2 class="text-4xl font-bold tracking-tight mb-4">Forms &amp; Selection Controls</h2>
+<p class="text-text-muted-light dark:text-text-muted-dark max-w-2xl text-lg">
+                        Fundamental building blocks for data entry and user selection. These atoms are designed for high accessibility (WCAG AA) and usability across devices.
+                    </p>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-xs font-medium border border-green-200 dark:border-green-800">Stable</span>
+<span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 rounded-full text-xs font-medium border border-purple-200 dark:border-purple-800">React Ready</span>
+</div>
+</div>
+</div>
+<section class="mb-20">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-icons-round text-primary">input</span>
+<h3 class="text-2xl font-bold">1. Text Inputs &amp; Textareas</h3>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden">
+<div class="p-4 border-b border-border-light dark:border-border-dark bg-gray-50 dark:bg-gray-800/50 flex justify-between items-center">
+<span class="font-medium text-sm">State Matrix (LTR &amp; RTL)</span>
+<span class="text-xs text-text-muted-light dark:text-text-muted-dark font-mono">h-11 (44px) Touch Target</span>
+</div>
+<div class="p-8 grid grid-cols-1 lg:grid-cols-2 gap-12">
+<div class="space-y-8">
+<h4 class="text-sm font-bold text-text-muted-light dark:text-text-muted-dark uppercase tracking-wider mb-4 border-b border-border-light dark:border-border-dark pb-2">LTR (English)</h4>
+<div class="space-y-1">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark">Account Number</label>
+<div class="relative">
+<input class="w-full h-11 px-3 rounded border border-border-light dark:border-border-dark bg-white dark:bg-surface-dark focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm" placeholder="e.g. 1234567890" type="text"/>
+</div>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Default state</p>
+</div>
+<div class="space-y-1">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark">Search Beneficiary</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-text-muted-light">
+<span class="material-icons-round text-lg">search</span>
+</span>
+<input class="w-full h-11 pl-10 pr-3 rounded border border-border-light dark:border-border-dark bg-white dark:bg-surface-dark focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm" placeholder="Search by name..." type="text"/>
+</div>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Leading icon slot</p>
+</div>
+<div class="space-y-1">
+<label class="block text-sm font-medium text-error">Transfer Amount</label>
+<div class="relative">
+<input class="w-full h-11 px-3 rounded border border-error bg-red-50/10 dark:bg-red-900/10 text-error focus:ring-2 focus:ring-error focus:border-error transition-all text-sm" type="text" value="-500.00"/>
+<span class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-error">
+<span class="material-icons-round text-lg">error_outline</span>
+</span>
+</div>
+<p class="text-xs text-error mt-1">Amount cannot be negative.</p>
+</div>
+<div class="space-y-1">
+<label class="block text-sm font-medium text-text-muted-light dark:text-text-muted-dark">Reference ID (Disabled)</label>
+<input class="w-full h-11 px-3 rounded border border-border-light dark:border-border-dark bg-gray-100 dark:bg-gray-800 text-text-muted-light cursor-not-allowed text-sm" disabled="" type="text" value="REF-2023-X99"/>
+</div>
+</div>
+<div class="space-y-8" dir="rtl">
+<h4 class="text-sm font-bold text-text-muted-light dark:text-text-muted-dark uppercase tracking-wider mb-4 border-b border-border-light dark:border-border-dark pb-2 font-sans" dir="ltr">RTL (Arabic)</h4>
+<div class="space-y-1 font-arabic">
+<label class="block text-sm font-medium text-success">اسم المستلم</label>
+<div class="relative">
+<input class="w-full h-11 px-3 rounded border border-success bg-green-50/10 dark:bg-green-900/10 text-text-main-light dark:text-text-main-dark focus:ring-2 focus:ring-success focus:border-success transition-all text-sm" type="text" value="أحمد محمد علي"/>
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-success">
+<span class="material-icons-round text-lg">check_circle</span>
+</span>
+</div>
+<p class="text-xs text-success mt-1">تم التحقق من الاسم بنجاح</p>
+</div>
+<div class="space-y-1 font-arabic">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark">ملاحظات إضافية</label>
+<div class="relative">
+<textarea class="w-full p-3 rounded border border-border-light dark:border-border-dark bg-white dark:bg-surface-dark focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm h-32 resize-none"></textarea>
+<div class="absolute bottom-2 left-2 text-[10px] text-text-muted-light">0/200</div>
+</div>
+</div>
+<div class="space-y-1 font-arabic">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark">رقم المعاملة</label>
+<div class="relative">
+<input class="w-full h-11 px-3 rounded border border-border-light dark:border-border-dark bg-gray-50 dark:bg-gray-800/50 text-text-main-light dark:text-text-main-dark focus:ring-0 focus:border-border-light text-sm" readonly="" type="text" value="TRX-998822"/>
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-text-muted-light">
+<span class="material-icons-round text-lg">lock</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-20 grid grid-cols-1 xl:grid-cols-2 gap-8">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden flex flex-col">
+<div class="p-4 border-b border-border-light dark:border-border-dark flex items-center gap-2">
+<span class="material-icons-round text-primary text-sm">arrow_drop_down_circle</span>
+<span class="font-medium text-sm">Select Inputs</span>
+</div>
+<div class="p-6 flex-1 space-y-8 bg-gray-50/50 dark:bg-black/20">
+<div class="space-y-1">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark">Branch Location</label>
+<div class="relative">
+<select class="w-full h-11 pl-3 pr-10 rounded border border-border-light dark:border-border-dark bg-white dark:bg-surface-dark appearance-none focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm cursor-pointer">
+<option>Khartoum Head Office</option>
+<option>Port Sudan Branch</option>
+<option>Omdurman Branch</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-text-muted-light">
+<span class="material-icons-round">expand_more</span>
+</div>
+</div>
+</div>
+<div class="space-y-1">
+<label class="block text-sm font-medium text-text-main-light dark:text-text-main-dark">Currency (Filled Style)</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-text-muted-light">
+<span class="material-icons-round text-lg">attach_money</span>
+</div>
+<select class="w-full h-11 pl-10 pr-10 rounded bg-gray-100 dark:bg-gray-800 border-0 focus:ring-2 focus:ring-primary transition-all text-sm cursor-pointer">
+<option>USD - US Dollar</option>
+<option>SDG - Sudanese Pound</option>
+<option>EUR - Euro</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-text-muted-light">
+<span class="material-icons-round">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden flex flex-col">
+<div class="p-4 border-b border-border-light dark:border-border-dark flex items-center gap-2">
+<span class="material-icons-round text-primary text-sm">check_box</span>
+<span class="font-medium text-sm">Checkbox, Radio &amp; Switch</span>
+</div>
+<div class="p-6 flex-1 grid grid-cols-2 gap-8 bg-gray-50/50 dark:bg-black/20">
+<div class="space-y-4">
+<h5 class="text-xs font-bold text-text-muted-light uppercase tracking-wider mb-2">Checkboxes</h5>
+<div class="flex items-center gap-3">
+<input checked="" class="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+<label class="text-sm text-text-main-light dark:text-text-main-dark">Checked</label>
+</div>
+<div class="flex items-center gap-3">
+<input class="w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+<label class="text-sm text-text-main-light dark:text-text-main-dark">Unchecked</label>
+</div>
+<div class="flex items-center gap-3 opacity-50">
+<input checked="" class="w-5 h-5 rounded border-gray-300 text-primary cursor-not-allowed" disabled="" type="checkbox"/>
+<label class="text-sm text-text-main-light dark:text-text-main-dark">Disabled</label>
+</div>
+</div>
+<div class="space-y-4">
+<h5 class="text-xs font-bold text-text-muted-light uppercase tracking-wider mb-2">Radio Buttons</h5>
+<div class="flex items-center gap-3">
+<input checked="" class="w-5 h-5 border-gray-300 text-primary focus:ring-primary cursor-pointer" name="radio-group" type="radio"/>
+<label class="text-sm text-text-main-light dark:text-text-main-dark">Selected</label>
+</div>
+<div class="flex items-center gap-3">
+<input class="w-5 h-5 border-gray-300 text-primary focus:ring-primary cursor-pointer" name="radio-group" type="radio"/>
+<label class="text-sm text-text-main-light dark:text-text-main-dark">Unselected</label>
+</div>
+</div>
+<div class="col-span-2 pt-4 border-t border-border-light dark:border-border-dark">
+<h5 class="text-xs font-bold text-text-muted-light uppercase tracking-wider mb-4">Switch (MD3 Style)</h5>
+<div class="flex gap-8">
+<div class="flex items-center gap-3">
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-gray-300 dark:border-gray-600 appearance-none cursor-pointer transition-all duration-200 ease-in-out" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer" for="toggle1"></label>
+</div>
+<label class="text-sm text-text-main-light dark:text-text-main-dark cursor-pointer" for="toggle1">Off State</label>
+</div>
+<div class="flex items-center gap-3">
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-primary appearance-none cursor-pointer transition-all duration-200 ease-in-out right-0" id="toggle2" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-primary cursor-pointer" for="toggle2"></label>
+</div>
+<label class="text-sm text-text-main-light dark:text-text-main-dark cursor-pointer" for="toggle2">On State</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-20">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-icons-round text-primary">donut_large</span>
+<h3 class="text-2xl font-bold">3. Indicators</h3>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-6">
+<h4 class="font-semibold mb-6 text-sm">Status Badges / Chips</h4>
+<div class="flex flex-wrap gap-4 items-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+<span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-green-500"></span>
+                        Active
+                    </span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400">
+<span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-amber-500"></span>
+                        Pending
+                    </span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400">
+<span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-red-500"></span>
+                        Rejected
+                    </span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700/50 dark:text-gray-300">
+                        Draft
+                    </span>
+</div>
+<div class="mt-6 pt-6 border-t border-border-light dark:border-border-dark">
+<h5 class="text-xs font-bold text-text-muted-light mb-3">Notification Badges</h5>
+<div class="flex gap-6 items-center">
+<div class="relative">
+<span class="material-icons-round text-2xl text-text-muted-light">notifications</span>
+<span class="absolute top-0 right-0 block h-2.5 w-2.5 rounded-full bg-error ring-2 ring-white dark:ring-surface-dark"></span>
+</div>
+<div class="relative">
+<span class="material-icons-round text-2xl text-text-muted-light">email</span>
+<span class="absolute -top-1 -right-1 block px-1 min-w-[18px] h-[18px] rounded-full bg-primary text-[10px] text-white flex items-center justify-center ring-2 ring-white dark:ring-surface-dark font-bold">5</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-6">
+<h4 class="font-semibold mb-6 text-sm">Progress Indicators</h4>
+<div class="space-y-8">
+<div class="space-y-2">
+<div class="flex justify-between text-xs text-text-muted-light">
+<span>Uploading Document...</span>
+<span>45%</span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs text-text-muted-light">
+<span>Processing Request</span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1 overflow-hidden">
+<div class="bg-primary h-1 rounded-full w-1/3 animate-[spin_2s_linear_infinite] origin-left translate-x-[-100%]" style="animation: progress-indeterminate 1.5s infinite linear;"></div>
+</div>
+<style>
+                            @keyframes progress-indeterminate {
+                                0% { transform: translateX(-100%) scaleX(0.2); }
+                                50% { transform: translateX(50%) scaleX(0.5); }
+                                100% { transform: translateX(200%) scaleX(0.2); }
+                            }
+                        </style>
+</div>
+<div class="flex gap-8 items-center pt-2">
+<div class="relative h-10 w-10">
+<svg class="h-full w-full" viewBox="0 0 36 36">
+<path class="text-gray-200 dark:text-gray-700" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="4"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="75, 100" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+<span class="absolute inset-0 flex items-center justify-center text-[10px] font-bold">75%</span>
+</div>
+<div class="w-8 h-8 border-4 border-gray-200 dark:border-gray-700 border-t-primary rounded-full animate-spin"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-8 bg-indigo-50 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-900 rounded-xl p-6">
+<div class="flex flex-col md:flex-row gap-6 md:items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-white dark:bg-indigo-950 p-2 rounded-lg shadow-sm">
+<span class="material-icons-round text-indigo-600 dark:text-indigo-400">accessibility_new</span>
+</div>
+<div>
+<h4 class="font-bold text-indigo-900 dark:text-indigo-200 text-sm">WCAG 2.1 AA Compliant</h4>
+<p class="text-xs text-indigo-800/80 dark:text-indigo-300/80 mt-1">All form controls maintain a minimum touch target of 44x44px and contrast ratio of 4.5:1.</p>
+</div>
+</div>
+<div class="flex gap-4 text-xs font-mono text-indigo-800 dark:text-indigo-300">
+<span class="px-2 py-1 bg-white/50 dark:bg-black/20 rounded">Inputs: h-11 (44px)</span>
+<span class="px-2 py-1 bg-white/50 dark:bg-black/20 rounded">Icons: 24px</span>
+<span class="px-2 py-1 bg-white/50 dark:bg-black/20 rounded">Radius: 0.25rem</span>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-surface-light dark:bg-surface-dark border-t border-border-light dark:border-border-dark py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 bg-primary text-white flex items-center justify-center rounded text-xs font-bold">EDB</div>
+<span class="text-sm text-text-muted-light dark:text-text-muted-dark">© 2023 Export Development Bank. Internal Use Only.</span>
+</div>
+<div class="text-sm text-text-muted-light dark:text-text-muted-dark font-mono">
+                System v1.2.0 • Build 8923
+            </div>
+</div>
+</footer>
+
+</body></html>

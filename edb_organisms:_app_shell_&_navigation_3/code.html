@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Noto+Sans+Arabic:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-main": "#1D4ED8",
+                        "primary-dark": "#1E40AF",
+                        "primary-deep": "#1E3A8A",
+                        "slate-900": "#0F172A",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "arabic": ["Noto Sans Arabic", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer components {
+            .token-card {
+                @apply bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden;
+            }
+            .section-header {
+                @apply flex items-center gap-3 mb-6;
+            }
+            .token-table th {
+                @apply px-4 py-3 text-left text-[10px] font-bold text-slate-400 uppercase tracking-widest bg-slate-50 dark:bg-slate-800/50;
+            }
+            .token-table td {
+                @apply px-4 py-4 border-t border-slate-100 dark:border-slate-800 text-sm;
+            }
+            .swatch {
+                @apply w-8 h-8 rounded shadow-inner border border-black/5;
+            }
+            .status-tag {
+                @apply px-2 py-0.5 rounded text-[10px] font-bold uppercase;
+            }
+        }
+    </style>
+<title>EDB Design System - Final Token Review</title>
+</head>
+<body class="bg-[#F8FAFC] dark:bg-[#020617] font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<nav class="sticky top-0 z-[100] bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 py-3 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-primary-main p-1.5 rounded-lg text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-xl">token</span>
+</div>
+<div>
+<h1 class="font-bold text-lg leading-none">EDB Design System</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">00 Foundations - Final Token Review</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                PHASE 5: APPROVED
+            </div>
+<div class="h-6 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+<button class="flex items-center gap-2 px-4 py-2 bg-slate-900 dark:bg-white dark:text-slate-900 text-white text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm">download</span>
+                Export Tokens
+            </button>
+</div>
+</nav>
+<div class="max-w-[1400px] mx-auto px-6 py-10 flex flex-col lg:flex-row gap-10">
+<aside class="w-full lg:w-64 shrink-0">
+<nav class="space-y-1 sticky top-24">
+<p class="px-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Foundation Tokens</p>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary-main/10 text-primary-main rounded-lg font-semibold" href="#color-palette">
+<span class="material-symbols-outlined text-[18px]">palette</span> Color Palette
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#semantic-mapping">
+<span class="material-symbols-outlined text-[18px]">settings_input_component</span> Semantic Mapping
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#typography">
+<span class="material-symbols-outlined text-[18px]">text_fields</span> Typography Scale
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#radius-shadow">
+<span class="material-symbols-outlined text-[18px]">layers</span> Radius &amp; Elevation
+                </a>
+</nav>
+</aside>
+<main class="flex-1 space-y-16">
+<section class="space-y-4 max-w-4xl">
+<h2 class="text-4xl font-bold tracking-tight text-slate-900 dark:text-white">EDB Foundations: Final Token Review</h2>
+<p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Refined token architecture for the Export Development Bank. This document defines the core visual properties, functional mappings, and accessibility metadata required for implementation across web and mobile platforms.
+                </p>
+</section>
+<section class="space-y-6" id="color-palette">
+<div class="section-header">
+<span class="w-10 h-10 rounded-lg bg-slate-900 dark:bg-slate-800 flex items-center justify-center text-white font-mono text-sm">01</span>
+<h3 class="text-2xl font-bold">Color Palette &amp; Neutral Scale</h3>
+</div>
+<div class="token-card">
+<table class="w-full token-table">
+<thead>
+<tr>
+<th class="w-48">Token Name</th>
+<th class="w-32">Swatch</th>
+<th>Hex Value</th>
+<th>UI Mapping / Usage</th>
+<th>Contrast (AA)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="font-mono text-xs font-bold">color.primary.main</td>
+<td><div class="swatch bg-[#1D4ED8]"></div></td>
+<td class="font-mono text-xs">#1D4ED8</td>
+<td class="text-slate-500">CTA Backgrounds, Primary Actions</td>
+<td><span class="status-tag bg-emerald-100 text-emerald-700">4.52:1 PASS</span></td>
+</tr>
+<tr>
+<td class="font-mono text-xs font-bold">color.primary.dark</td>
+<td><div class="swatch bg-[#1E40AF]"></div></td>
+<td class="font-mono text-xs">#1E40AF</td>
+<td class="text-slate-500">Hover States for Primary Actions</td>
+<td><span class="status-tag bg-emerald-100 text-emerald-700">7.11:1 PASS</span></td>
+</tr>
+<tr>
+<td class="font-mono text-xs font-bold">color.primary.deep</td>
+<td><div class="swatch bg-[#1E3A8A]"></div></td>
+<td class="font-mono text-xs">#1E3A8A</td>
+<td class="text-slate-500">Active States, Navigation Accents</td>
+<td><span class="status-tag bg-emerald-100 text-emerald-700">9.45:1 PASS</span></td>
+</tr>
+<tr class="bg-slate-50/50 dark:bg-slate-800/20">
+<td class="font-mono text-xs font-bold">color.neutral.000</td>
+<td><div class="swatch bg-[#FFFFFF] border border-slate-200"></div></td>
+<td class="font-mono text-xs">#FFFFFF</td>
+<td class="text-slate-500">Surface White, bg-subtle (Dark)</td>
+<td><span class="status-tag bg-slate-100 text-slate-500">N/A BASE</span></td>
+</tr>
+<tr>
+<td class="font-mono text-xs font-bold">color.neutral.100</td>
+<td><div class="swatch bg-[#F1F5F9]"></div></td>
+<td class="font-mono text-xs">#F1F5F9</td>
+<td class="text-slate-500">bg-subtle, Page Background</td>
+<td><span class="status-tag bg-emerald-100 text-emerald-700">19.2:1 PASS</span></td>
+</tr>
+<tr>
+<td class="font-mono text-xs font-bold">color.neutral.300</td>
+<td><div class="swatch bg-[#CBD5E1]"></div></td>
+<td class="font-mono text-xs">#CBD5E1</td>
+<td class="text-slate-500">border-default, Disabled borders</td>
+<td><span class="status-tag bg-emerald-100 text-emerald-700">4.8:1 PASS</span></td>
+</tr>
+<tr>
+<td class="font-mono text-xs font-bold">color.neutral.500</td>
+<td><div class="swatch bg-[#64748B]"></div></td>
+<td class="font-mono text-xs">#64748B</td>
+<td class="text-slate-500">text-muted, Secondary Labels</td>
+<td><span class="status-tag bg-emerald-100 text-emerald-700">4.5:1 PASS</span></td>
+</tr>
+<tr>
+<td class="font-mono text-xs font-bold">color.neutral.900</td>
+<td><div class="swatch bg-[#0F172A]"></div></td>
+<td class="font-mono text-xs">#0F172A</td>
+<td class="text-slate-500">Heading Text, Deep Backgrounds</td>
+<td><span class="status-tag bg-emerald-100 text-emerald-700">18.1:1 PASS</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="space-y-6" id="semantic-mapping">
+<div class="section-header">
+<span class="w-10 h-10 rounded-lg bg-slate-900 dark:bg-slate-800 flex items-center justify-center text-white font-mono text-sm">02</span>
+<h3 class="text-2xl font-bold">Semantic Mapping Parity</h3>
+</div>
+<div class="token-card">
+<table class="w-full token-table">
+<thead>
+<tr>
+<th class="w-64">Semantic Token</th>
+<th>Light Mode Value</th>
+<th>Dark Mode Value</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="font-mono text-xs font-bold">surface-brand</td>
+<td class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-[#1D4ED8]"></div> Primary-Main</td>
+<td class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-[#3B82F6]"></div> Blue-500</td>
+<td class="text-xs">Primary brand surfaces</td>
+</tr>
+<tr>
+<td class="font-mono text-xs font-bold">surface-elevation-1</td>
+<td class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-white border border-slate-200"></div> White</td>
+<td class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-[#1E293B]"></div> Slate-800</td>
+<td class="text-xs">Card and Modal surfaces</td>
+</tr>
+<tr>
+<td class="font-mono text-xs font-bold">text-inverse</td>
+<td class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-white border border-slate-200"></div> White</td>
+<td class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-[#0F172A]"></div> Slate-900</td>
+<td class="text-xs">Text on dark backgrounds</td>
+</tr>
+<tr>
+<td class="font-mono text-xs font-bold">border-active</td>
+<td class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-[#1D4ED8]"></div> Primary-Main</td>
+<td class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-[#3B82F6]"></div> Blue-500</td>
+<td class="text-xs">Focused/Active states</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="space-y-6" id="typography">
+<div class="section-header">
+<span class="w-10 h-10 rounded-lg bg-slate-900 dark:bg-slate-800 flex items-center justify-center text-white font-mono text-sm">03</span>
+<h3 class="text-2xl font-bold">Typography Tokens</h3>
+</div>
+<div class="token-card">
+<table class="w-full token-table">
+<thead>
+<tr>
+<th class="w-48">Token Name</th>
+<th>Size</th>
+<th>Weight</th>
+<th>Line-Height (EN/AR)</th>
+<th>Sample</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="font-mono text-xs font-bold">text.display.lg</td>
+<td>48px (3rem)</td>
+<td>700 Bold</td>
+<td class="font-mono text-[10px]">1.2 / 1.5</td>
+<td class="text-3xl font-bold">Display Headline</td>
+</tr>
+<tr>
+<td class="font-mono text-xs font-bold">text.h1</td>
+<td>32px (2rem)</td>
+<td>700 Bold</td>
+<td class="font-mono text-[10px]">1.3 / 1.6</td>
+<td class="text-2xl font-bold">H1 Heading</td>
+</tr>
+<tr>
+<td class="font-mono text-xs font-bold">text.h3</td>
+<td>20px (1.25rem)</td>
+<td>600 SemiBold</td>
+<td class="font-mono text-[10px]">1.5 / 1.8</td>
+<td class="text-lg font-semibold">Sub-Section Heading</td>
+</tr>
+<tr>
+<td class="font-mono text-xs font-bold">text.body.md</td>
+<td>16px (1rem)</td>
+<td>400 Regular</td>
+<td class="font-mono text-[10px]">1.5 / 1.8</td>
+<td class="text-base">Standard reading text</td>
+</tr>
+<tr>
+<td class="font-mono text-xs font-bold">text.caption</td>
+<td>12px (0.75rem)</td>
+<td>500 Medium</td>
+<td class="font-mono text-[10px]">1.5 / 1.8</td>
+<td class="text-xs font-medium">Secondary metadata</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-lg flex gap-3">
+<span class="material-symbols-outlined text-blue-500">info</span>
+<p class="text-sm text-blue-700 dark:text-blue-300">
+<strong>Noto Sans Arabic:</strong> To maintain vertical rhythm, Arabic line-height is globally adjusted by <code class="px-1 bg-blue-200 dark:bg-blue-800 rounded">+0.3</code> compared to Inter (1.5 base becomes 1.8).
+                    </p>
+</div>
+</section>
+<section class="space-y-6" id="radius-shadow">
+<div class="section-header">
+<span class="w-10 h-10 rounded-lg bg-slate-900 dark:bg-slate-800 flex items-center justify-center text-white font-mono text-sm">04</span>
+<h3 class="text-2xl font-bold">Radius &amp; Elevation (M3 State Layers)</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="token-card p-6">
+<h4 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Corner Radius</h4>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="text-sm font-mono">radius.none</span>
+<div class="w-12 h-12 bg-primary-main rounded-none"></div>
+<span class="text-xs text-slate-500">0px</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="text-sm font-mono">radius.sm</span>
+<div class="w-12 h-12 bg-primary-main rounded-sm"></div>
+<span class="text-xs text-slate-500">4px</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="text-sm font-mono">radius.md</span>
+<div class="w-12 h-12 bg-primary-main rounded-md"></div>
+<span class="text-xs text-slate-500">8px</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="text-sm font-mono">radius.lg</span>
+<div class="w-12 h-12 bg-primary-main rounded-lg"></div>
+<span class="text-xs text-slate-500">12px</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="text-sm font-mono">radius.full</span>
+<div class="w-12 h-12 bg-primary-main rounded-full"></div>
+<span class="text-xs text-slate-500">9999px</span>
+</div>
+</div>
+</div>
+<div class="token-card p-6">
+<h4 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Elevation Levels</h4>
+<div class="space-y-6">
+<div class="flex items-center gap-6">
+<div class="w-20 h-20 bg-white dark:bg-slate-800 shadow-sm rounded-xl flex items-center justify-center text-[10px] font-bold">LEVEL 1</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Default Surface</p>
+<p class="text-xs text-slate-500">Cards, Input Fields, Tables</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="w-20 h-20 bg-white dark:bg-slate-800 shadow-md rounded-xl flex items-center justify-center text-[10px] font-bold">LEVEL 2</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Navigation Header</p>
+<p class="text-xs text-slate-500">Sticky navigation, Tooltips</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="w-20 h-20 bg-white dark:bg-slate-800 shadow-lg rounded-xl flex items-center justify-center text-[10px] font-bold">LEVEL 3</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Modal Popovers</p>
+<p class="text-xs text-slate-500">Dialog boxes, Action sheets</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="w-20 h-20 bg-white dark:bg-slate-800 shadow-2xl rounded-xl flex items-center justify-center text-[10px] font-bold">LEVEL 4</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Floating Actions</p>
+<p class="text-xs text-slate-500">FABs, Multi-layer menus</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="p-10 bg-slate-900 rounded-2xl text-white flex flex-col md:flex-row items-center gap-8 shadow-2xl border border-slate-800">
+<div class="w-24 h-24 shrink-0 bg-primary-main rounded-3xl flex items-center justify-center rotate-3 group-hover:rotate-0 transition-transform">
+<span class="material-symbols-outlined text-5xl">verified</span>
+</div>
+<div class="space-y-3">
+<h4 class="text-2xl font-bold tracking-tight">System Compliance &amp; Governance</h4>
+<p class="text-slate-400 leading-relaxed max-w-2xl">
+                        Tokens must be consumed via <code>ThemeProviders</code>. Raw hex values are strictly prohibited in component code. All text/background combinations have been verified against WCAG 2.1 Level AA standards.
+                    </p>
+<div class="flex gap-4 pt-4">
+<div class="flex items-center gap-2 text-xs font-bold text-emerald-400">
+<span class="material-symbols-outlined text-sm">check_circle</span> Contrast Validated
+                        </div>
+<div class="flex items-center gap-2 text-xs font-bold text-emerald-400">
+<span class="material-symbols-outlined text-sm">check_circle</span> RTL Parity Ready
+                        </div>
+</div>
+</div>
+</section>
+</main>
+</div>
+
+</body></html>

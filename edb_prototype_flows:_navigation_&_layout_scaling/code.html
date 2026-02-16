@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EDB Prototype Flows: Navigation &amp; Layout Scaling</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1d4fd7",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111521",
+                        "neutral-light": "#f1f3f9",
+                        "neutral-border": "#e2e8f0",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .spec-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; }
+        .mirror-rtl { direction: rtl; }
+        .device-frame { border: 8px solid #1e293b; border-radius: 2rem; overflow: hidden; position: relative; width: 320px; height: 640px; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-200">
+<!-- Header & Documentation Metadata -->
+<header class="sticky top-0 z-50 bg-white dark:bg-background-dark border-b border-neutral-border dark:border-slate-800 px-8 py-4">
+<div class="max-w-7xl mx-auto flex justify-between items-center">
+<div class="flex flex-col">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Phase 6</span>
+<span class="text-xs text-slate-500 font-medium">Design System Prototype Flows</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight">05 Navigation &amp; Layout Scaling</h1>
+</div>
+<div class="flex items-center gap-6">
+<nav class="flex items-center gap-2 text-sm">
+<span class="text-primary font-semibold">Home</span>
+<span class="material-icons text-sm text-slate-400">chevron_right</span>
+<span class="text-slate-600 dark:text-slate-400">Corporate</span>
+<span class="material-icons text-sm text-slate-400">chevron_right</span>
+<span class="text-slate-400">Trade Finance</span>
+</nav>
+<div class="h-8 w-[1px] bg-neutral-border dark:bg-slate-700"></div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 text-xs font-medium border border-neutral-border dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Export Docs</button>
+<button class="px-3 py-1.5 text-xs font-medium bg-primary text-white rounded-lg shadow-sm hover:opacity-90 transition-opacity">v1.2.0-Stable</button>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-8 py-10 grid grid-cols-12 gap-8">
+<!-- Sidebar Navigation (Desktop Drawer Simulation) -->
+<aside class="col-span-3 space-y-8">
+<section>
+<h3 class="spec-label mb-4">Permanent Desktop Drawer</h3>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-neutral-border dark:border-slate-800 shadow-sm overflow-hidden">
+<div class="p-4 border-b border-neutral-border dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-white font-bold text-lg">E</div>
+<span class="font-bold text-sm tracking-tight">EDB SUDAN</span>
+</div>
+</div>
+<nav class="p-2 space-y-1">
+<div class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-lg font-medium text-sm">
+<span class="material-icons text-lg">dashboard</span>
+<span>Dashboard</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-sm transition-all">
+<span class="material-icons text-lg">account_balance</span>
+<span>Accounts</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-sm transition-all">
+<span class="material-icons text-lg">swap_horiz</span>
+<span>Transfers</span>
+</div>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg text-sm transition-all">
+<span class="material-icons text-lg">receipt_long</span>
+<span>Trade Finance</span>
+</div>
+</nav>
+</div>
+</section>
+<section>
+<h3 class="spec-label mb-4">Focus Management Rules</h3>
+<div class="bg-slate-900 text-slate-300 p-4 rounded-xl text-[11px] font-mono leading-relaxed border border-slate-700">
+<p class="text-blue-400 mb-2">// Navigation Accessibility Specs</p>
+<p class="mb-1"><span class="text-purple-400">aria-expanded:</span> <span class="text-green-400">"true"</span></p>
+<p class="mb-1"><span class="text-purple-400">role:</span> <span class="text-green-400">"navigation"</span></p>
+<p class="mb-1"><span class="text-purple-400">focus-trap:</span> <span class="text-green-400">enabled(mobile)</span></p>
+<p class="mt-3 text-slate-500 italic">"On mobile trigger, focus shifts to the first focusable element in the drawer. On close, returns to trigger."</p>
+</div>
+</section>
+</aside>
+<!-- Main Workspace (Comparison & Interactive Blocks) -->
+<div class="col-span-9 space-y-8">
+<!-- Comparison Grid -->
+<div class="grid grid-cols-2 gap-8">
+<!-- Mobile RTL Simulation -->
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<h3 class="spec-label">Mobile Simulation (RTL Modal)</h3>
+<span class="text-[10px] text-slate-400">Viewport: 320x640</span>
+</div>
+<div class="device-frame shadow-2xl bg-slate-50 relative">
+<!-- RTL Nav Drawer Overlay -->
+<div class="absolute inset-0 bg-black/40 z-20"></div>
+<div class="absolute inset-y-0 right-0 w-[260px] bg-white dark:bg-slate-900 z-30 shadow-xl mirror-rtl p-4 flex flex-col">
+<div class="flex items-center justify-between mb-8">
+<span class="font-bold">بنك الصادرات</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800">
+<span class="material-icons text-lg">close</span>
+</button>
+</div>
+<nav class="space-y-4">
+<div class="flex items-center gap-4 text-primary font-bold">
+<span class="material-icons">home</span>
+<span>الرئيسية</span>
+</div>
+<div class="flex items-center gap-4 text-slate-600">
+<span class="material-icons">payment</span>
+<span>المدفوعات</span>
+</div>
+<div class="flex items-center gap-4 text-slate-600">
+<span class="material-icons">settings</span>
+<span>الإعدادات</span>
+</div>
+</nav>
+<!-- Bottom Sheet Trigger Simulation -->
+<div class="mt-auto bg-primary/5 p-4 rounded-xl border border-primary/20">
+<p class="text-[10px] text-primary mb-2 font-bold">MOBILE ONLY</p>
+<button class="w-full bg-primary text-white py-2 rounded-lg text-xs font-bold">Open Bottom Sheet</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Desktop Behavior Showcase -->
+<div class="space-y-6">
+<div>
+<h3 class="spec-label mb-4">Breadcrumb Interaction Flow</h3>
+<div class="bg-white dark:bg-slate-900 border border-neutral-border dark:border-slate-800 p-6 rounded-xl space-y-4 shadow-sm">
+<div class="flex items-center gap-2 text-sm">
+<span class="p-1 hover:bg-slate-100 dark:hover:bg-slate-800 rounded text-slate-400 transition-colors">
+<span class="material-icons text-lg">home</span>
+</span>
+<span class="material-icons text-slate-300">chevron_right</span>
+<span class="px-2 py-1 bg-primary/10 text-primary font-medium rounded">Applications</span>
+<span class="material-icons text-slate-300">chevron_right</span>
+<span class="text-slate-500">LC-2904-EXPORT</span>
+</div>
+<p class="text-xs text-slate-500">Breadcrumbs build dynamically and mirror in RTL mode. Active segment uses `bg-primary/10` with `text-primary` for visual weight.</p>
+</div>
+</div>
+<div>
+<h3 class="spec-label mb-4">Data Table Density Lab</h3>
+<div class="bg-white dark:bg-slate-900 border border-neutral-border dark:border-slate-800 rounded-xl shadow-sm overflow-hidden">
+<div class="flex items-center justify-between p-4 border-b border-neutral-border dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+<span class="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest">Density Toggle</span>
+<div class="flex items-center bg-slate-200 dark:bg-slate-700 p-1 rounded-lg">
+<button class="px-3 py-1 text-[10px] font-bold bg-white dark:bg-slate-600 rounded-md shadow-sm">Comfortable</button>
+<button class="px-3 py-1 text-[10px] font-bold text-slate-500">Compact</button>
+</div>
+</div>
+<table class="w-full text-left text-sm">
+<thead>
+<tr class="border-b border-neutral-border dark:border-slate-800">
+<th class="px-4 py-3 text-slate-500 font-medium">Transaction</th>
+<th class="px-4 py-3 text-slate-500 font-medium text-right">Amount</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-neutral-border dark:border-slate-800">
+<td class="px-4 py-5 font-medium">Bulk Export Fee</td>
+<td class="px-4 py-5 text-right font-bold text-slate-900 dark:text-white">$450.00</td>
+</tr>
+<tr class="border-b border-neutral-border dark:border-slate-800">
+<td class="px-4 py-5 font-medium">Swift Clearance</td>
+<td class="px-4 py-5 text-right font-bold text-slate-900 dark:text-white">$12.50</td>
+</tr>
+</tbody>
+</table>
+<div class="p-3 bg-slate-50 dark:bg-slate-800/50 text-[10px] text-slate-400 italic text-center">
+                                * Comfortable spacing: 20px padding | Compact spacing: 8px padding
+                            </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card Interaction States -->
+<section>
+<h3 class="spec-label mb-4">Interactive Card States (Dashboard)</h3>
+<div class="grid grid-cols-3 gap-6">
+<!-- Normal State -->
+<div class="group relative bg-white dark:bg-slate-900 p-5 rounded-xl border border-neutral-border dark:border-slate-800 shadow-sm">
+<span class="absolute top-2 right-2 text-[8px] font-bold text-slate-400 uppercase">Default</span>
+<div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-4">
+<span class="material-icons">account_balance_wallet</span>
+</div>
+<h4 class="font-bold text-sm mb-1">Checking Account</h4>
+<p class="text-xs text-slate-500">SUD 1,240,500.00</p>
+</div>
+<!-- Hover State -->
+<div class="group relative bg-white dark:bg-slate-900 p-5 rounded-xl border border-primary/40 shadow-lg ring-1 ring-primary/10 cursor-pointer">
+<span class="absolute top-2 right-2 text-[8px] font-bold text-primary uppercase">Hover</span>
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white mb-4">
+<span class="material-icons">savings</span>
+</div>
+<h4 class="font-bold text-sm mb-1">Savings Account</h4>
+<p class="text-xs text-slate-500">SUD 8,900,000.42</p>
+</div>
+<!-- Focus/Pressed State -->
+<div class="group relative bg-slate-50 dark:bg-slate-800 p-5 rounded-xl border-2 border-primary shadow-inner scale-[0.98] ring-4 ring-primary/20">
+<span class="absolute top-2 right-2 text-[8px] font-bold text-primary uppercase">Pressed</span>
+<div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center text-primary mb-4">
+<span class="material-icons">trending_up</span>
+</div>
+<h4 class="font-bold text-sm mb-1">Investments</h4>
+<p class="text-xs text-slate-500">SUD 340,000.00</p>
+</div>
+</div>
+</section>
+<!-- Tech Specs Panel -->
+<section class="bg-slate-900 text-white p-8 rounded-2xl overflow-hidden relative">
+<div class="absolute top-0 right-0 p-8 opacity-10">
+<span class="material-icons text-9xl">settings_input_component</span>
+</div>
+<div class="relative z-10">
+<h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+<span class="material-icons text-primary">terminal</span>
+                        Developer Technical Specifications
+                    </h3>
+<div class="grid grid-cols-2 gap-12">
+<div>
+<h4 class="spec-label text-slate-400 mb-3 border-b border-slate-700 pb-2">Transition Timings</h4>
+<ul class="space-y-4 text-sm font-mono">
+<li class="flex justify-between">
+<span class="text-slate-500">Drawer Slide (X)</span>
+<span class="text-primary font-bold">300ms cubic-bezier(0.4, 0, 0.2, 1)</span>
+</li>
+<li class="flex justify-between">
+<span class="text-slate-500">Bottom Sheet (Y)</span>
+<span class="text-primary font-bold">400ms ease-out</span>
+</li>
+<li class="flex justify-between">
+<span class="text-slate-500">Density Change</span>
+<span class="text-primary font-bold">150ms linear</span>
+</li>
+</ul>
+</div>
+<div>
+<h4 class="spec-label text-slate-400 mb-3 border-b border-slate-700 pb-2">Accessibility Tree</h4>
+<ul class="space-y-4 text-sm font-mono">
+<li class="flex justify-between">
+<span class="text-slate-500">Mobile Toggle</span>
+<span class="text-green-400">aria-controls="main-nav"</span>
+</li>
+<li class="flex justify-between">
+<span class="text-slate-500">RTL Detection</span>
+<span class="text-green-400">[dir="rtl"] sidebar-right</span>
+</li>
+<li class="flex justify-between">
+<span class="text-slate-500">Focus Ring</span>
+<span class="text-green-400">ring-offset-2 ring-primary</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Bottom Sheet Mobile Preview Overlay (Abstract) -->
+<div class="fixed bottom-0 inset-x-0 h-48 bg-white dark:bg-slate-900 border-t border-neutral-border dark:border-slate-800 translate-y-full opacity-0 pointer-events-none transition-all duration-500 flex flex-col items-center">
+<div class="w-12 h-1.5 bg-slate-300 dark:bg-slate-700 rounded-full mt-3 mb-6"></div>
+<div class="w-full max-w-md px-6 space-y-4">
+<h5 class="font-bold text-center">Select Transaction Type</h5>
+<div class="flex gap-4">
+<button class="flex-1 p-3 border border-neutral-border rounded-xl text-xs font-bold text-slate-600">Export LC</button>
+<button class="flex-1 p-3 border border-neutral-border rounded-xl text-xs font-bold text-slate-600">Import LC</button>
+</div>
+</div>
+</div>
+<!-- Documentation Footer -->
+<footer class="max-w-7xl mx-auto px-8 py-12 text-center text-slate-400 text-xs border-t border-neutral-border dark:border-slate-800 mt-12">
+<p>© 2024 Export Development Bank Sudan (EDB). Design System v2.0 - Technical Prototype documentation.</p>
+</footer>
+</body></html>

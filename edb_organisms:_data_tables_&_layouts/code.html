@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EDB Sudan Design System - 03 Organisms</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1d4fd7",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111521",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .spec-table th { @apply text-left px-4 py-2 text-xs font-semibold text-primary/70 uppercase tracking-wider; }
+        .spec-table td { @apply px-4 py-2 text-sm border-t border-primary/5; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<!-- Layout Wrapper -->
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="w-72 bg-white dark:bg-background-dark/50 border-r border-slate-200 dark:border-slate-800 sticky top-0 h-screen overflow-y-auto hidden lg:block custom-scrollbar">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">E</div>
+<div>
+<h1 class="text-sm font-bold tracking-tight">EDB SUDAN</h1>
+<p class="text-[10px] text-slate-500 uppercase font-semibold">Design System v2.0</p>
+</div>
+</div>
+<nav class="space-y-8">
+<div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4 px-2">Layer: Organisms</p>
+<ul class="space-y-1">
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg bg-primary/10 text-primary border-r-4 border-primary" href="#data-table">
+<span class="material-icons text-lg">grid_on</span> Data Table</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800" href="#card-system">
+<span class="material-icons text-lg">dashboard</span> Card System</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800" href="#overlay-patterns">
+<span class="material-icons text-lg">layers</span> Modals &amp; Drawers</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800" href="#form-layout">
+<span class="material-icons text-lg">assignment</span> Multi-section Form</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800" href="#accordions">
+<span class="material-icons text-lg">view_day</span> Accordion Group</a></li>
+</ul>
+</div>
+<div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4 px-2">Documentation Specs</p>
+<ul class="space-y-1">
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800" href="#">
+<span class="material-icons text-lg">code</span> ARIA Roles</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800" href="#">
+<span class="material-icons text-lg">translate</span> RTL/LTR Rules</a></li>
+</ul>
+</div>
+</nav>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-x-hidden">
+<!-- Page Header -->
+<header class="bg-white dark:bg-background-dark/80 border-b border-slate-200 dark:border-slate-800 p-8">
+<div class="max-w-6xl mx-auto">
+<div class="flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-wider mb-2">
+<span>Phase 2</span> <span class="text-slate-300">/</span> <span>01 Components</span> <span class="text-slate-300">/</span> <span>03 Organisms</span>
+</div>
+<h2 class="text-4xl font-extrabold text-slate-900 dark:text-white mb-4">Data Tables &amp; Layout Containers</h2>
+<p class="text-lg text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed">
+                        Complex UI patterns formed by combining atoms and molecules. Organisms represent the functional blocks of the EDB Sudan digital interface, focusing on data management and spatial organization.
+                    </p>
+</div>
+</header>
+<div class="p-8 max-w-6xl mx-auto space-y-16">
+<!-- Section: Data Table Organism -->
+<section id="data-table">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-2xl font-bold flex items-center gap-3">
+<span class="p-2 bg-primary/10 text-primary rounded-lg">
+<span class="material-icons block">grid_view</span>
+</span>
+                            Data Table Organism
+                        </h3>
+<div class="flex gap-2">
+<button class="px-4 py-2 text-xs font-bold uppercase border border-slate-200 dark:border-slate-700 rounded hover:bg-slate-50">Preview</button>
+<button class="px-4 py-2 text-xs font-bold uppercase text-slate-500">Tech Specs</button>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-200 dark:border-slate-800 overflow-hidden">
+<!-- Table Toolbar -->
+<div class="p-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/50">
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="pl-10 pr-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm w-64 focus:ring-primary focus:border-primary" placeholder="Search transactions..." type="text"/>
+</div>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700"></div>
+<span class="text-sm font-medium text-primary">2 items selected</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-500 hover:text-primary"><span class="material-icons">filter_list</span></button>
+<button class="p-2 text-slate-500 hover:text-primary"><span class="material-icons">file_download</span></button>
+<button class="ml-2 px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg shadow-lg shadow-primary/20">Create New</button>
+</div>
+</div>
+<!-- Main Grid -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse" role="grid">
+<thead class="bg-slate-50 dark:bg-slate-800/50">
+<tr>
+<th class="p-4 w-12"><input checked="" class="rounded text-primary focus:ring-primary border-slate-300" type="checkbox"/></th>
+<th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Transaction ID <span class="material-icons text-xs align-middle">arrow_downward</span></th>
+<th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Customer</th>
+<th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Type</th>
+<th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Amount</th>
+<th class="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
+<th class="p-4 w-12"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="bg-primary/5 hover:bg-primary/10 transition-colors">
+<td class="p-4"><input checked="" class="rounded text-primary focus:ring-primary border-slate-300" type="checkbox"/></td>
+<td class="p-4 text-sm font-medium font-mono text-slate-600 dark:text-slate-300">#TRX-88291</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 flex-shrink-0">
+<img class="w-full h-full rounded-full object-cover" data-alt="User profile portrait of a smiling man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj_CHscLvi78arcXoFpgco1HIB7P9JbZ1shz00PPKp5rXCvppPSMhehjQ9fQLAJnTPxFgcDStzRtpiV8NkE0dIY7YAxoN0gc9c7ImaIHlmvsa1Qn3tB1JyNRiXbYgjRMwp9WCAvm91KXlWL1XV8Y4kB-Z3j7sOp3SpWg6OMtop_VeYv18B_7CDooN9T4xkH9Hnf_zuctNxbD_nm1YKrLK07r_jRpefARktFtAELEAtBFG6vD3hGSzM0qtmQeZipzRivWhmpGyi3JLB"/>
+</div>
+<span class="text-sm font-semibold">Ahmed Ibrahim</span>
+</div>
+</td>
+<td class="p-4 text-sm">International Transfer</td>
+<td class="p-4 text-sm font-bold text-right tabular-nums">450.00 SDG</td>
+<td class="p-4"><span class="px-2 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] font-bold uppercase">Completed</span></td>
+<td class="p-4"><button class="material-icons text-slate-400">more_vert</button></td>
+</tr>
+<tr class="bg-primary/5 hover:bg-primary/10 transition-colors">
+<td class="p-4"><input checked="" class="rounded text-primary focus:ring-primary border-slate-300" type="checkbox"/></td>
+<td class="p-4 text-sm font-medium font-mono text-slate-600 dark:text-slate-300">#TRX-88292</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 flex-shrink-0">
+<img class="w-full h-full rounded-full object-cover" data-alt="User profile portrait of a smiling woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCG0yuuD8YObEw8i9l6TE71YP59kWhbTLVIRUn-zxvLv_qBYZRq1u-HVJ5M89fQIv8I59kRBsEKhaZx9tKxaLzTir5V_XtAZJtcvAhaMKzs_zqPMVH40GK0knS9wI6wzpJJdxr7ixY4bzxHEGL9a37tfgDQX6N9o0pEx1DHRurQ-yrRn0D2uJ7VKx_eqc7CpUFxqIkZTHCk-VW84zMeDn1_5rsvrqOgZ0g6_PNGOwaDfJkyv2NlJ-VRDKcCqdiCQYUk6JgSwRBZtR0_"/>
+</div>
+<span class="text-sm font-semibold">Layla Osman</span>
+</div>
+</td>
+<td class="p-4 text-sm">Bill Payment</td>
+<td class="p-4 text-sm font-bold text-right tabular-nums">1,200.00 SDG</td>
+<td class="p-4"><span class="px-2 py-1 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 text-[10px] font-bold uppercase">Pending</span></td>
+<td class="p-4"><button class="material-icons text-slate-400">more_vert</button></td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<td class="p-4"><input class="rounded text-primary focus:ring-primary border-slate-300" type="checkbox"/></td>
+<td class="p-4 text-sm font-medium font-mono text-slate-600 dark:text-slate-300">#TRX-88293</td>
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-xs">MA</div>
+<span class="text-sm font-semibold">Mohammed Ali</span>
+</div>
+</td>
+<td class="p-4 text-sm">ATM Withdrawal</td>
+<td class="p-4 text-sm font-bold text-right tabular-nums">5,000.00 SDG</td>
+<td class="p-4"><span class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] font-bold uppercase">Processing</span></td>
+<td class="p-4"><button class="material-icons text-slate-400">more_vert</button></td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="p-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+<span class="text-xs text-slate-500 font-medium">Showing 1 to 3 of 42 results</span>
+<div class="flex items-center gap-1">
+<button class="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-30" disabled=""><span class="material-icons">chevron_left</span></button>
+<button class="w-8 h-8 rounded bg-primary text-white text-xs font-bold">1</button>
+<button class="w-8 h-8 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-bold">2</button>
+<button class="w-8 h-8 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-bold">3</button>
+<button class="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-800"><span class="material-icons">chevron_right</span></button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Card System -->
+<section id="card-system">
+<h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+<span class="p-2 bg-primary/10 text-primary rounded-lg">
+<span class="material-icons block">style</span>
+</span>
+                        Card System Variants
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Standard Informational Card -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden group">
+<div class="h-32 bg-slate-100 dark:bg-slate-800 relative">
+<img class="w-full h-full object-cover" data-alt="Abstract data visualization with blue gradients" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsZGeL-_Aj9ZpbUW-dE_t25exrIK4grZ6QripLxmKXNuPazVpgQsKbjNS0uHt48PRdIi001a6oQrAcStyd3TzD09C9Okh2fS_DynR4MRsnsd9qc8aIIx2o_rF40UjVfNikRhGK_JMRllsOOBAA9PvbBfnSZTU4Wm8qF7maGhcbT0EZH_3UkIKdi1jbVNZKAHpPlXHnmrd95bNNtpcviVcTiBPUJR-sTxdedKlZZt5hK3knrTWpLviRKNNnvkM7HGi6N5Uh92b6MtAV"/>
+<div class="absolute top-3 right-3">
+<span class="px-2 py-1 bg-white/90 dark:bg-slate-900/90 rounded text-[10px] font-bold text-primary">REPORT</span>
+</div>
+</div>
+<div class="p-5">
+<h4 class="font-bold text-lg mb-2">Q3 Financial Summary</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Detailed overview of EDB Sudan quarterly performance across regional branches.</p>
+<div class="flex items-center justify-between">
+<span class="text-xs text-slate-400">Updated 2h ago</span>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all">View Full Report <span class="material-icons text-sm">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<!-- Interactive Action Card -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border-2 border-transparent hover:border-primary transition-all cursor-pointer shadow-sm hover:shadow-xl p-6 flex flex-col items-center text-center group">
+<div class="w-16 h-16 rounded-full bg-primary/5 text-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-icons text-3xl">account_balance_wallet</span>
+</div>
+<h4 class="font-bold text-lg mb-2">Internal Transfer</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Move funds instantly between your EDB accounts without fees.</p>
+<button class="w-full py-2 bg-slate-100 dark:bg-slate-800 rounded-lg text-sm font-bold text-slate-600 dark:text-slate-300 group-hover:bg-primary group-hover:text-white transition-colors">Start Transfer</button>
+</div>
+<!-- Complex Data Card -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
+<div class="p-4 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
+<span class="text-xs font-bold text-slate-400 uppercase">Live Rates</span>
+<span class="material-icons text-slate-300 text-sm">info</span>
+</div>
+<div class="p-4 space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 bg-blue-100 text-blue-600 rounded flex items-center justify-center font-bold text-xs">USD</span>
+<div>
+<p class="text-sm font-bold">US Dollar</p>
+<p class="text-[10px] text-slate-400">Global Reserve</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold">594.20 SDG</p>
+<p class="text-[10px] text-green-500 font-bold">+0.2%</p>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="w-8 h-8 bg-amber-100 text-amber-600 rounded flex items-center justify-center font-bold text-xs">AED</span>
+<div>
+<p class="text-sm font-bold">UAE Dirham</p>
+<p class="text-[10px] text-slate-400">Regional Trade</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold">161.80 SDG</p>
+<p class="text-[10px] text-red-500 font-bold">-0.05%</p>
+</div>
+</div>
+</div>
+<div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-b-xl border-t border-slate-100 dark:border-slate-800 text-center">
+<a class="text-[10px] font-bold text-primary uppercase tracking-widest" href="#">See All Markets</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Overlays & Drawers -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12" id="overlay-patterns">
+<!-- Modal Dialog Example (Inline Visualizer) -->
+<div class="space-y-6">
+<h3 class="text-2xl font-bold flex items-center gap-3">
+<span class="p-2 bg-primary/10 text-primary rounded-lg">
+<span class="material-icons block">crop_landscape</span>
+</span>
+                            Modal Dialog
+                        </h3>
+<div class="relative bg-slate-200 dark:bg-slate-950 rounded-xl p-12 overflow-hidden border border-slate-300 dark:border-slate-800 min-h-[400px] flex items-center justify-center">
+<div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm z-0"></div>
+<!-- Sample Modal -->
+<div class="relative z-10 w-full max-w-sm bg-white dark:bg-slate-900 rounded-xl shadow-2xl border border-white/20" role="dialog">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+<h5 class="text-lg font-bold">Confirm Transaction</h5>
+<button class="material-icons text-slate-400 hover:text-slate-600">close</button>
+</div>
+<div class="p-6">
+<div class="mb-4 flex flex-col items-center text-center">
+<div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-4">
+<span class="material-icons">warning</span>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400">You are about to transfer <span class="font-bold text-slate-900 dark:text-white">5,000.00 SDG</span> to Mohammed Ali. This action cannot be undone.</p>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-lg space-y-2">
+<div class="flex justify-between text-xs">
+<span class="text-slate-500">Service Fee</span>
+<span class="font-bold">25.00 SDG</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-slate-500">VAT (15%)</span>
+<span class="font-bold">3.75 SDG</span>
+</div>
+</div>
+</div>
+<div class="p-6 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2">
+<button class="w-full py-3 bg-primary text-white font-bold rounded-lg">Confirm &amp; Send</button>
+<button class="w-full py-2 text-sm text-slate-500 font-medium">Cancel Request</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Drawer Example -->
+<div class="space-y-6">
+<h3 class="text-2xl font-bold flex items-center gap-3">
+<span class="p-2 bg-primary/10 text-primary rounded-lg">
+<span class="material-icons block">side_navigation</span>
+</span>
+                            Details Drawer
+                        </h3>
+<div class="relative bg-slate-200 dark:bg-slate-950 rounded-xl overflow-hidden border border-slate-300 dark:border-slate-800 min-h-[400px]">
+<div class="absolute inset-0 bg-slate-900/20 z-0"></div>
+<!-- Sample Drawer -->
+<div class="absolute right-0 top-0 bottom-0 w-80 bg-white dark:bg-slate-900 shadow-2xl border-l border-slate-200 dark:border-slate-800 z-10">
+<div class="h-16 flex items-center justify-between px-6 border-b border-slate-100 dark:border-slate-800">
+<h5 class="font-bold">Filter Options</h5>
+<button class="material-icons text-slate-400">close</button>
+</div>
+<div class="p-6 space-y-6">
+<div>
+<label class="block text-xs font-bold text-slate-400 uppercase mb-3">Time Range</label>
+<select class="w-full bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm">
+<option>Last 30 Days</option>
+<option>Last Quarter</option>
+<option>Custom Range</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold text-slate-400 uppercase mb-3">Status Filter</label>
+<div class="space-y-2">
+<label class="flex items-center gap-3 text-sm">
+<input checked="" class="rounded text-primary border-slate-300" type="checkbox"/> Completed
+                                            </label>
+<label class="flex items-center gap-3 text-sm">
+<input class="rounded text-primary border-slate-300" type="checkbox"/> Pending
+                                            </label>
+<label class="flex items-center gap-3 text-sm">
+<input class="rounded text-primary border-slate-300" type="checkbox"/> Failed
+                                            </label>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold text-slate-400 uppercase mb-3">Amount range</label>
+<div class="flex items-center gap-2">
+<input class="w-1/2 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm" placeholder="Min" type="text"/>
+<span class="text-slate-400">-</span>
+<input class="w-1/2 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm" placeholder="Max" type="text"/>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-800 flex gap-3">
+<button class="flex-1 py-2 bg-primary text-white text-sm font-bold rounded-lg">Apply</button>
+<button class="flex-1 py-2 border border-slate-200 dark:border-slate-700 text-sm font-bold rounded-lg bg-white dark:bg-slate-900">Reset</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Multi-section Form -->
+<section id="form-layout">
+<h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+<span class="p-2 bg-primary/10 text-primary rounded-lg">
+<span class="material-icons block">assignment</span>
+</span>
+                        Multi-section Form Layout
+                    </h3>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+<!-- Main Form Content -->
+<div class="lg:col-span-2 space-y-8">
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+<div class="p-6 bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">01</div>
+<h4 class="font-bold">Personal Information</h4>
+</div>
+<span class="material-icons text-green-500">check_circle</span>
+</div>
+<div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-1">
+<label class="text-xs font-bold text-slate-500 uppercase">First Name (English)</label>
+<input class="w-full bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-primary" type="text" value="Ahmed"/>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-bold text-slate-500 uppercase">Surname (English)</label>
+<input class="w-full bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-primary" type="text" value="Ibrahim"/>
+</div>
+<div class="space-y-1 md:col-span-2">
+<label class="text-xs font-bold text-slate-500 uppercase">Sudanese National ID</label>
+<div class="relative">
+<input class="w-full bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-primary font-mono" type="text" value="102-392-1029-3"/>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-green-500 font-bold">VALIDATED</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+<div class="p-6 bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 flex items-center gap-4">
+<div class="w-8 h-8 rounded-full border-2 border-primary text-primary flex items-center justify-center text-xs font-bold">02</div>
+<h4 class="font-bold">Banking Details</h4>
+</div>
+<div class="p-8 space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-1">
+<label class="text-xs font-bold text-slate-500 uppercase">Account Type</label>
+<select class="w-full bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm">
+<option>Savings Account</option>
+<option>Current Account</option>
+<option>Corporate Business</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-bold text-slate-500 uppercase">Currency</label>
+<select class="w-full bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm">
+<option>SDG - Sudanese Pound</option>
+<option>USD - US Dollar</option>
+</select>
+</div>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-bold text-slate-500 uppercase">Preferred Branch</label>
+<div class="relative">
+<span class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">location_on</span>
+<input class="pl-10 w-full bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-primary" placeholder="Search branch location..." type="text"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Review/Summary Sidebar -->
+<div class="lg:sticky lg:top-8 space-y-6">
+<div class="bg-primary text-white rounded-xl p-6 shadow-xl shadow-primary/20">
+<h4 class="font-bold mb-4 flex items-center gap-2"><span class="material-icons text-lg">fact_check</span> Submission Summary</h4>
+<div class="space-y-4 text-sm">
+<div class="flex justify-between border-b border-white/10 pb-2">
+<span class="text-white/70">Application Type</span>
+<span class="font-medium">Personal Account</span>
+</div>
+<div class="flex justify-between border-b border-white/10 pb-2">
+<span class="text-white/70">Risk Level</span>
+<span class="px-2 bg-white/20 rounded text-[10px] font-bold">LOW</span>
+</div>
+<div class="flex justify-between border-b border-white/10 pb-2">
+<span class="text-white/70">Review Priority</span>
+<span class="font-medium">Standard</span>
+</div>
+</div>
+<button class="w-full mt-6 py-3 bg-white text-primary font-bold rounded-lg hover:bg-slate-100 transition-colors">Submit Application</button>
+<p class="mt-4 text-[10px] text-center text-white/60 leading-tight">By submitting, you agree to the EDB Sudan Terms of Service and Privacy Policy.</p>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6">
+<h5 class="text-xs font-bold text-slate-400 uppercase mb-4">Support &amp; Help</h5>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary">
+<span class="material-icons">headset_mic</span>
+</div>
+<div>
+<p class="text-sm font-bold">Need assistance?</p>
+<p class="text-xs text-slate-500">Contact branch manager</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Accordion Group -->
+<section id="accordions">
+<h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+<span class="p-2 bg-primary/10 text-primary rounded-lg">
+<span class="material-icons block">unfold_more</span>
+</span>
+                        FAQ Accordion Group
+                    </h3>
+<div class="max-w-3xl space-y-3">
+<!-- Accordion Item 1 -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
+<button class="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="font-bold">What documents are required for account opening?</span>
+<span class="material-icons text-primary transition-transform">expand_more</span>
+</button>
+<div class="px-6 py-4 border-t border-slate-100 dark:border-slate-800 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                Standard requirements include a valid Sudanese National ID, two passport-sized photographs, and proof of residence (e.g., utility bill). Corporate accounts may require additional commercial registration documents.
+                            </div>
+</div>
+<!-- Accordion Item 2 -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
+<button class="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="font-bold text-slate-900 dark:text-white">How long does an international transfer take?</span>
+<span class="material-icons text-slate-400">expand_more</span>
+</button>
+</div>
+<!-- Accordion Item 3 -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
+<button class="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="font-bold text-slate-900 dark:text-white">What are the daily withdrawal limits?</span>
+<span class="material-icons text-slate-400">expand_more</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Tech Specs / Developer Footer -->
+<section class="bg-slate-900 text-white rounded-2xl overflow-hidden">
+<div class="p-8 border-b border-white/10">
+<h3 class="text-xl font-bold mb-2">Technical Specifications</h3>
+<p class="text-slate-400 text-sm">Implementation guidelines for the organisms defined above.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 divide-x divide-white/10">
+<div class="p-8 space-y-4">
+<h4 class="text-xs font-bold text-primary uppercase">ARIA &amp; Accessibility</h4>
+<ul class="text-sm space-y-2 text-slate-300">
+<li class="flex items-start gap-2"><span class="material-icons text-xs mt-1">code</span> Use role="grid" for Data Tables</li>
+<li class="flex items-start gap-2"><span class="material-icons text-xs mt-1">code</span> Modal focus trapping via TabIndex</li>
+<li class="flex items-start gap-2"><span class="material-icons text-xs mt-1">code</span> Announce status via aria-live</li>
+</ul>
+</div>
+<div class="p-8 space-y-4">
+<h4 class="text-xs font-bold text-primary uppercase">RTL Support (Sudan)</h4>
+<ul class="text-sm space-y-2 text-slate-300">
+<li class="flex items-start gap-2"><span class="material-icons text-xs mt-1">translate</span> Flip Drawer direction for AR</li>
+<li class="flex items-start gap-2"><span class="material-icons text-xs mt-1">translate</span> Right-align numerical table data</li>
+<li class="flex items-start gap-2"><span class="material-icons text-xs mt-1">translate</span> Icon mirroring for chevrons</li>
+</ul>
+</div>
+<div class="p-8 space-y-4">
+<h4 class="text-xs font-bold text-primary uppercase">State Management</h4>
+<ul class="text-sm space-y-2 text-slate-300">
+<li class="flex items-start gap-2"><span class="material-icons text-xs mt-1">settings_input_component</span> Handle "Empty State" via Molecule</li>
+<li class="flex items-start gap-2"><span class="material-icons text-xs mt-1">settings_input_component</span> Skeleton loading for table rows</li>
+<li class="flex items-start gap-2"><span class="material-icons text-xs mt-1">settings_input_component</span> Form validation debounce (500ms)</li>
+</ul>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="mt-12 py-12 border-t border-slate-200 dark:border-slate-800 text-center">
+<p class="text-slate-400 text-sm">© 2024 Export Development Bank (EDB) Sudan. Design System Phase 2 Organisms Documentation.</p>
+</footer>
+</main>
+</div>
+</body></html>

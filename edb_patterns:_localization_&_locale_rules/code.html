@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EDB Patterns: Localization &amp; Locale Rules</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#1d4fd7",
+            "background-light": "#f6f6f8",
+            "background-dark": "#111521",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .arabic-text { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    .rtl-mirror { direction: rtl; }
+    .sticky-nav { height: calc(100vh - 64px); }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<!-- Header -->
+<header class="sticky top-0 z-50 w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-[1440px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-primary rounded flex items-center justify-center">
+<span class="text-white font-bold text-xl">E</span>
+</div>
+<div>
+<h1 class="font-bold text-lg leading-none">EDB Design System</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">Phase 3: 02 Patterns • Localization</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 rounded-lg text-sm font-medium border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+          English (LTR)
+        </button>
+<button class="px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:bg-blue-700 transition-colors">
+          View RTL Logic
+        </button>
+</div>
+</div>
+</header>
+<div class="max-w-[1440px] mx-auto flex">
+<!-- Sidebar Navigation -->
+<aside class="w-64 sticky top-16 sticky-nav overflow-y-auto border-r border-slate-200 dark:border-slate-800 p-6 hidden lg:block">
+<nav class="space-y-1">
+<div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-4">Locale Rules</div>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-primary bg-primary/10 rounded-lg" href="#currency">
+<span class="material-icons text-lg">payments</span> Currency &amp; Numbers
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#datetime">
+<span class="material-icons text-lg">event</span> Date &amp; Time
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#mixed-content">
+<span class="material-icons text-lg">translate</span> Mixed Content
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#empty-states">
+<span class="material-icons text-lg">sentiment_dissatisfied</span> Empty States
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#interaction">
+<span class="material-icons text-lg">flip</span> Interaction Logic
+        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#tone-voice">
+<span class="material-icons text-lg">record_voice_over</span> Tone &amp; Voice
+        </a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-8 lg:p-12">
+<div class="max-w-4xl space-y-16">
+<!-- Introduction -->
+<section>
+<h2 class="text-4xl font-bold mb-4">Sudan Localization</h2>
+<p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
+            Standards for building Sudanese banking interfaces that handle dual script systems, local currency formatting (SDG), and RTL layout transitions for the Export Development Bank.
+          </p>
+</section>
+<!-- 1. Currency & Numbers -->
+<section class="space-y-6" id="currency">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary/20 text-primary flex items-center justify-center">
+<span class="material-icons text-sm">payments</span>
+</div>
+<h3 class="text-2xl font-bold">Currency &amp; Numbers</h3>
+</div>
+<p class="text-slate-600 dark:text-slate-400">Formatting rules for Sudanese Pounds (SDG). EDB uses Arabic-Indic digits (٠١٢٣) for consumer-facing RTL views and Western digits (0123) for technical or LTR dashboards.</p>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
+<table class="w-full text-left text-sm">
+<thead class="bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-800">
+<tr>
+<th class="px-6 py-4 font-semibold">Context</th>
+<th class="px-6 py-4 font-semibold">Western Digits</th>
+<th class="px-6 py-4 font-semibold">Arabic-Indic Digits</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr>
+<td class="px-6 py-4">Transaction Amount</td>
+<td class="px-6 py-4 font-mono">1,250.50 SDG</td>
+<td class="px-6 py-4 arabic-text">١,٢٥٠.٥٠ ج.س</td>
+</tr>
+<tr>
+<td class="px-6 py-4">Account Number</td>
+<td class="px-6 py-4 font-mono">002-123456-01</td>
+<td class="px-6 py-4 arabic-text text-right">٠٠٢-١٢٣٤٥٦-٠١</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-primary p-4 rounded-r-lg">
+<div class="flex gap-3">
+<span class="material-icons text-primary">info</span>
+<p class="text-sm text-blue-800 dark:text-blue-300">
+<strong>Rule:</strong> Always align decimals vertically in banking tables regardless of the digit system used.
+              </p>
+</div>
+</div>
+</section>
+<!-- 2. Date & Time -->
+<section class="space-y-6" id="datetime">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary/20 text-primary flex items-center justify-center">
+<span class="material-icons text-sm">event</span>
+</div>
+<h3 class="text-2xl font-bold">Date &amp; Time</h3>
+</div>
+<div class="grid md:grid-cols-2 gap-6">
+<div class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Western Format</span>
+<div class="mt-2 text-xl font-medium">15/05/2024</div>
+<p class="text-sm text-slate-500 mt-1">DD/MM/YYYY</p>
+</div>
+<div class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl rtl-mirror">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Sudan Localized</span>
+<div class="mt-2 text-xl font-medium arabic-text">١٥ مايو ٢٠٢٤</div>
+<p class="text-sm text-slate-500 mt-1">Day Month Year (Arabic)</p>
+</div>
+</div>
+</section>
+<!-- 3. Mixed Content Handling -->
+<section class="space-y-6" id="mixed-content">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary/20 text-primary flex items-center justify-center">
+<span class="material-icons text-sm">translate</span>
+</div>
+<h3 class="text-2xl font-bold">Mixed Content Handling</h3>
+</div>
+<p class="text-slate-600 dark:text-slate-400">Rules for embedding English acronyms (SWIFT, IBAN) within Arabic sentences without breaking text flow or layout.</p>
+<div class="grid md:grid-cols-2 gap-6">
+<!-- Incorrect -->
+<div class="border border-red-200 dark:border-red-900/50 rounded-xl overflow-hidden">
+<div class="bg-red-50 dark:bg-red-900/20 px-4 py-2 flex items-center gap-2">
+<span class="material-icons text-red-500 text-sm">cancel</span>
+<span class="text-xs font-bold text-red-700 dark:text-red-400 uppercase">Incorrect</span>
+</div>
+<div class="p-6 arabic-text text-right leading-loose">
+                الرجاء إدخال رمز SWIFT الخاص بالبنك
+                <p class="text-[10px] text-slate-400 mt-2 font-sans italic">Acronym breaks reading flow due to lack of unicode handling.</p>
+</div>
+</div>
+<!-- Correct -->
+<div class="border border-emerald-200 dark:border-emerald-900/50 rounded-xl overflow-hidden">
+<div class="bg-emerald-50 dark:bg-emerald-900/20 px-4 py-2 flex items-center gap-2">
+<span class="material-icons text-emerald-500 text-sm">check_circle</span>
+<span class="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase">Correct</span>
+</div>
+<div class="p-6 arabic-text text-right leading-loose">
+                الرجاء إدخال رمز <span class="bg-slate-100 dark:bg-slate-800 px-1 rounded font-sans text-xs" dir="ltr">SWIFT</span> الخاص بالبنك
+                <p class="text-[10px] text-slate-400 mt-2 font-sans italic">Use LTR span for acronyms to ensure correct spacing and direction.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Empty & No-Results States -->
+<section class="space-y-8" id="empty-states">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary/20 text-primary flex items-center justify-center">
+<span class="material-icons text-sm">sentiment_dissatisfied</span>
+</div>
+<h3 class="text-2xl font-bold">Empty &amp; No-Results States</h3>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="bg-white dark:bg-slate-900 p-8 border border-slate-200 dark:border-slate-800 rounded-xl flex flex-col items-center text-center">
+<div class="w-48 h-32 bg-slate-50 dark:bg-slate-800 rounded-lg mb-6 flex items-center justify-center overflow-hidden">
+<div class="relative w-full h-full bg-gradient-to-tr from-slate-200 to-slate-100 dark:from-slate-800 dark:to-slate-700">
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-icons text-4xl text-slate-300 dark:text-slate-600">search_off</span>
+</div>
+</div>
+</div>
+<h4 class="font-bold text-lg mb-2">No Transactions Found</h4>
+<p class="text-sm text-slate-500 mb-6">We couldn't find any results for this date range. Try adjusting your filters.</p>
+<button class="bg-primary text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">Adjust Filters</button>
+</div>
+<div class="bg-white dark:bg-slate-900 p-8 border border-slate-200 dark:border-slate-800 rounded-xl flex flex-col items-center text-center rtl-mirror">
+<div class="w-48 h-32 bg-slate-50 dark:bg-slate-800 rounded-lg mb-6 flex items-center justify-center overflow-hidden">
+<div class="relative w-full h-full bg-gradient-to-tr from-slate-200 to-slate-100 dark:from-slate-800 dark:to-slate-700">
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-icons text-4xl text-slate-300 dark:text-slate-600">account_balance_wallet</span>
+</div>
+</div>
+</div>
+<h4 class="font-bold text-lg mb-2 arabic-text">لا توجد معاملات</h4>
+<p class="text-sm text-slate-500 mb-6 arabic-text leading-relaxed">لم نتمكن من العثور على أي نتائج لنطاق التاريخ هذا. حاول تعديل الفلاتر الخاصة بك.</p>
+<button class="bg-primary text-white px-6 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors arabic-text">تعديل الفلاتر</button>
+</div>
+</div>
+</section>
+<!-- 5. Localization Interaction -->
+<section class="space-y-6" id="interaction">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary/20 text-primary flex items-center justify-center">
+<span class="material-icons text-sm">flip</span>
+</div>
+<h3 class="text-2xl font-bold">Switching Logic (RTL/LTR)</h3>
+</div>
+<p class="text-slate-600 dark:text-slate-400">Layout flipping rules for components. Note exceptions where icons should NOT be mirrored (e.g. clocks, currency symbols, and progress indicators).</p>
+<div class="bg-slate-50 dark:bg-slate-800 p-6 rounded-xl space-y-8">
+<div class="flex flex-col md:flex-row gap-12 items-center justify-around">
+<div class="text-center">
+<div class="mb-4 text-xs font-bold text-slate-400 uppercase">Standard (LTR)</div>
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-lg shadow-sm w-48">
+<span class="material-icons text-primary">arrow_forward</span>
+<span class="text-sm font-medium">Continue</span>
+</div>
+</div>
+<div class="hidden md:block">
+<span class="material-icons text-slate-300">swap_horiz</span>
+</div>
+<div class="text-center rtl-mirror">
+<div class="mb-4 text-xs font-bold text-slate-400 uppercase">Mirrored (RTL)</div>
+<div class="flex items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-lg shadow-sm w-48">
+<span class="material-icons text-primary">arrow_back</span>
+<span class="text-sm font-medium arabic-text">استمرار</span>
+</div>
+</div>
+</div>
+<div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 rounded-r-lg">
+<div class="flex gap-3">
+<span class="material-icons text-amber-600">warning</span>
+<p class="text-sm text-amber-800 dark:text-amber-300">
+<strong>Mirroring Exception:</strong> Icons representing passage of time (clocks) or media controls (play/pause) do not flip.
+                </p>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Tone & Voice -->
+<section class="space-y-6 pb-20" id="tone-voice">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary/20 text-primary flex items-center justify-center">
+<span class="material-icons text-sm">record_voice_over</span>
+</div>
+<h3 class="text-2xl font-bold">Tone &amp; Voice</h3>
+</div>
+<div class="grid md:grid-cols-2 gap-6">
+<div class="space-y-4">
+<h4 class="font-semibold text-slate-900 dark:text-slate-100">Bilingual Terminology</h4>
+<p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Consistency in banking terms is critical for trust. Use formal Arabic (Modern Standard) with Sudan-specific banking nomenclature where required.
+              </p>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4">
+<ul class="space-y-3 text-sm">
+<li class="flex justify-between border-b border-slate-50 dark:border-slate-800 pb-2">
+<span class="text-slate-400">Statement</span>
+<span class="font-medium arabic-text">كشف حساب</span>
+</li>
+<li class="flex justify-between border-b border-slate-50 dark:border-slate-800 pb-2">
+<span class="text-slate-400">Transfer</span>
+<span class="font-medium arabic-text">تحويل مالي</span>
+</li>
+<li class="flex justify-between border-b border-slate-50 dark:border-slate-800 pb-2">
+<span class="text-slate-400">Overdraft</span>
+<span class="font-medium arabic-text">سحب على المكشوف</span>
+</li>
+<li class="flex justify-between">
+<span class="text-slate-400">Beneficiary</span>
+<span class="font-medium arabic-text">المستفيد</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- Mobile Navigation Bar -->
+<div class="lg:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 h-16 px-6 flex items-center justify-between z-50">
+<button class="p-2 text-primary">
+<span class="material-icons">menu</span>
+</button>
+<div class="text-xs font-bold uppercase tracking-wider">Localization Rules</div>
+<button class="p-2 text-primary">
+<span class="material-icons">search</span>
+</button>
+</div>
+</body></html>

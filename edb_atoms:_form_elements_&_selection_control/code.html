@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EDB Atoms: Form Elements &amp; Selection Control</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1d4fd7",
+                        "primary-50": "#eef4ff",
+                        "primary-100": "#dce8ff",
+                        "primary-200": "#c0d4ff",
+                        "primary-600": "#1d4fd7",
+                        "primary-700": "#163ba3",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111521",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a202e",
+                        "neutral-50": "#f8f9fa",
+                        "neutral-100": "#f1f3f5",
+                        "neutral-200": "#e9ecef",
+                        "neutral-300": "#dee2e6",
+                        "neutral-400": "#ced4da",
+                        "neutral-500": "#adb5bd",
+                        "neutral-600": "#868e96",
+                        "neutral-700": "#495057",
+                        "neutral-900": "#212529",
+                        "success": "#22c55e",
+                        "error": "#ef4444",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .check-pattern {
+            background-image: 
+                linear-gradient(45deg, #e5e7eb 25%, transparent 25%), 
+                linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #e5e7eb 75%), 
+                linear-gradient(-45deg, transparent 75%, #e5e7eb 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-neutral-900 dark:text-white font-display antialiased selection:bg-primary/20 selection:text-primary">
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="w-64 fixed h-screen bg-surface-light dark:bg-surface-dark border-r border-neutral-200 dark:border-neutral-800 hidden lg:flex flex-col z-20">
+<div class="p-6 border-b border-neutral-200 dark:border-neutral-800">
+<div class="flex items-center gap-2 text-primary font-bold text-xl">
+<span class="material-icons-outlined">token</span>
+                    EDB Design
+                </div>
+<div class="mt-2 text-xs text-neutral-500 font-medium tracking-wider uppercase">V 2.4.0 • EDB Sudan</div>
+</div>
+<nav class="flex-1 overflow-y-auto py-4">
+<div class="px-4 mb-2 text-xs font-semibold text-neutral-400 uppercase tracking-wider">01 Atoms</div>
+<ul class="space-y-1 px-2">
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800" href="#">Colors</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800" href="#">Typography</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800" href="#">Icons</a></li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg bg-primary/10 text-primary dark:text-primary-200" href="#">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                            Form Elements
+                        </a>
+</li>
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800" href="#">Buttons</a></li>
+</ul>
+<div class="px-4 mt-8 mb-2 text-xs font-semibold text-neutral-400 uppercase tracking-wider">02 Molecules</div>
+<ul class="space-y-1 px-2">
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800" href="#">Form Groups</a></li>
+<li><a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800" href="#">Search Bars</a></li>
+</ul>
+</nav>
+<div class="p-4 border-t border-neutral-200 dark:border-neutral-800">
+<div class="flex items-center gap-3 p-2 rounded-lg bg-neutral-50 dark:bg-neutral-800">
+<img alt="User Avatar" class="w-8 h-8 rounded-full" data-alt="User avatar placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUM9Wi7RldO7fdCjRYjLym9jmXmL3t6ElOSFRuJEzegIcidjJqgXKBP9omepPcAAFNZBJjgfak6LwevfVpBqnfbujhr1-CYw0xaM11aWfM83moVm6dWxVBkcJNGiIh3h-ul9yIqc88o0302uvaHIlq5cPC5vRLPNHBbVm-wW0S5EA0xGgUQubUVuix5GifKxWnCv7Li02fIc4K8q2JfuWcSh0_yZUTM4FIn54jZ0yCiHXGFXxf0cue6zIqTQ7eaeqVAg3POF0gJMO6"/>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium truncate">Design Lead</p>
+<p class="text-xs text-neutral-500 truncate">admin@edb.sd</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 lg:ml-64 p-8 lg:p-12 max-w-7xl mx-auto">
+<!-- Page Header -->
+<div class="mb-12">
+<div class="flex items-center gap-2 text-sm text-neutral-500 mb-2">
+<span>01 Atoms</span>
+<span class="material-icons-outlined text-xs">chevron_right</span>
+<span class="text-primary font-medium">Form Elements</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h1 class="text-3xl font-bold text-neutral-900 dark:text-white mb-2">Form Elements &amp; Selection</h1>
+<p class="text-neutral-600 dark:text-neutral-400 max-w-2xl">
+                            Core interactive inputs and controls for data collection. These atoms are the building blocks for molecules like Form Groups and Search Patterns. Designed for high accessibility and RTL support.
+                        </p>
+</div>
+<div class="flex gap-3">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                            Stable
+                        </span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400">
+                            v2.1
+                        </span>
+</div>
+</div>
+</div>
+<!-- Table of Contents (Quick Links) -->
+<div class="flex gap-4 mb-12 border-b border-neutral-200 dark:border-neutral-800 pb-1 overflow-x-auto">
+<a class="pb-3 border-b-2 border-primary text-primary font-medium text-sm whitespace-nowrap" href="#inputs">Text Inputs</a>
+<a class="pb-3 border-b-2 border-transparent hover:border-neutral-300 text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 font-medium text-sm whitespace-nowrap transition-colors" href="#select">Select Menus</a>
+<a class="pb-3 border-b-2 border-transparent hover:border-neutral-300 text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 font-medium text-sm whitespace-nowrap transition-colors" href="#checks">Checkbox &amp; Radio</a>
+<a class="pb-3 border-b-2 border-transparent hover:border-neutral-300 text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 font-medium text-sm whitespace-nowrap transition-colors" href="#toggles">Switches</a>
+<a class="pb-3 border-b-2 border-transparent hover:border-neutral-300 text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 font-medium text-sm whitespace-nowrap transition-colors" href="#dividers">Dividers</a>
+</div>
+<!-- 1. Text Inputs Section -->
+<section class="mb-16 scroll-mt-24" id="inputs">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+<span class="material-icons-outlined text-neutral-400">edit_note</span>
+                        Text Input &amp; Textarea
+                    </h2>
+<button class="text-sm text-primary hover:text-primary-700 font-medium flex items-center gap-1 transition-colors">
+<span class="material-icons-outlined text-base">code</span>
+                        View Spec
+                    </button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Anatomy & Description -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-neutral-800 p-6 shadow-sm">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-400 mb-4">Anatomy</h3>
+<div class="relative p-8 bg-neutral-50 dark:bg-background-dark/50 rounded-lg border border-dashed border-neutral-300 dark:border-neutral-700 flex justify-center items-center">
+<div class="w-full max-w-sm space-y-1">
+<label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 flex justify-between">
+<span>Label</span>
+<span class="text-neutral-400 font-normal">Optional</span>
+</label>
+<div class="relative rounded-md shadow-sm">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-icons-outlined text-neutral-400">mail</span>
+</div>
+<input class="focus:ring-primary focus:border-primary block w-full pl-10 sm:text-sm border-neutral-300 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white rounded-md h-10" placeholder="Placeholder text" type="text"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="material-icons-outlined text-neutral-400 text-lg">info</span>
+</div>
+</div>
+<p class="mt-1 text-xs text-neutral-500">Helper text describes the input rules.</p>
+</div>
+<!-- Annotations -->
+<div class="absolute top-2 right-4 text-[10px] text-primary font-mono bg-primary/10 px-2 py-0.5 rounded">h-10 (40px)</div>
+</div>
+<div class="mt-4 space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
+<div class="flex gap-2">
+<span class="material-icons-outlined text-base text-success">check_circle</span>
+<span>Includes slots for leading/trailing icons.</span>
+</div>
+<div class="flex gap-2">
+<span class="material-icons-outlined text-base text-primary">translate</span>
+<span>RTL Support: Icons and text alignment mirror automatically.</span>
+</div>
+</div>
+</div>
+<!-- States Matrix -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-neutral-800 p-6 shadow-sm">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-400 mb-4">State Matrix</h3>
+<div class="space-y-4">
+<!-- Default & Focused -->
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-medium text-neutral-500 mb-1">Default</label>
+<input class="block w-full px-3 py-2 border border-neutral-300 rounded-md shadow-sm placeholder-neutral-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm dark:bg-neutral-800 dark:border-neutral-700" placeholder="Type here..." type="text"/>
+</div>
+<div>
+<label class="block text-xs font-medium text-neutral-500 mb-1">Focus</label>
+<input class="block w-full px-3 py-2 border border-primary ring-1 ring-primary rounded-md shadow-sm placeholder-neutral-400 focus:outline-none sm:text-sm dark:bg-neutral-800" placeholder="Active input" type="text" value="Active input"/>
+</div>
+</div>
+<!-- Error & Success -->
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-medium text-neutral-500 mb-1">Error</label>
+<div class="relative rounded-md shadow-sm">
+<input class="block w-full px-3 py-2 border border-error text-error placeholder-error/50 rounded-md focus:outline-none focus:ring-error focus:border-error sm:text-sm dark:bg-neutral-800" type="text" value="Invalid data"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="material-icons-outlined text-error text-lg">error</span>
+</div>
+</div>
+<p class="mt-1 text-xs text-error">Email is required.</p>
+</div>
+<div>
+<label class="block text-xs font-medium text-neutral-500 mb-1">Success</label>
+<div class="relative rounded-md shadow-sm">
+<input class="block w-full px-3 py-2 border border-success text-success-900 placeholder-success rounded-md focus:outline-none focus:ring-success focus:border-success sm:text-sm dark:bg-neutral-800 dark:text-success" type="text" value="Valid entry"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="material-icons-outlined text-success text-lg">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Disabled & Readonly -->
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-medium text-neutral-500 mb-1">Disabled</label>
+<input class="block w-full px-3 py-2 border border-neutral-200 bg-neutral-100 text-neutral-400 rounded-md shadow-sm sm:text-sm cursor-not-allowed dark:bg-neutral-900 dark:border-neutral-800" disabled="" type="text" value="Cannot edit"/>
+</div>
+<div>
+<label class="block text-xs font-medium text-neutral-500 mb-1">Read-only</label>
+<input class="block w-full px-3 py-2 border border-neutral-200 bg-neutral-50 text-neutral-600 rounded-md shadow-sm sm:text-sm dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400" readonly="" type="text" value="ID: 883920"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RTL Variant -->
+<div class="mt-8 bg-surface-light dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-neutral-800 p-6 shadow-sm">
+<div class="flex items-center gap-2 mb-4">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 uppercase">Locale</span>
+<h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-400">RTL Context (Arabic)</h3>
+</div>
+<div class="bg-neutral-50 dark:bg-background-dark/50 p-6 rounded-lg border border-neutral-200 dark:border-neutral-700" dir="rtl">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">اسم المستخدم</label>
+<div class="relative rounded-md shadow-sm">
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="material-icons-outlined text-neutral-400">person</span>
+</div>
+<input class="focus:ring-primary focus:border-primary block w-full pr-10 border-neutral-300 rounded-md py-2 sm:text-sm dark:bg-neutral-800 dark:border-neutral-700 dark:text-white" placeholder="أدخل اسمك" type="text"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">ملاحظات</label>
+<textarea class="shadow-sm focus:ring-primary focus:border-primary block w-full sm:text-sm border border-neutral-300 rounded-md dark:bg-neutral-800 dark:border-neutral-700 dark:text-white" placeholder="اكتب ملاحظاتك هنا..." rows="3"></textarea>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Select Menu Section -->
+<section class="mb-16 scroll-mt-24" id="select">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+<span class="material-icons-outlined text-neutral-400">arrow_drop_down_circle</span>
+                        Select Dropdown
+                    </h2>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-neutral-800 p-6 shadow-sm grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Standard Select -->
+<div>
+<h3 class="text-sm font-semibold text-neutral-500 mb-4">Native Trigger</h3>
+<label class="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Account Type</label>
+<select class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-neutral-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md dark:bg-neutral-800 dark:border-neutral-700 dark:text-white">
+<option>Savings Account</option>
+<option>Current Account</option>
+<option>Investment</option>
+</select>
+</div>
+<!-- Custom UI State: Open -->
+<div class="md:col-span-2">
+<h3 class="text-sm font-semibold text-neutral-500 mb-4">Custom UI State: Active/Open</h3>
+<div class="relative w-full max-w-sm">
+<button aria-expanded="true" aria-haspopup="listbox" aria-labelledby="listbox-label" class="relative w-full bg-white dark:bg-neutral-800 border border-primary ring-1 ring-primary rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none sm:text-sm" type="button">
+<span class="flex items-center">
+<span class="block truncate dark:text-white">Sudanese Pound (SDG)</span>
+</span>
+<span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+<span class="material-icons-outlined text-primary rotate-180 transition-transform">expand_more</span>
+</span>
+</button>
+<ul class="absolute z-10 mt-1 w-full bg-white dark:bg-neutral-800 shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm" role="listbox" tabindex="-1">
+<li class="text-gray-900 dark:text-white cursor-default select-none relative py-2 pl-3 pr-9 hover:bg-neutral-50 dark:hover:bg-neutral-700" id="listbox-option-0" role="option">
+<div class="flex items-center">
+<span class="font-normal block truncate">US Dollar (USD)</span>
+</div>
+</li>
+<li class="text-white cursor-default select-none relative py-2 pl-3 pr-9 bg-primary" id="listbox-option-1" role="option">
+<div class="flex items-center">
+<span class="font-semibold block truncate">Sudanese Pound (SDG)</span>
+</div>
+<span class="text-white absolute inset-y-0 right-0 flex items-center pr-4">
+<span class="material-icons-outlined text-sm">check</span>
+</span>
+</li>
+<li class="text-gray-900 dark:text-white cursor-default select-none relative py-2 pl-3 pr-9 hover:bg-neutral-50 dark:hover:bg-neutral-700" id="listbox-option-2" role="option">
+<div class="flex items-center">
+<span class="font-normal block truncate">Euro (EUR)</span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Checkbox & Radio Section -->
+<section class="mb-16 scroll-mt-24" id="checks">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+<span class="material-icons-outlined text-neutral-400">check_box</span>
+                        Checkbox &amp; Radio
+                    </h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Checkboxes -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-neutral-800 p-6 shadow-sm">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-400 mb-6">Checkbox States</h3>
+<div class="space-y-4">
+<!-- Unchecked -->
+<div class="flex items-center">
+<input class="h-4 w-4 text-primary border-neutral-300 rounded focus:ring-primary dark:border-neutral-600 dark:bg-neutral-800" id="chk-1" type="checkbox"/>
+<label class="ml-3 block text-sm font-medium text-neutral-700 dark:text-neutral-300" for="chk-1">Unchecked State</label>
+</div>
+<!-- Checked -->
+<div class="flex items-center">
+<input checked="" class="h-4 w-4 text-primary border-neutral-300 rounded focus:ring-primary dark:border-neutral-600 dark:bg-neutral-800" id="chk-2" type="checkbox"/>
+<label class="ml-3 block text-sm font-medium text-neutral-700 dark:text-neutral-300" for="chk-2">Checked State</label>
+</div>
+<!-- Indeterminate -->
+<div class="flex items-center">
+<div class="relative flex items-center">
+<input class="h-4 w-4 text-primary border-neutral-300 rounded focus:ring-primary dark:border-neutral-600 dark:bg-neutral-800 appearance-none bg-primary checked:bg-primary border-transparent checked:border-transparent flex items-center justify-center" id="chk-3" type="checkbox"/>
+<span class="absolute inset-0 flex items-center justify-center pointer-events-none text-white font-bold text-xs">-</span>
+</div>
+<label class="ml-3 block text-sm font-medium text-neutral-700 dark:text-neutral-300" for="chk-3">Indeterminate</label>
+</div>
+<!-- Disabled -->
+<div class="flex items-center opacity-50">
+<input checked="" class="h-4 w-4 text-primary border-neutral-300 rounded focus:ring-primary dark:border-neutral-600 dark:bg-neutral-800" disabled="" id="chk-4" type="checkbox"/>
+<label class="ml-3 block text-sm font-medium text-neutral-700 dark:text-neutral-300" for="chk-4">Disabled Checked</label>
+</div>
+</div>
+</div>
+<!-- Radios -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-neutral-800 p-6 shadow-sm">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-neutral-400 mb-6">Radio States</h3>
+<div class="space-y-4">
+<!-- Unchecked -->
+<div class="flex items-center">
+<input class="h-4 w-4 text-primary border-neutral-300 focus:ring-primary dark:border-neutral-600 dark:bg-neutral-800" id="rad-1" name="radio-grp" type="radio"/>
+<label class="ml-3 block text-sm font-medium text-neutral-700 dark:text-neutral-300" for="rad-1">Unselected Option</label>
+</div>
+<!-- Checked -->
+<div class="flex items-center">
+<input checked="" class="h-4 w-4 text-primary border-neutral-300 focus:ring-primary dark:border-neutral-600 dark:bg-neutral-800" id="rad-2" name="radio-grp" type="radio"/>
+<label class="ml-3 block text-sm font-medium text-neutral-700 dark:text-neutral-300" for="rad-2">Selected Option</label>
+</div>
+<!-- Focus Ring Demo -->
+<div class="flex items-center p-2 -ml-2 rounded border border-dashed border-primary/30 bg-primary/5">
+<input class="h-4 w-4 text-primary border-neutral-300 focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:border-neutral-600 dark:bg-neutral-800 ring-2 ring-offset-1 ring-primary" id="rad-3" name="radio-grp-2" type="radio"/>
+<label class="ml-3 block text-sm font-medium text-neutral-700 dark:text-neutral-300" for="rad-3">Focus Visible State</label>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Switch Section -->
+<section class="mb-16 scroll-mt-24" id="toggles">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+<span class="material-icons-outlined text-neutral-400">toggle_on</span>
+                        Switch
+                    </h2>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-neutral-800 p-8 shadow-sm">
+<div class="flex flex-col sm:flex-row gap-12 items-start sm:items-center">
+<!-- Off State -->
+<div>
+<span class="block text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-wider">Off State</span>
+<button aria-checked="false" class="bg-neutral-200 dark:bg-neutral-700 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary" role="switch" type="button">
+<span class="sr-only">Use setting</span>
+<span aria-hidden="true" class="translate-x-0 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
+</button>
+</div>
+<!-- On State -->
+<div>
+<span class="block text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-wider">On State</span>
+<button aria-checked="true" class="bg-primary relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary" role="switch" type="button">
+<span class="sr-only">Use setting</span>
+<span aria-hidden="true" class="translate-x-5 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
+</button>
+</div>
+<!-- Disabled State -->
+<div class="opacity-50">
+<span class="block text-xs font-semibold text-neutral-400 mb-2 uppercase tracking-wider">Disabled</span>
+<button class="bg-neutral-200 dark:bg-neutral-700 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-not-allowed transition-colors ease-in-out duration-200" disabled="" role="switch" type="button">
+<span aria-hidden="true" class="translate-x-0 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Divider Section -->
+<section class="mb-16 scroll-mt-24" id="dividers">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold text-neutral-900 dark:text-white flex items-center gap-2">
+<span class="material-icons-outlined text-neutral-400">horizontal_rule</span>
+                        Dividers
+                    </h2>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-neutral-800 p-8 shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<!-- Horizontal -->
+<div class="space-y-6">
+<h3 class="text-sm font-semibold text-neutral-500">Horizontal Variants</h3>
+<!-- Simple -->
+<div class="w-full">
+<p class="text-sm text-neutral-400 mb-2">Simple</p>
+<div class="h-24 bg-neutral-50 dark:bg-neutral-800/50 rounded flex flex-col justify-center px-4">
+<div class="text-sm mb-2">Content above</div>
+<div class="border-t border-neutral-200 dark:border-neutral-700 w-full"></div>
+<div class="text-sm mt-2">Content below</div>
+</div>
+</div>
+<!-- With Label -->
+<div class="w-full">
+<p class="text-sm text-neutral-400 mb-2">With Label</p>
+<div class="h-24 bg-neutral-50 dark:bg-neutral-800/50 rounded flex flex-col justify-center px-4">
+<div class="relative">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-neutral-300 dark:border-neutral-600"></div>
+</div>
+<div class="relative flex justify-center">
+<span class="px-2 bg-neutral-50 dark:bg-neutral-800 text-sm text-neutral-500">Continue with</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Vertical -->
+<div>
+<h3 class="text-sm font-semibold text-neutral-500 mb-6">Vertical Variants</h3>
+<div class="h-32 bg-neutral-50 dark:bg-neutral-800/50 rounded flex items-center justify-center gap-4">
+<span class="text-sm text-neutral-600 dark:text-neutral-400">Edit</span>
+<div class="h-4 w-px bg-neutral-300 dark:bg-neutral-600"></div>
+<span class="text-sm text-neutral-600 dark:text-neutral-400">Duplicate</span>
+<div class="h-4 w-px bg-neutral-300 dark:bg-neutral-600"></div>
+<span class="text-sm text-error">Delete</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Accessibility Note Footer -->
+<div class="mt-12 bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-800 rounded-lg p-6 flex gap-4">
+<span class="material-icons-outlined text-primary">info</span>
+<div>
+<h4 class="text-sm font-bold text-primary mb-1">Accessibility Guidelines</h4>
+<p class="text-sm text-blue-800 dark:text-blue-200">
+                        All form elements must maintain a contrast ratio of at least 4.5:1. Focus rings (`focus:ring-2`) are mandatory for keyboard navigation. Always associate `<label>` with inputs using `for` and `id` attributes. For selection controls without visible labels, use `aria-label`.
+                    </label></p>
+</div>
+</div>
+<footer class="mt-12 pt-8 border-t border-neutral-200 dark:border-neutral-800 text-center text-sm text-neutral-500">
+<p>© 2023 Export Development Bank Sudan. Internal Design System.</p>
+</footer>
+</main>
+</div>
+</body></html>

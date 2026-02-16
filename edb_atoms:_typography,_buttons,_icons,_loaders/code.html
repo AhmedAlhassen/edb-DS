@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EDB Atoms: Design System Components</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1d4fd7",
+                        "primary-hover": "#163ba3",
+                        "primary-active": "#0f2a7a",
+                        "primary-light": "#e8edfb", // Tonal background
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111521",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a202c",
+                        "border-light": "#e2e8f0",
+                        "border-dark": "#2d3748",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "arabic": ["Inter", "sans-serif"] // Placeholder for Arabic font
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        
+        /* Loader animations */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-custom {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes indeterminate {
+            0% { left: -35%; right: 100%; }
+            60% { left: 100%; right: -90%; }
+            100% { left: 100%; right: -90%; }
+        }
+        .animate-indeterminate {
+            animation: indeterminate 2s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-display transition-colors duration-200">
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="w-64 fixed h-full bg-surface-light dark:bg-surface-dark border-r border-border-light dark:border-border-dark hidden lg:flex flex-col z-20">
+<div class="p-6 border-b border-border-light dark:border-border-dark">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold">E</div>
+<div>
+<h1 class="font-bold text-lg leading-tight">EDB System</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">v2.4.0 • Atoms</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto p-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-colors" href="#typography">
+<span class="material-icons text-[20px]">text_fields</span>
+                    Typography
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg bg-primary/10 text-primary" href="#buttons">
+<span class="material-icons text-[20px]">smart_button</span>
+                    Buttons
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-colors" href="#icons">
+<span class="material-icons text-[20px]">grid_view</span>
+                    Icon System
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-colors" href="#links">
+<span class="material-icons text-[20px]">link</span>
+                    Links
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-colors" href="#badges">
+<span class="material-icons text-[20px]">label</span>
+                    Badges &amp; Chips
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary transition-colors" href="#loaders">
+<span class="material-icons text-[20px]">refresh</span>
+                    Loaders
+                </a>
+</nav>
+<div class="p-4 border-t border-border-light dark:border-border-dark">
+<div class="flex items-center gap-2 px-3 py-2 text-xs text-slate-400">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    System Operational
+                </div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 lg:ml-64 p-8 max-w-7xl mx-auto space-y-16">
+<!-- Header -->
+<header class="space-y-4 border-b border-border-light dark:border-border-dark pb-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl font-bold text-slate-900 dark:text-white">01 Atoms</h2>
+<p class="mt-2 text-slate-500 dark:text-slate-400 max-w-2xl">
+                            Fundamental building blocks of the EDB Design System. These components are the smallest indivisible units, serving as the foundation for all application interfaces.
+                        </p>
+</div>
+<div class="flex items-center gap-3">
+<div class="px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded text-xs font-mono text-slate-600 dark:text-slate-400">Figma ID: ATM-001</div>
+<div class="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-primary rounded text-xs font-medium">Ready for Dev</div>
+</div>
+</div>
+</header>
+<!-- 1. Typography -->
+<section class="scroll-mt-8 space-y-6" id="typography">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold flex items-center gap-2">
+<span class="text-primary material-icons">text_fields</span> Typography
+                    </h3>
+<code class="text-xs bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded text-slate-500">font-family: 'Inter'</code>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-border-light dark:border-border-dark bg-slate-50 dark:bg-slate-800/50 text-xs uppercase tracking-wider text-slate-500">
+<th class="p-4 font-semibold w-1/4">Token Name</th>
+<th class="p-4 font-semibold w-1/6">Specs</th>
+<th class="p-4 font-semibold w-1/3">English (LTR)</th>
+<th class="p-4 font-semibold w-1/4 text-right">Arabic (RTL)</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light dark:divide-border-dark">
+<!-- Display XL -->
+<tr>
+<td class="p-4">
+<div class="font-mono text-sm text-primary">text-display-xl</div>
+<div class="text-xs text-slate-400 mt-1">Hero headers, Marketing</div>
+</td>
+<td class="p-4 text-xs text-slate-500 font-mono">
+                                        48px / 3rem<br/>LH: 110%<br/>Bold
+                                    </td>
+<td class="p-4 text-4xl font-bold leading-tight">Global Finance</td>
+<td class="p-4 text-4xl font-bold leading-tight text-right" dir="rtl">التمويل العالمي</td>
+</tr>
+<!-- Heading L -->
+<tr>
+<td class="p-4">
+<div class="font-mono text-sm text-primary">text-heading-lg</div>
+<div class="text-xs text-slate-400 mt-1">Page titles</div>
+</td>
+<td class="p-4 text-xs text-slate-500 font-mono">
+                                        30px / 1.875rem<br/>LH: 120%<br/>SemiBold
+                                    </td>
+<td class="p-4 text-3xl font-semibold leading-snug">Account Overview</td>
+<td class="p-4 text-3xl font-semibold leading-snug text-right" dir="rtl">نظرة عامة على الحساب</td>
+</tr>
+<!-- Body M -->
+<tr>
+<td class="p-4">
+<div class="font-mono text-sm text-primary">text-body-md</div>
+<div class="text-xs text-slate-400 mt-1">Default body text</div>
+</td>
+<td class="p-4 text-xs text-slate-500 font-mono">
+                                        16px / 1rem<br/>LH: 150%<br/>Regular
+                                    </td>
+<td class="p-4 text-base leading-relaxed text-slate-600 dark:text-slate-300">
+                                        Secure transactions are the core of our digital banking promise.
+                                    </td>
+<td class="p-4 text-base leading-relaxed text-slate-600 dark:text-slate-300 text-right" dir="rtl">
+                                        المعاملات الآمنة هي جوهر وعدنا المصرفي الرقمي.
+                                    </td>
+</tr>
+<!-- Caption -->
+<tr>
+<td class="p-4">
+<div class="font-mono text-sm text-primary">text-caption</div>
+<div class="text-xs text-slate-400 mt-1">Helper text, Metadata</div>
+</td>
+<td class="p-4 text-xs text-slate-500 font-mono">
+                                        12px / 0.75rem<br/>LH: 140%<br/>Medium
+                                    </td>
+<td class="p-4 text-xs font-medium text-slate-500">Updated 2 mins ago</td>
+<td class="p-4 text-xs font-medium text-slate-500 text-right" dir="rtl">تم التحديث قبل دقيقتين</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- 2. Buttons -->
+<section class="scroll-mt-8 space-y-6" id="buttons">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold flex items-center gap-2">
+<span class="text-primary material-icons">smart_button</span> Button Components
+                    </h3>
+<div class="flex gap-2">
+<span class="px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-xs font-mono text-slate-500">@radix-ui/react-button</span>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-6 shadow-sm overflow-x-auto">
+<div class="min-w-[800px]">
+<!-- Column Headers -->
+<div class="grid grid-cols-7 gap-4 mb-4 text-xs font-semibold uppercase text-slate-400 tracking-wider text-center">
+<div class="text-left pl-2">Variant</div>
+<div>Default</div>
+<div>Hover</div>
+<div>Pressed/Active</div>
+<div>Focus-Visible</div>
+<div>Disabled</div>
+<div>Loading</div>
+</div>
+<!-- Filled Primary Row -->
+<div class="grid grid-cols-7 gap-4 items-center py-4 border-b border-border-light dark:border-border-dark">
+<div class="font-medium text-sm text-slate-700 dark:text-slate-200">
+                                Primary Filled
+                                <div class="text-xs font-normal text-slate-400 mt-1">High emphasis actions</div>
+</div>
+<div class="flex justify-center"><button class="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg shadow-sm">Confirm</button></div>
+<div class="flex justify-center"><button class="px-4 py-2 bg-primary-hover text-white text-sm font-medium rounded-lg shadow-sm cursor-pointer">Confirm</button></div>
+<div class="flex justify-center"><button class="px-4 py-2 bg-primary-active text-white text-sm font-medium rounded-lg shadow-inner">Confirm</button></div>
+<div class="flex justify-center"><button class="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg ring-4 ring-primary/30 outline-none">Confirm</button></div>
+<div class="flex justify-center"><button class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 text-sm font-medium rounded-lg cursor-not-allowed">Confirm</button></div>
+<div class="flex justify-center"><button class="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg flex items-center gap-2 opacity-90"><span class="material-icons animate-spin-custom text-sm">refresh</span> Processing</button></div>
+</div>
+<!-- Tonal / Secondary Row -->
+<div class="grid grid-cols-7 gap-4 items-center py-4 border-b border-border-light dark:border-border-dark">
+<div class="font-medium text-sm text-slate-700 dark:text-slate-200">
+                                Tonal
+                                <div class="text-xs font-normal text-slate-400 mt-1">Medium emphasis</div>
+</div>
+<div class="flex justify-center"><button class="px-4 py-2 bg-primary-light dark:bg-primary/20 text-primary dark:text-blue-300 text-sm font-medium rounded-lg">Edit</button></div>
+<div class="flex justify-center"><button class="px-4 py-2 bg-blue-100 dark:bg-primary/30 text-primary-hover dark:text-blue-200 text-sm font-medium rounded-lg">Edit</button></div>
+<div class="flex justify-center"><button class="px-4 py-2 bg-blue-200 dark:bg-primary/40 text-primary-active dark:text-blue-100 text-sm font-medium rounded-lg">Edit</button></div>
+<div class="flex justify-center"><button class="px-4 py-2 bg-primary-light dark:bg-primary/20 text-primary dark:text-blue-300 text-sm font-medium rounded-lg ring-4 ring-primary/20">Edit</button></div>
+<div class="flex justify-center"><button class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-600 text-sm font-medium rounded-lg cursor-not-allowed">Edit</button></div>
+<div class="flex justify-center"><button class="px-4 py-2 bg-primary-light dark:bg-primary/20 text-primary dark:text-blue-300 text-sm font-medium rounded-lg flex items-center gap-2"><span class="material-icons animate-spin-custom text-sm">refresh</span></button></div>
+</div>
+<!-- Outlined Row -->
+<div class="grid grid-cols-7 gap-4 items-center py-4 border-b border-border-light dark:border-border-dark">
+<div class="font-medium text-sm text-slate-700 dark:text-slate-200">
+                                Outlined
+                                <div class="text-xs font-normal text-slate-400 mt-1">Low emphasis</div>
+</div>
+<div class="flex justify-center"><button class="px-4 py-2 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 text-sm font-medium rounded-lg bg-transparent">Cancel</button></div>
+<div class="flex justify-center"><button class="px-4 py-2 border border-slate-400 dark:border-slate-500 text-slate-900 dark:text-white text-sm font-medium rounded-lg bg-slate-50 dark:bg-white/5">Cancel</button></div>
+<div class="flex justify-center"><button class="px-4 py-2 border border-slate-500 dark:border-slate-400 text-slate-900 dark:text-white text-sm font-medium rounded-lg bg-slate-100 dark:bg-white/10">Cancel</button></div>
+<div class="flex justify-center"><button class="px-4 py-2 border border-primary text-primary text-sm font-medium rounded-lg ring-2 ring-primary/20">Cancel</button></div>
+<div class="flex justify-center"><button class="px-4 py-2 border border-slate-200 dark:border-slate-700 text-slate-300 dark:text-slate-600 text-sm font-medium rounded-lg cursor-not-allowed">Cancel</button></div>
+<div class="flex justify-center"><button class="px-4 py-2 border border-slate-300 dark:border-slate-600 text-slate-400 text-sm font-medium rounded-lg"><span class="material-icons animate-spin-custom text-sm">refresh</span></button></div>
+</div>
+<!-- Text Row -->
+<div class="grid grid-cols-7 gap-4 items-center py-4">
+<div class="font-medium text-sm text-slate-700 dark:text-slate-200">
+                                Text / Ghost
+                                <div class="text-xs font-normal text-slate-400 mt-1">Subtle actions</div>
+</div>
+<div class="flex justify-center"><button class="px-3 py-2 text-primary font-medium text-sm hover:bg-primary/5 rounded-lg transition-colors">Details</button></div>
+<div class="flex justify-center"><button class="px-3 py-2 text-primary-hover font-medium text-sm bg-primary/10 rounded-lg">Details</button></div>
+<div class="flex justify-center"><button class="px-3 py-2 text-primary-active font-medium text-sm bg-primary/20 rounded-lg">Details</button></div>
+<div class="flex justify-center"><button class="px-3 py-2 text-primary font-medium text-sm rounded-lg border border-primary/50">Details</button></div>
+<div class="flex justify-center"><button class="px-3 py-2 text-slate-300 dark:text-slate-600 font-medium text-sm cursor-not-allowed">Details</button></div>
+<div class="flex justify-center"><button class="px-3 py-2 text-primary/50 font-medium text-sm"><span class="material-icons animate-spin-custom text-sm">refresh</span></button></div>
+</div>
+</div>
+</div>
+<!-- Sizes & RTL -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-6">
+<h4 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-4">Size Variants</h4>
+<div class="flex items-end gap-4">
+<button class="px-3 py-1.5 bg-primary text-white text-xs font-medium rounded">Small</button>
+<button class="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg">Medium</button>
+<button class="px-6 py-3 bg-primary text-white text-base font-medium rounded-lg">Large</button>
+</div>
+<div class="mt-4 flex items-end gap-4 text-xs text-slate-400 font-mono">
+<span class="w-[55px]">H: 32px</span>
+<span class="w-[75px]">H: 40px</span>
+<span class="w-[90px]">H: 48px</span>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-6">
+<h4 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-4">RTL Support &amp; Icon Placement</h4>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="text-sm text-slate-600 dark:text-slate-400 w-24">LTR (EN)</span>
+<button class="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg flex items-center gap-2">
+                                    Next Step <span class="material-icons text-sm">arrow_forward</span>
+</button>
+<button class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 text-sm font-medium rounded-lg flex items-center gap-2">
+<span class="material-icons text-sm">arrow_back</span> Back
+                                </button>
+</div>
+<div class="h-px bg-border-light dark:bg-border-dark"></div>
+<div class="flex items-center justify-between" dir="rtl">
+<span class="text-sm text-slate-600 dark:text-slate-400 w-24 text-left">RTL (AR)</span>
+<button class="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg flex items-center gap-2">
+                                    الخطوة التالية <span class="material-icons text-sm transform rotate-180">arrow_forward</span>
+</button>
+<button class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 text-sm font-medium rounded-lg flex items-center gap-2">
+<span class="material-icons text-sm transform rotate-180">arrow_back</span> رجوع
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Icon System -->
+<section class="scroll-mt-8 space-y-6" id="icons">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold flex items-center gap-2">
+<span class="text-primary material-icons">grid_view</span> Icon System
+                    </h3>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-6 shadow-sm">
+<p class="text-sm text-slate-500 mb-6">Icons use Material Symbols Outlined. Directional icons must automatically flip in RTL mode.</p>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+<!-- Standard Icons -->
+<div class="flex flex-col items-center gap-2 p-3 rounded hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-icons text-slate-700 dark:text-slate-200">home</span>
+<span class="text-xs font-mono text-slate-400">home</span>
+</div>
+<div class="flex flex-col items-center gap-2 p-3 rounded hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-icons text-slate-700 dark:text-slate-200">account_balance</span>
+<span class="text-xs font-mono text-slate-400">account_balance</span>
+</div>
+<div class="flex flex-col items-center gap-2 p-3 rounded hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-icons text-slate-700 dark:text-slate-200">credit_card</span>
+<span class="text-xs font-mono text-slate-400">credit_card</span>
+</div>
+<div class="flex flex-col items-center gap-2 p-3 rounded hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-icons text-slate-700 dark:text-slate-200">search</span>
+<span class="text-xs font-mono text-slate-400">search</span>
+</div>
+<!-- Directional Icons (Flip Rule) -->
+<div class="flex flex-col items-center gap-2 p-3 rounded bg-primary/5 border border-primary/20 relative group">
+<div class="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full" title="Autoflips in RTL"></div>
+<span class="material-icons text-primary">arrow_forward</span>
+<span class="text-xs font-mono text-primary font-medium">arrow_forward</span>
+<span class="text-[10px] text-primary/70 bg-primary/10 px-1 rounded">RTL: Flip</span>
+</div>
+<div class="flex flex-col items-center gap-2 p-3 rounded bg-primary/5 border border-primary/20 relative group">
+<div class="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full" title="Autoflips in RTL"></div>
+<span class="material-icons text-primary">chevron_left</span>
+<span class="text-xs font-mono text-primary font-medium">chevron_left</span>
+<span class="text-[10px] text-primary/70 bg-primary/10 px-1 rounded">RTL: Flip</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Links & 5. Badges -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Links -->
+<section class="space-y-6" id="links">
+<h3 class="text-xl font-bold flex items-center gap-2">
+<span class="text-primary material-icons">link</span> Links
+                    </h3>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-6 h-full">
+<div class="space-y-6">
+<div>
+<h4 class="text-xs font-semibold uppercase text-slate-400 mb-2">Default</h4>
+<a class="text-primary hover:underline text-base font-medium" href="#">Forgot password?</a>
+</div>
+<div>
+<h4 class="text-xs font-semibold uppercase text-slate-400 mb-2">Hover State</h4>
+<a class="text-primary-hover underline text-base font-medium" href="#">View transaction history</a>
+</div>
+<div>
+<h4 class="text-xs font-semibold uppercase text-slate-400 mb-2">Focus Visible</h4>
+<a class="text-primary text-base font-medium rounded px-1 ring-2 ring-primary ring-offset-2 dark:ring-offset-slate-900 outline-none" href="#">Terms and Conditions</a>
+</div>
+<div>
+<h4 class="text-xs font-semibold uppercase text-slate-400 mb-2">Inline with text</h4>
+<p class="text-slate-600 dark:text-slate-300 text-sm">
+                                    By clicking submit, you agree to our <a class="text-primary hover:underline font-medium" href="#">Privacy Policy</a> and data usage terms.
+                                </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Badges -->
+<section class="space-y-6" id="badges">
+<h3 class="text-xl font-bold flex items-center gap-2">
+<span class="text-primary material-icons">label</span> Badges &amp; Chips
+                    </h3>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-6 h-full">
+<div class="grid grid-cols-2 gap-4">
+<!-- Success -->
+<div class="space-y-2">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">
+                                    Active
+                                </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span> Online
+                                </span>
+</div>
+<!-- Warning -->
+<div class="space-y-2">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
+                                    Pending
+                                </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
+<span class="material-icons text-[14px]">warning</span> Action Required
+                                </span>
+</div>
+<!-- Error -->
+<div class="space-y-2">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300">
+                                    Failed
+                                </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300">
+                                    Overdue
+                                </span>
+</div>
+<!-- Neutral -->
+<div class="space-y-2">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-300">
+                                    Draft
+                                </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium border border-slate-300 text-slate-600 dark:border-slate-600 dark:text-slate-400">
+                                    Archived
+                                </span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- 6. Loaders -->
+<section class="space-y-6 pb-20" id="loaders">
+<h3 class="text-xl font-bold flex items-center gap-2">
+<span class="text-primary material-icons">refresh</span> Loaders
+                </h3>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark p-8 shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<!-- Circular -->
+<div>
+<h4 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-6">Circular Progress</h4>
+<div class="flex items-center gap-8">
+<div class="relative w-6 h-6">
+<svg class="animate-spin-custom w-6 h-6 text-primary" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
+</svg>
+</div>
+<div class="relative w-10 h-10">
+<svg class="animate-spin-custom w-10 h-10 text-primary" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
+</svg>
+</div>
+<div class="text-xs text-slate-400 font-mono ml-auto">Indeterminate</div>
+</div>
+</div>
+<!-- Linear -->
+<div class="w-full">
+<h4 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-6">Linear Progress</h4>
+<div class="space-y-6">
+<!-- Determinate -->
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-slate-600 dark:text-slate-400">Loading Assets...</span>
+<span class="text-slate-600 dark:text-slate-400 font-mono">45%</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<!-- Indeterminate -->
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-slate-600 dark:text-slate-400">Processing Request</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5 overflow-hidden relative">
+<div class="absolute bg-primary h-1.5 rounded-full animate-indeterminate w-1/3"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EDB Documentation | Iconography &amp; Dev Handover</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1d4fd7",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111521",
+                        "sidebar-light": "#ffffff",
+                        "code-bg": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .code-block { font-family: 'JetBrains Mono', monospace; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<!-- Navigation Bar -->
+<header class="sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-50 border-b border-slate-900/10 dark:border-slate-50/[0.06] bg-white/80 dark:bg-background-dark/80">
+<div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="py-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-primary p-1.5 rounded-lg">
+<span class="material-icons-outlined text-white text-xl">account_balance</span>
+</div>
+<div>
+<span class="text-sm font-bold tracking-tight uppercase text-slate-900 dark:text-white">EDB Sudan</span>
+<span class="ml-2 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold border border-primary/20">v1.4.0</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-icons-outlined text-sm">search</span>
+</span>
+<input class="block w-64 pl-9 pr-3 py-1.5 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary" placeholder="Quick search..." type="text"/>
+</div>
+<nav class="flex items-center gap-4 text-sm font-medium text-slate-600 dark:text-slate-400">
+<a class="hover:text-primary transition-colors" href="#">Components</a>
+<a class="text-primary border-b-2 border-primary pb-4 -mb-4" href="#">Documentation</a>
+<a class="hover:text-primary transition-colors" href="#">Resources</a>
+</nav>
+</div>
+</div>
+</div>
+</header>
+<div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 flex">
+<!-- Sidebar -->
+<aside class="hidden lg:block fixed z-20 inset-0 top-[65px] left-[max(0px,calc(50%-45rem))] right-auto w-[19rem] pb-10 px-8 overflow-y-auto custom-scrollbar">
+<nav class="lg:text-sm lg:leading-6 relative mt-12">
+<div class="mb-8">
+<h5 class="mb-3 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200 uppercase tracking-wider text-xs">Foundation</h5>
+<ul class="space-y-2 border-l border-slate-100 dark:border-slate-800">
+<li><a class="block border-l pl-4 -ml-px border-transparent hover:border-slate-400 text-slate-700 dark:text-slate-400" href="#">Colors</a></li>
+<li><a class="block border-l pl-4 -ml-px border-transparent hover:border-slate-400 text-slate-700 dark:text-slate-400" href="#">Typography</a></li>
+<li><a class="block border-l pl-4 -ml-px border-primary text-primary font-semibold" href="#">Iconography</a></li>
+</ul>
+</div>
+<div class="mb-8">
+<h5 class="mb-3 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200 uppercase tracking-wider text-xs">Engineering</h5>
+<ul class="space-y-2 border-l border-slate-100 dark:border-slate-800">
+<li><a class="block border-l pl-4 -ml-px border-transparent hover:border-slate-400 text-slate-700 dark:text-slate-400" href="#">Token Strategy</a></li>
+<li><a class="block border-l pl-4 -ml-px border-transparent hover:border-slate-400 text-slate-700 dark:text-slate-400" href="#">Radix UI Mapping</a></li>
+<li><a class="block border-l pl-4 -ml-px border-transparent hover:border-slate-400 text-slate-700 dark:text-slate-400" href="#">Developer Handover</a></li>
+</ul>
+</div>
+<div class="mb-8">
+<h5 class="mb-3 lg:mb-3 font-semibold text-slate-900 dark:text-slate-200 uppercase tracking-wider text-xs">Release Management</h5>
+<ul class="space-y-2 border-l border-slate-100 dark:border-slate-800">
+<li><a class="block border-l pl-4 -ml-px border-transparent hover:border-slate-400 text-slate-700 dark:text-slate-400" href="#">Release Log</a></li>
+</ul>
+</div>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="lg:pl-[19rem] flex-auto w-full min-w-0 py-12 lg:pr-8 xl:pr-12">
+<div class="mb-12">
+<nav aria-label="Breadcrumb" class="flex mb-4 text-xs font-medium text-slate-500">
+<ol class="inline-flex items-center space-x-1 md:space-x-3">
+<li>Phase 4: 03 Documentation</li>
+<li class="flex items-center">
+<span class="material-icons-outlined text-xs mx-1">chevron_right</span>
+                            Iconography &amp; Handover
+                        </li>
+</ol>
+</nav>
+<h1 class="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">Iconography &amp; Engineering Handover</h1>
+<p class="text-lg text-slate-600 dark:text-slate-400 max-w-3xl">This document outlines the technical standards for iconography and the transition strategy from Figma design tokens to our production React component library.</p>
+</div>
+<!-- 1. Iconography Guidelines -->
+<section class="mb-20 scroll-mt-24" id="iconography">
+<div class="flex items-center gap-2 mb-6">
+<span class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center">
+<span class="material-icons-outlined text-primary text-lg">grid_view</span>
+</span>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Iconography Guidelines</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+<h3 class="font-semibold mb-4 text-slate-800 dark:text-slate-100">Visual Standards</h3>
+<div class="space-y-4">
+<div class="flex items-start gap-4">
+<div class="relative w-24 h-24 bg-slate-50 dark:bg-slate-800 rounded-lg flex items-center justify-center border border-dashed border-slate-300">
+<div class="absolute inset-2 border border-primary/20 bg-primary/5 rounded-sm"></div>
+<span class="material-icons-outlined text-4xl text-primary">payments</span>
+<span class="absolute bottom-1 right-1 text-[8px] font-mono text-slate-400">24px</span>
+</div>
+<div>
+<h4 class="text-sm font-bold mb-1">Grid &amp; Clear Space</h4>
+<p class="text-xs text-slate-500 leading-relaxed">All icons must be designed on a 24x24px grid with a 2px safety padding (Safe Zone) on all sides to prevent optical clipping.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-24 h-24 bg-slate-50 dark:bg-slate-800 rounded-lg flex flex-col items-center justify-center gap-2 border border-slate-200">
+<div class="h-0.5 w-12 bg-primary"></div>
+<div class="h-1 w-12 bg-primary/40"></div>
+<span class="text-[10px] font-mono text-slate-400">1.5px / 2.0px</span>
+</div>
+<div>
+<h4 class="text-sm font-bold mb-1">Stroke Weight</h4>
+<p class="text-xs text-slate-500 leading-relaxed">Default stroke weight is 1.5pt. For emphasized actions or high-density screens, use 2.0pt. Avoid decimal weights to prevent anti-aliasing blur.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800">
+<h3 class="font-semibold mb-4 text-slate-800 dark:text-slate-100">RTL &amp; Mirroring Rules</h3>
+<p class="text-sm text-slate-500 mb-6">Given the Sudan context, certain icons must flip for RTL layouts while others remain static.</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-3 bg-red-50 dark:bg-red-900/10 rounded-lg border border-red-100 dark:border-red-900/20">
+<span class="text-[10px] font-bold text-red-600 dark:text-red-400 uppercase mb-2 block">Never Mirror</span>
+<div class="flex gap-2">
+<div class="w-10 h-10 bg-white dark:bg-slate-800 rounded shadow-sm flex items-center justify-center">
+<span class="material-icons-outlined text-lg">credit_card</span>
+</div>
+<div class="w-10 h-10 bg-white dark:bg-slate-800 rounded shadow-sm flex items-center justify-center">
+<span class="material-icons-outlined text-lg">lock</span>
+</div>
+<div class="w-10 h-10 bg-white dark:bg-slate-800 rounded shadow-sm flex items-center justify-center">
+<span class="material-icons-outlined text-lg">camera_alt</span>
+</div>
+</div>
+<p class="text-[10px] mt-2 text-slate-500 italic">Static objects, logos, and credit cards.</p>
+</div>
+<div class="p-3 bg-green-50 dark:bg-green-900/10 rounded-lg border border-green-100 dark:border-green-900/20">
+<span class="text-[10px] font-bold text-green-600 dark:text-green-400 uppercase mb-2 block">Always Mirror</span>
+<div class="flex gap-2">
+<div class="w-10 h-10 bg-white dark:bg-slate-800 rounded shadow-sm flex items-center justify-center">
+<span class="material-icons-outlined text-lg">arrow_forward</span>
+</div>
+<div class="w-10 h-10 bg-white dark:bg-slate-800 rounded shadow-sm flex items-center justify-center">
+<span class="material-icons-outlined text-lg">help_outline</span>
+</div>
+<div class="w-10 h-10 bg-white dark:bg-slate-800 rounded shadow-sm flex items-center justify-center">
+<span class="material-icons-outlined text-lg">logout</span>
+</div>
+</div>
+<p class="text-[10px] mt-2 text-slate-500 italic">Directional cues and progression paths.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Tailwind Token Strategy -->
+<section class="mb-20 scroll-mt-24" id="tailwind">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center">
+<span class="material-icons-outlined text-primary text-lg">code</span>
+</span>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Tailwind Token Strategy</h2>
+</div>
+<button class="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white text-sm font-medium rounded hover:bg-primary/90 transition-colors">
+<span class="material-icons-outlined text-sm">content_copy</span>
+                        Copy Config
+                    </button>
+</div>
+<div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800">
+<div class="bg-slate-50 dark:bg-slate-800 px-4 py-2 border-b border-slate-200 dark:border-slate-800 flex items-center gap-4">
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
+</div>
+<span class="text-xs font-mono text-slate-400 uppercase">tailwind.config.js</span>
+</div>
+<div class="bg-code-bg p-6 code-block text-xs leading-6 overflow-x-auto text-slate-300">
+<pre><code><span class="text-purple-400">module</span>.<span class="text-purple-400">exports</span> = {
+  <span class="text-blue-400">theme</span>: {
+    <span class="text-blue-400">extend</span>: {
+      <span class="text-blue-400">colors</span>: {
+        <span class="text-emerald-400">'edb-primary'</span>: <span class="text-amber-300">'var(--color-primary)'</span>,
+        <span class="text-emerald-400">'edb-background'</span>: {
+          <span class="text-emerald-400">light</span>: <span class="text-amber-300">'var(--background-light)'</span>,
+          <span class="text-emerald-400">dark</span>: <span class="text-amber-300">'var(--background-dark)'</span>
+        }
+      },
+      <span class="text-blue-400">spacing</span>: {
+        <span class="text-emerald-400">'safe-x'</span>: <span class="text-amber-300">'clamp(1rem, 5vw, 2rem)'</span>,
+        <span class="text-emerald-400">'safe-y'</span>: <span class="text-amber-300">'clamp(1rem, 5vh, 2rem)'</span>
+      },
+      <span class="text-blue-400">borderRadius</span>: {
+        <span class="text-emerald-400">'edb-xl'</span>: <span class="text-amber-300">'var(--radius-xl)'</span>
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</section>
+<!-- 3. Radix UI Mapping Table -->
+<section class="mb-20 scroll-mt-24" id="radix">
+<div class="flex items-center gap-2 mb-6">
+<span class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center">
+<span class="material-icons-outlined text-primary text-lg">layers</span>
+</span>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Radix UI Mapping</h2>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+<thead class="bg-slate-50 dark:bg-slate-800">
+<tr>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase">EDB Component</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Radix Primitive</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Mapped State Attributes</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr>
+<td class="px-6 py-4 font-semibold text-sm">EDB-Select</td>
+<td class="px-6 py-4 text-sm font-mono text-primary">@radix-ui/react-select</td>
+<td class="px-6 py-4 text-xs font-mono text-slate-500">[data-state="open"], [data-disabled]</td>
+<td class="px-6 py-4"><span class="px-2 py-1 rounded bg-emerald-100 text-emerald-700 text-[10px] font-bold">Stable</span></td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-semibold text-sm">EDB-Modal</td>
+<td class="px-6 py-4 text-sm font-mono text-primary">@radix-ui/react-dialog</td>
+<td class="px-6 py-4 text-xs font-mono text-slate-500">[data-state="open"], [data-state="closed"]</td>
+<td class="px-6 py-4"><span class="px-2 py-1 rounded bg-emerald-100 text-emerald-700 text-[10px] font-bold">Stable</span></td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-semibold text-sm">EDB-Tooltip</td>
+<td class="px-6 py-4 text-sm font-mono text-primary">@radix-ui/react-tooltip</td>
+<td class="px-6 py-4 text-xs font-mono text-slate-500">[data-side="top/bottom/left/right"]</td>
+<td class="px-6 py-4"><span class="px-2 py-1 rounded bg-blue-100 text-blue-700 text-[10px] font-bold">In Progress</span></td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-semibold text-sm">EDB-Accordion</td>
+<td class="px-6 py-4 text-sm font-mono text-primary">@radix-ui/react-accordion</td>
+<td class="px-6 py-4 text-xs font-mono text-slate-500">[data-state="open"]</td>
+<td class="px-6 py-4"><span class="px-2 py-1 rounded bg-amber-100 text-amber-700 text-[10px] font-bold">Refactor</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- 4. Developer Handover -->
+<section class="mb-20 scroll-mt-24" id="handover">
+<div class="flex items-center gap-2 mb-6">
+<span class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center">
+<span class="material-icons-outlined text-primary text-lg">terminal</span>
+</span>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Developer Handover</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="p-6 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-icons-outlined text-primary">inventory_2</span>
+<span class="font-bold text-sm">Library Stack</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-xs font-mono">TypeScript</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-xs font-mono">Next.js 14</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-xs font-mono">Rollup</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-xs font-mono">PostCSS</span>
+</div>
+</div>
+<div class="p-6 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-icons-outlined text-primary">cloud_upload</span>
+<span class="font-bold text-sm">NPM Registry</span>
+</div>
+<code class="block w-full p-2 bg-slate-50 dark:bg-slate-800 rounded text-[11px] font-mono text-slate-500">npm install @edb-ui/core</code>
+</div>
+<div class="p-6 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-icons-outlined text-primary">import_contacts</span>
+<span class="font-bold text-sm">Architecture</span>
+</div>
+<p class="text-xs text-slate-500">Atomic design approach with strict separation between logic (Primitives) and styling (Tailwind).</p>
+</div>
+</div>
+<div class="bg-blue-50 dark:bg-blue-900/10 p-6 rounded-xl border border-blue-200 dark:border-blue-900/20">
+<h4 class="flex items-center gap-2 text-blue-900 dark:text-blue-300 font-bold text-sm mb-3">
+<span class="material-icons-outlined text-lg">info</span>
+                        Quick Start Guide
+                    </h4>
+<ol class="list-decimal list-inside space-y-2 text-sm text-blue-800/80 dark:text-blue-400/80 leading-relaxed">
+<li>Initialize the repository using <code class="bg-blue-200/50 px-1 rounded">npm install</code></li>
+<li>Export design tokens from Figma using the <strong>Tokens Studio</strong> plugin</li>
+<li>Run <code class="bg-blue-200/50 px-1 rounded">npm run build:tokens</code> to generate CSS variables</li>
+<li>Start the storybook environment with <code class="bg-blue-200/50 px-1 rounded">npm run storybook</code></li>
+<li>Follow the PR template for every new component addition</li>
+</ol>
+</div>
+</section>
+<!-- 5. Release Log -->
+<section class="mb-20 scroll-mt-24" id="changelog">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-2">
+<span class="w-8 h-8 rounded bg-primary/10 flex items-center justify-center">
+<span class="material-icons-outlined text-primary text-lg">history</span>
+</span>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Release Log</h2>
+</div>
+<button class="text-primary text-sm font-bold hover:underline">View All Versions</button>
+</div>
+<div class="space-y-10 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-200 dark:before:via-slate-800 before:to-transparent">
+<!-- Version Item 1 -->
+<div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+<div class="flex items-center justify-center w-10 h-10 rounded-full border border-white dark:border-slate-900 bg-primary text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+<span class="material-icons-outlined text-sm">rocket_launch</span>
+</div>
+<div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="font-bold text-slate-900 dark:text-white">v1.4.0</span>
+<time class="text-[10px] font-mono font-bold text-slate-400">2024-05-15</time>
+</div>
+<div class="text-sm text-slate-500">
+<span class="inline-block px-1.5 py-0.5 rounded bg-blue-100 text-blue-700 text-[10px] font-bold mr-2 uppercase">Feature</span>
+                                Added new Iconography documentation and RTL mirroring guidelines for the Khartoum regional team.
+                            </div>
+</div>
+</div>
+<!-- Version Item 2 -->
+<div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+<div class="flex items-center justify-center w-10 h-10 rounded-full border border-white dark:border-slate-900 bg-slate-200 dark:bg-slate-800 text-slate-400 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+<span class="material-icons-outlined text-sm">build</span>
+</div>
+<div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="font-bold text-slate-900 dark:text-white">v1.3.8</span>
+<time class="text-[10px] font-mono font-bold text-slate-400">2024-05-10</time>
+</div>
+<div class="text-sm text-slate-500">
+<span class="inline-block px-1.5 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold mr-2 uppercase">Fix</span>
+                                Resolved contrast issues in Dark Mode for `EDB-Select` component focus states.
+                            </div>
+</div>
+</div>
+<!-- Version Item 3 -->
+<div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+<div class="flex items-center justify-center w-10 h-10 rounded-full border border-white dark:border-slate-900 bg-slate-200 dark:bg-slate-800 text-slate-400 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+<span class="material-icons-outlined text-sm">history</span>
+</div>
+<div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="font-bold text-slate-900 dark:text-white">v1.3.0</span>
+<time class="text-[10px] font-mono font-bold text-slate-400">2024-04-22</time>
+</div>
+<div class="text-sm text-slate-500">
+<span class="inline-block px-1.5 py-0.5 rounded bg-purple-100 text-purple-700 text-[10px] font-bold mr-2 uppercase">Core</span>
+                                Migration of styling system to Tailwind CSS v3.4 and implementation of CSS variables architecture.
+                            </div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Right Content Table (On this page) -->
+<aside class="hidden xl:block w-64 flex-none pl-8 py-12">
+<h5 class="text-slate-900 dark:text-slate-100 font-semibold text-xs uppercase tracking-wider mb-4">On this page</h5>
+<ul class="space-y-3 text-xs font-medium text-slate-500 dark:text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#iconography">Iconography Guidelines</a></li>
+<li><a class="hover:text-primary transition-colors" href="#tailwind">Tailwind Token Strategy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#radix">Radix UI Mapping</a></li>
+<li><a class="hover:text-primary transition-colors" href="#handover">Developer Handover</a></li>
+<li><a class="hover:text-primary transition-colors" href="#changelog">Release Log</a></li>
+</ul>
+<div class="mt-12 p-4 rounded-xl bg-primary/5 border border-primary/10">
+<p class="text-[10px] text-slate-400 uppercase font-bold mb-2">Need Help?</p>
+<p class="text-xs text-slate-600 dark:text-slate-400 mb-3 leading-relaxed">Contact the Core Design Systems team for token integration support.</p>
+<a class="text-xs text-primary font-bold flex items-center gap-1" href="#">
+                    Join #edb-design-ops
+                    <span class="material-icons-outlined text-sm">open_in_new</span>
+</a>
+</div>
+</aside>
+</div>
+<!-- Footer -->
+<footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark py-8">
+<div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center text-xs text-slate-400">
+<p>© 2024 Export Development Bank Sudan. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary" href="#">Privacy Policy</a>
+<a class="hover:text-primary" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EDB Patterns: Interaction &amp; Security Flows</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1d4fd7",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111521",
+                        "success": "#10b981",
+                        "error": "#ef4444",
+                        "warning": "#f59e0b",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .sidebar-link.active {
+            @apply bg-primary/10 text-primary border-r-4 border-primary;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<!-- Header / Top Bar -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-screen-2xl mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 bg-primary rounded flex items-center justify-center text-white font-bold">EDB</div>
+<div>
+<h1 class="text-sm font-bold uppercase tracking-wider">Phase 3: 02 Patterns</h1>
+<p class="text-xs text-slate-500">Interaction &amp; Security Flows • Documentation</p>
+</div>
+</div>
+<div class="flex items-center space-x-6">
+<div class="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
+<button class="px-4 py-1.5 text-xs font-medium rounded-md bg-white dark:bg-slate-700 shadow-sm">Comfortable</button>
+<button class="px-4 py-1.5 text-xs font-medium text-slate-500">Compact</button>
+</div>
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors">
+<span class="material-icons text-xl">search</span>
+</button>
+</div>
+</div>
+</header>
+<div class="max-w-screen-2xl mx-auto flex">
+<!-- Sidebar Navigation -->
+<aside class="w-64 fixed left-0 top-16 bottom-0 overflow-y-auto border-r border-slate-200 dark:border-slate-800 p-6 hidden lg:block">
+<nav class="space-y-1">
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Navigation</p>
+<a class="flex items-center px-3 py-2 text-sm font-medium rounded-md text-primary bg-primary/5 border-r-2 border-primary" href="#cta-hierarchy">
+<span class="material-icons mr-3 text-sm">layers</span> CTA Hierarchy
+                </a>
+<a class="flex items-center px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800" href="#form-validation">
+<span class="material-icons mr-3 text-sm">check_circle_outline</span> Form Validation
+                </a>
+<a class="flex items-center px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800" href="#loading-patterns">
+<span class="material-icons mr-3 text-sm">hourglass_empty</span> Loading States
+                </a>
+<a class="flex items-center px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800" href="#security-trust">
+<span class="material-icons mr-3 text-sm">security</span> Security &amp; Trust
+                </a>
+<a class="flex items-center px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800" href="#ltr-rtl">
+<span class="material-icons mr-3 text-sm">translate</span> LTR/RTL Logic
+                </a>
+<a class="flex items-center px-3 py-2 text-sm font-medium rounded-md text-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800" href="#density-modes">
+<span class="material-icons mr-3 text-sm">view_compact</span> Density Modes
+                </a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 lg:ml-64 p-8">
+<div class="max-w-4xl mx-auto space-y-24">
+<!-- 1. CTA Hierarchy -->
+<section class="scroll-mt-24" id="cta-hierarchy">
+<div class="mb-8">
+<h2 class="text-2xl font-bold mb-2">01. CTA Hierarchy</h2>
+<p class="text-slate-500">Establishing clear action priority ensures users focus on the most important path first.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-8">
+<h3 class="text-xs font-bold uppercase text-slate-400 mb-6">Standard Actions (Forms/Modals)</h3>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<span class="text-xs text-slate-500">Primary</span>
+<button class="bg-primary text-white px-6 py-2 rounded-lg font-medium shadow-md hover:bg-blue-700 transition-all">Submit Transfer</button>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-xs text-slate-500">Secondary</span>
+<button class="border border-primary text-primary px-6 py-2 rounded-lg font-medium hover:bg-primary/5 transition-all">Save Draft</button>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-xs text-slate-500">Tertiary</span>
+<button class="text-slate-500 px-6 py-2 rounded-lg font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">Cancel</button>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-8">
+<h3 class="text-xs font-bold uppercase text-slate-400 mb-6">Hierarchy Guidelines</h3>
+<ul class="space-y-4 text-sm">
+<li class="flex items-start">
+<span class="material-icons text-primary text-lg mr-2">check_circle</span>
+<span>Only one Primary CTA per view/section.</span>
+</li>
+<li class="flex items-start">
+<span class="material-icons text-primary text-lg mr-2">check_circle</span>
+<span>Primary actions are always aligned to the right (LTR) or left (RTL).</span>
+</li>
+<li class="flex items-start">
+<span class="material-icons text-primary text-lg mr-2">check_circle</span>
+<span>Use Ghost/Tertiary for destructive or exit actions when paired.</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- 2. Form Validation Flows -->
+<section class="scroll-mt-24" id="form-validation">
+<div class="mb-8">
+<h2 class="text-2xl font-bold mb-2">02. Form Validation</h2>
+<p class="text-slate-500">Real-time feedback and clear error recovery patterns.</p>
+</div>
+<div class="space-y-6">
+<div class="bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-800/50 p-4 rounded-lg flex items-start">
+<span class="material-icons text-error mr-3">error_outline</span>
+<div>
+<p class="text-sm font-bold text-error">Validation Summary</p>
+<p class="text-sm text-red-700 dark:text-red-300">Please correct the 2 errors highlighted below before proceeding.</p>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
+<div class="p-8 border-b border-slate-100 dark:border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="space-y-4">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Recipient IBAN</label>
+<input class="w-full border-error bg-red-50/30 dark:bg-red-900/5 rounded-lg focus:ring-error focus:border-error transition-all" type="text" value="SD64 1234 XXXX XXXX"/>
+<div class="flex items-center text-error text-xs font-medium">
+<span class="material-icons text-[14px] mr-1">cancel</span> Invalid IBAN format for Sudanese banks.
+                                    </div>
+</div>
+<div class="space-y-4">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Amount (SDG)</label>
+<input class="w-full border-success bg-success/5 rounded-lg focus:ring-success focus:border-success transition-all" type="text" value="125,000.00"/>
+<div class="flex items-center text-success text-xs font-medium">
+<span class="material-icons text-[14px] mr-1">check_circle</span> Sufficient balance available.
+                                    </div>
+</div>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/50 p-4 px-8 flex items-center justify-between">
+<span class="text-xs text-slate-500 italic">Focus moves to the first invalid field on submit.</span>
+<div class="h-1.5 w-32 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Loading Patterns -->
+<section class="scroll-mt-24" id="loading-patterns">
+<div class="mb-8">
+<h2 class="text-2xl font-bold mb-2">03. Loading Patterns</h2>
+<p class="text-slate-500">Reducing perceived wait time with context-appropriate indicators.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Skeleton Example -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-8">
+<h3 class="text-xs font-bold uppercase text-slate-400 mb-6">Skeleton Screens (Content)</h3>
+<div class="animate-pulse space-y-4">
+<div class="h-10 bg-slate-200 dark:bg-slate-800 rounded-lg w-full"></div>
+<div class="h-32 bg-slate-100 dark:bg-slate-800 rounded-lg w-full"></div>
+<div class="space-y-2">
+<div class="h-4 bg-slate-200 dark:bg-slate-800 rounded w-3/4"></div>
+<div class="h-4 bg-slate-200 dark:bg-slate-800 rounded w-1/2"></div>
+</div>
+</div>
+<p class="mt-6 text-xs text-slate-500">Used for initial page loads and large data tables.</p>
+</div>
+<!-- Spinner Example -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-8 flex flex-col justify-between">
+<div>
+<h3 class="text-xs font-bold uppercase text-slate-400 mb-6">Inline Spinners (Actions)</h3>
+<button class="w-full bg-primary text-white py-3 rounded-lg font-medium flex items-center justify-center space-x-3 opacity-90 cursor-wait">
+<svg class="animate-spin h-5 w-5 text-white" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
+</svg>
+<span>Processing Transaction...</span>
+</button>
+</div>
+<p class="mt-6 text-xs text-slate-500">Used for submission states to prevent double-clicks.</p>
+</div>
+</div>
+</section>
+<!-- 4. Security & Trust -->
+<section class="scroll-mt-24" id="security-trust">
+<div class="mb-8 flex justify-between items-end">
+<div>
+<h2 class="text-2xl font-bold mb-2">04. Security &amp; Trust</h2>
+<p class="text-slate-500">Visualizing safety and handling sensitive data.</p>
+</div>
+<span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">PCI-DSS COMPLIANT</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Masking -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6">
+<h3 class="text-xs font-bold uppercase text-slate-400 mb-4">Data Masking</h3>
+<div class="bg-slate-50 dark:bg-slate-800 rounded p-4 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<span class="material-icons text-slate-400">account_balance_wallet</span>
+<div>
+<p class="text-xs text-slate-500">Saving Account</p>
+<p class="font-mono text-sm tracking-widest">•••• •••• •••• 8942</p>
+</div>
+</div>
+<button class="text-primary text-xs font-bold hover:underline">REVEAL</button>
+</div>
+</div>
+<!-- 2FA Mockup -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 relative overflow-hidden">
+<div class="absolute inset-0 bg-primary/5"></div>
+<div class="relative z-10 text-center space-y-3">
+<span class="material-icons text-3xl text-primary">phonelink_lock</span>
+<h4 class="text-sm font-bold">Two-Factor Auth</h4>
+<div class="flex justify-center space-x-2">
+<div class="w-8 h-10 border-2 border-slate-300 dark:border-slate-700 rounded bg-white dark:bg-slate-800 flex items-center justify-center font-bold">4</div>
+<div class="w-8 h-10 border-2 border-slate-300 dark:border-slate-700 rounded bg-white dark:bg-slate-800 flex items-center justify-center font-bold">2</div>
+<div class="w-8 h-10 border-2 border-primary rounded bg-white dark:bg-slate-800 flex items-center justify-center font-bold animate-pulse">|</div>
+<div class="w-8 h-10 border-2 border-slate-300 dark:border-slate-700 rounded bg-white dark:bg-slate-800 flex items-center justify-center font-bold"></div>
+</div>
+<p class="text-[10px] text-slate-500">Resend code in 0:45</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. LTR/RTL Interaction -->
+<section class="scroll-mt-24" id="ltr-rtl">
+<div class="mb-8">
+<h2 class="text-2xl font-bold mb-2">05. LTR / RTL Interaction</h2>
+<p class="text-slate-500">Mirroring logic for the Sudanese context (Arabic/English).</p>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-2">
+<!-- LTR Side -->
+<div class="p-8 border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between mb-6">
+<span class="text-xs font-bold text-slate-400">LEFT-TO-RIGHT (English)</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-[10px]">DIR="LTR"</span>
+</div>
+<div class="space-y-6">
+<div class="flex items-center space-x-2 text-sm text-slate-600">
+<span>Home</span> <span class="material-icons text-xs">chevron_right</span> <span>Settings</span>
+</div>
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800 p-3 rounded">
+<span class="text-sm">Main Drawer</span>
+<span class="material-icons text-primary">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- RTL Side -->
+<div class="p-8 bg-slate-50/50 dark:bg-slate-800/20" dir="rtl">
+<div class="flex items-center justify-between mb-6">
+<span class="text-xs font-bold text-slate-400">RIGHT-TO-LEFT (Arabic)</span>
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-[10px]">DIR="RTL"</span>
+</div>
+<div class="space-y-6 font-display">
+<div class="flex items-center space-x-2 space-x-reverse text-sm text-slate-600">
+<span>الرئيسية</span> <span class="material-icons text-xs">chevron_left</span> <span>الإعدادات</span>
+</div>
+<div class="flex items-center justify-between bg-slate-100 dark:bg-slate-800 p-3 rounded">
+<span class="text-sm">القائمة الرئيسية</span>
+<span class="material-icons text-primary">arrow_back</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Density Modes -->
+<section class="scroll-mt-24 pb-24" id="density-modes">
+<div class="mb-8">
+<h2 class="text-2xl font-bold mb-2">06. Density Modes</h2>
+<p class="text-slate-500">Balancing readability and data throughput.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Comfortable -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
+<div class="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50 flex items-center justify-between">
+<span class="text-sm font-bold">Comfortable (Default)</span>
+<span class="text-[10px] bg-blue-100 text-blue-700 px-2 py-0.5 rounded">p-6 / 24px</span>
+</div>
+<table class="w-full text-left">
+<thead>
+<tr class="text-[10px] text-slate-400 border-b border-slate-100 dark:border-slate-800">
+<th class="p-6">TRANSACTION</th>
+<th class="p-6">AMOUNT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-slate-50 dark:border-slate-800/50">
+<td class="p-6 text-sm">Salary Deposit</td>
+<td class="p-6 text-sm font-bold text-success">+450,000</td>
+</tr>
+<tr>
+<td class="p-6 text-sm">Utility Payment</td>
+<td class="p-6 text-sm font-bold text-error">-12,400</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Compact -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
+<div class="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50 flex items-center justify-between">
+<span class="text-sm font-bold">Compact (Data Heavy)</span>
+<span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded">p-3 / 12px</span>
+</div>
+<table class="w-full text-left">
+<thead>
+<tr class="text-[10px] text-slate-400 border-b border-slate-100 dark:border-slate-800">
+<th class="p-3">TRANSACTION</th>
+<th class="p-3">AMOUNT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-slate-50 dark:border-slate-800/50">
+<td class="p-3 text-xs">Salary Deposit</td>
+<td class="p-3 text-xs font-bold text-success">+450,000</td>
+</tr>
+<tr class="border-b border-slate-50 dark:border-slate-800/50">
+<td class="p-3 text-xs">Utility Payment</td>
+<td class="p-3 text-xs font-bold text-error">-12,400</td>
+</tr>
+<tr class="border-b border-slate-50 dark:border-slate-800/50">
+<td class="p-3 text-xs">ATM Withdrawal</td>
+<td class="p-3 text-xs font-bold text-error">-5,000</td>
+</tr>
+<tr>
+<td class="p-3 text-xs">POS Purchase</td>
+<td class="p-3 text-xs font-bold text-error">-2,150</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- Sticky Footer Note -->
+<footer class="fixed bottom-6 right-6 z-50">
+<div class="bg-white dark:bg-slate-800 shadow-2xl border border-slate-200 dark:border-slate-700 rounded-full px-6 py-3 flex items-center space-x-4">
+<div class="flex items-center text-xs font-medium text-slate-500">
+<span class="w-2 h-2 rounded-full bg-success mr-2"></span>
+                System Live
+            </div>
+<div class="h-4 w-[1px] bg-slate-200 dark:bg-slate-700"></div>
+<button class="flex items-center text-xs font-bold text-primary">
+<span class="material-icons text-sm mr-1">download</span> Export Specs
+            </button>
+</div>
+</footer>
+</body></html>

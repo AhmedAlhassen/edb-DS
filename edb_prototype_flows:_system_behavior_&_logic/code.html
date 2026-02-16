@@ -1,0 +1,399 @@
+<html lang="en"><head>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/></head><body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200 min-h-screen">thoughtfulness
+
+
+
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#1d4fd7",
+            "background-light": "#f6f6f8",
+            "background-dark": "#111521",
+          },
+          fontFamily: {
+            "display": ["Inter"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<title>EDB Prototype Flows: System Behavior &amp; Logic</title>
+<!-- Header -->
+<header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Phase 6: 05 Prototype Flows</span>
+<span class="bg-emerald-500/10 text-emerald-600 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Stable v1.2</span>
+</div>
+<h1 class="text-2xl font-bold text-slate-900 dark:text-white">EDB System Behavior &amp; Logic</h1>
+</div>
+<div class="flex items-center gap-4 text-sm">
+<div class="flex flex-col items-end">
+<span class="text-slate-500">Last updated</span>
+<span class="font-medium">Oct 24, 2023</span>
+</div>
+<div class="h-10 w-px bg-slate-200 dark:bg-slate-800"></div>
+<button class="bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-primary/90 transition-colors flex items-center gap-2">
+<span class="material-icons text-sm">download</span>
+          Export Specs
+        </button>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-8 space-y-12">
+<!-- Theme Switching Flow -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<span class="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold">1</span>
+<h2 class="text-xl font-bold">Theme Switching Flow</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Light Mode Preview -->
+<div class="bg-white dark:bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+<div class="p-4 border-b border-slate-100 flex justify-between items-center">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Light Mode Token Map</span>
+<span class="material-icons text-slate-400">light_mode</span>
+</div>
+<div class="p-8 bg-[#f6f6f8]">
+<div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200 max-w-sm mx-auto">
+<div class="h-4 w-1/2 bg-slate-100 rounded mb-4"></div>
+<div class="h-10 w-full bg-primary rounded mb-6 flex items-center justify-center text-white text-xs font-bold">PRIMARY_BUTTON</div>
+<div class="space-y-2">
+<div class="h-2 w-full bg-slate-100 rounded"></div>
+<div class="h-2 w-3/4 bg-slate-100 rounded"></div>
+</div>
+</div>
+</div>
+<div class="p-4 bg-slate-50 border-t border-slate-100">
+<code class="text-[11px] text-slate-600">--bg-main: #f6f6f8; --surface: #ffffff; --text: #1e293b;</code>
+</div>
+</div>
+<!-- Dark Mode Preview -->
+<div class="bg-[#111521] border border-slate-800 rounded-xl overflow-hidden shadow-xl">
+<div class="p-4 border-b border-slate-800 flex justify-between items-center">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Dark Mode Token Map</span>
+<span class="material-icons text-slate-500">dark_mode</span>
+</div>
+<div class="p-8 bg-[#111521]">
+<div class="bg-slate-900 p-6 rounded-lg shadow-sm border border-slate-800 max-w-sm mx-auto">
+<div class="h-4 w-1/2 bg-slate-800 rounded mb-4"></div>
+<div class="h-10 w-full bg-primary rounded mb-6 flex items-center justify-center text-white text-xs font-bold">PRIMARY_BUTTON</div>
+<div class="space-y-2">
+<div class="h-2 w-full bg-slate-800 rounded"></div>
+<div class="h-2 w-3/4 bg-slate-800 rounded"></div>
+</div>
+</div>
+</div>
+<div class="p-4 bg-slate-900 border-t border-slate-800">
+<code class="text-[11px] text-slate-400">--bg-main: #111521; --surface: #0f172a; --text: #f1f5f9;</code>
+</div>
+</div>
+</div>
+</section>
+<!-- Locale & RTL Switch -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<span class="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold">2</span>
+<h2 class="text-xl font-bold">Locale &amp; RTL Mirroring Logic</h2>
+</div>
+<div class="space-y-6">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-0 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden">
+<!-- LTR English -->
+<div class="p-6 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between mb-6">
+<span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-[10px] font-bold">LOCALE: EN (LTR)</span>
+<span class="material-icons text-slate-300">format_align_left</span>
+</div>
+<!-- Shell Mockup -->
+<div class="flex border border-slate-200 dark:border-slate-800 rounded h-64 overflow-hidden">
+<div class="w-16 bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 p-2 flex flex-col gap-3">
+<div class="w-8 h-8 rounded bg-primary/20 mx-auto"></div>
+<div class="w-8 h-8 rounded bg-slate-200 dark:bg-slate-700 mx-auto"></div>
+<div class="w-8 h-8 rounded bg-slate-200 dark:bg-slate-700 mx-auto"></div>
+</div>
+<div class="flex-1 p-4 space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-icons text-sm text-slate-400">chevron_right</span>
+<div class="h-3 w-24 bg-slate-100 dark:bg-slate-800 rounded"></div>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="h-16 bg-slate-50 dark:bg-slate-800 rounded border border-slate-100 dark:border-slate-700"></div>
+<div class="h-16 bg-slate-50 dark:bg-slate-800 rounded border border-slate-100 dark:border-slate-700"></div>
+<div class="h-16 bg-slate-50 dark:bg-slate-800 rounded border border-slate-100 dark:border-slate-700"></div>
+</div>
+<div class="space-y-2">
+<div class="h-3 w-full bg-slate-100 dark:bg-slate-800 rounded"></div>
+<div class="h-3 w-full bg-slate-100 dark:bg-slate-800 rounded"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- RTL Arabic -->
+<div class="p-6 bg-white dark:bg-slate-900" dir="rtl">
+<div class="flex items-center justify-between mb-6">
+<span class="px-2 py-1 bg-primary/10 text-primary rounded text-[10px] font-bold uppercase tracking-wide">LOCALE: AR (RTL)</span>
+<span class="material-icons text-slate-300">format_align_right</span>
+</div>
+<!-- Shell Mockup -->
+<div class="flex border border-slate-200 dark:border-slate-800 rounded h-64 overflow-hidden">
+<div class="w-16 bg-slate-50 dark:bg-slate-800 border-l border-slate-200 dark:border-slate-700 p-2 flex flex-col gap-3">
+<div class="w-8 h-8 rounded bg-primary/20 mx-auto"></div>
+<div class="w-8 h-8 rounded bg-slate-200 dark:bg-slate-700 mx-auto"></div>
+<div class="w-8 h-8 rounded bg-slate-200 dark:bg-slate-700 mx-auto"></div>
+</div>
+<div class="flex-1 p-4 space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-icons text-sm text-slate-400 transform rotate-180">chevron_right</span>
+<div class="h-3 w-24 bg-slate-100 dark:bg-slate-800 rounded"></div>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="h-16 bg-slate-50 dark:bg-slate-800 rounded border border-slate-100 dark:border-slate-700"></div>
+<div class="h-16 bg-slate-50 dark:bg-slate-800 rounded border border-slate-100 dark:border-slate-700"></div>
+<div class="h-16 bg-slate-50 dark:bg-slate-800 rounded border border-slate-100 dark:border-slate-700"></div>
+</div>
+<div class="space-y-2">
+<div class="h-3 w-full bg-slate-100 dark:bg-slate-800 rounded"></div>
+<div class="h-3 w-full bg-slate-100 dark:bg-slate-800 rounded"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-primary/5 border border-primary/20 p-4 rounded-lg flex items-start gap-4">
+<span class="material-icons text-primary">info</span>
+<p class="text-sm text-slate-700 dark:text-slate-300">
+<strong>System Logic:</strong> Layout mirroring is handled via Tailwind's <code class="bg-primary/10 px-1 rounded text-primary">rtl:</code> and <code class="bg-primary/10 px-1 rounded text-primary">ltr:</code> modifiers. Icons indicating direction (arrows, back buttons) must be flipped using <code class="bg-primary/10 px-1 rounded text-primary">rotate-180</code> in RTL mode.
+          </p>
+</div>
+</div>
+</section>
+<!-- Form Interaction Flow -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<span class="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold">3</span>
+<h2 class="text-xl font-bold">Form Interaction Lifecycle</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+<!-- Connectors (Desktop Only) -->
+<div class="hidden md:block absolute top-1/2 left-0 w-full h-px bg-slate-200 dark:bg-slate-800 -z-10"></div>
+<!-- Step 1: Focus -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-xl">
+<div class="flex items-center gap-2 mb-4">
+<span class="w-5 h-5 bg-slate-100 dark:bg-slate-800 rounded-full text-[10px] flex items-center justify-center font-bold">01</span>
+<span class="text-xs font-bold text-slate-500 uppercase">Focus State</span>
+</div>
+<div class="space-y-1">
+<label class="text-[10px] font-semibold text-primary uppercase">Account Number</label>
+<input class="w-full bg-white dark:bg-slate-900 border-2 border-primary ring-4 ring-primary/10 px-3 py-2 rounded text-sm outline-none" type="text" value="12345678"/>
+<span class="text-[10px] text-slate-400">System is validating...</span>
+</div>
+</div>
+<!-- Step 2: Error -->
+<div class="bg-white dark:bg-slate-900 border border-red-200 dark:border-red-900/30 p-5 rounded-xl">
+<div class="flex items-center gap-2 mb-4">
+<span class="w-5 h-5 bg-red-100 dark:bg-red-900/30 text-red-600 rounded-full text-[10px] flex items-center justify-center font-bold">02</span>
+<span class="text-xs font-bold text-red-500 uppercase">Inline Error</span>
+</div>
+<div class="space-y-1">
+<label class="text-[10px] font-semibold text-red-500 uppercase">Account Number</label>
+<input class="w-full bg-white dark:bg-slate-900 border-2 border-red-500 px-3 py-2 rounded text-sm outline-none" type="text" value="12345678"/>
+<div class="flex items-center gap-1 text-red-500">
+<span class="material-icons text-[12px]">error</span>
+<span class="text-[10px]">Invalid IBAN format. Please check.</span>
+</div>
+</div>
+</div>
+<!-- Step 3: Correction -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-xl">
+<div class="flex items-center gap-2 mb-4">
+<span class="w-5 h-5 bg-slate-100 dark:bg-slate-800 rounded-full text-[10px] flex items-center justify-center font-bold">03</span>
+<span class="text-xs font-bold text-slate-500 uppercase">Correction</span>
+</div>
+<div class="space-y-1">
+<label class="text-[10px] font-semibold text-slate-500 uppercase">Account Number</label>
+<input class="w-full bg-white dark:bg-slate-900 border border-emerald-500 px-3 py-2 rounded text-sm outline-none" type="text" value="SD45 1234 5678 9012"/>
+<div class="flex items-center gap-1 text-emerald-500">
+<span class="material-icons text-[12px]">check_circle</span>
+<span class="text-[10px]">Format validated.</span>
+</div>
+</div>
+</div>
+<!-- Step 4: Success Snackbar -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-xl">
+<div class="flex items-center gap-2 mb-4">
+<span class="w-5 h-5 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full text-[10px] flex items-center justify-center font-bold">04</span>
+<span class="text-xs font-bold text-emerald-500 uppercase">Success Feedback</span>
+</div>
+<div class="bg-slate-800 text-white p-3 rounded shadow-lg flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-icons text-emerald-400 text-sm">check_circle</span>
+<span class="text-[10px]">Changes saved successfully</span>
+</div>
+<button class="text-[10px] font-bold text-primary">UNDO</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Overlay Behavior & Z-Index -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<section>
+<div class="flex items-center gap-3 mb-6">
+<span class="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold">4</span>
+<h2 class="text-xl font-bold">Overlay &amp; Backdrop Logic</h2>
+</div>
+<div class="relative bg-slate-100 dark:bg-slate-800 h-80 rounded-xl overflow-hidden flex items-center justify-center">
+<!-- Backdrop Layer -->
+<div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm z-10 flex flex-col items-center justify-center">
+<!-- Modal Layer -->
+<div class="bg-white dark:bg-slate-900 w-64 rounded-xl shadow-2xl z-20 border border-slate-200 dark:border-slate-700 overflow-hidden transform scale-90">
+<div class="p-4 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
+<span class="font-bold text-sm">Confirm Action</span>
+<span class="material-icons text-sm">close</span>
+</div>
+<div class="p-4 space-y-2">
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded"></div>
+<div class="h-2 w-2/3 bg-slate-100 dark:bg-slate-800 rounded"></div>
+</div>
+<div class="p-4 bg-slate-50 dark:bg-slate-800/50 flex justify-end gap-2">
+<div class="px-3 py-1 bg-slate-200 dark:bg-slate-700 rounded text-[10px] font-bold">CANCEL</div>
+<div class="px-3 py-1 bg-primary text-white rounded text-[10px] font-bold">CONFIRM</div>
+</div>
+</div>
+<div class="mt-4 text-[10px] text-white/70 font-mono tracking-widest uppercase">Z-INDEX: 50 (Modal)</div>
+</div>
+<!-- Drawer Layer -->
+<div class="absolute left-0 top-0 bottom-0 w-32 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 z-0 p-4">
+<div class="space-y-4">
+<div class="h-4 w-full bg-slate-100 dark:bg-slate-800 rounded"></div>
+<div class="h-4 w-full bg-slate-100 dark:bg-slate-800 rounded"></div>
+</div>
+<div class="absolute bottom-4 left-4 text-[10px] text-slate-400 font-mono">Z: 30</div>
+</div>
+<div class="text-slate-400 text-xs text-center z-0">Application Body<br/><span class="font-mono">Z-INDEX: 0</span></div>
+</div>
+</section>
+<!-- Pagination & Breadcrumbs Comparison -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<span class="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold">5</span>
+<h2 class="text-xl font-bold">Directional Components</h2>
+</div>
+<div class="space-y-4">
+<div class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl space-y-6">
+<!-- Pagination LTR -->
+<div>
+<p class="text-[10px] font-bold text-slate-400 uppercase mb-3">Pagination - EN</p>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 text-slate-400">
+<span class="material-icons text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-white text-xs">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 text-xs">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 text-xs">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 text-slate-400">
+<span class="material-icons text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Pagination RTL -->
+<div dir="rtl">
+<p class="text-[10px] font-bold text-slate-400 uppercase mb-3 text-right">Pagination - AR</p>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 text-slate-400">
+<span class="material-icons text-sm">chevron_right</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-white text-xs">١</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 text-xs">٢</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 text-xs">٣</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 dark:border-slate-700 text-slate-400">
+<span class="material-icons text-sm">chevron_left</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Tech Specs & Persistence -->
+<section class="bg-slate-900 text-white rounded-2xl p-8 overflow-hidden relative">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[100px] -mr-32 -mt-32"></div>
+<div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-12">
+<div>
+<h3 class="text-primary font-bold text-sm uppercase mb-4 flex items-center gap-2">
+<span class="material-icons text-sm">save</span>
+            Persistence Specs
+          </h3>
+<ul class="space-y-3 text-xs text-slate-400">
+<li class="flex items-start gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1"></span>
+              Theme: Store in <code class="text-white">localStorage</code> as <code class="text-primary">edb-ui-theme</code> (light/dark).
+            </li>
+<li class="flex items-start gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1"></span>
+              Locale: Sync with URL parameter <code class="text-white">?lang=ar</code> and persist in <code class="text-white">localStorage</code>.
+            </li>
+<li class="flex items-start gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1"></span>
+              Auth State: Persistent via encrypted session cookie.
+            </li>
+</ul>
+</div>
+<div>
+<h3 class="text-primary font-bold text-sm uppercase mb-4 flex items-center gap-2">
+<span class="material-icons text-sm">timer</span>
+            Motion Tokens
+          </h3>
+<ul class="space-y-3 text-xs text-slate-400">
+<li class="flex items-start justify-between border-b border-slate-800 pb-2">
+<span>Standard Ease</span>
+<span class="text-white font-mono">300ms</span>
+</li>
+<li class="flex items-start justify-between border-b border-slate-800 pb-2">
+<span>Fast Entry</span>
+<span class="text-white font-mono">150ms</span>
+</li>
+<li class="flex items-start justify-between border-b border-slate-800 pb-2">
+<span>Backdrop Fade</span>
+<span class="text-white font-mono">450ms</span>
+</li>
+</ul>
+</div>
+<div>
+<h3 class="text-primary font-bold text-sm uppercase mb-4 flex items-center gap-2">
+<span class="material-icons text-sm">accessibility</span>
+            Accessibility Notes
+          </h3>
+<p class="text-xs text-slate-400 leading-relaxed">
+            Screen readers must follow logical order in RTL. <code class="text-white">aria-live="polite"</code> is required for form success snacks. Focus trapping is mandatory for all overlays (Modals/Drawers) at Z-Index 40+.
+          </p>
+</div>
+</div>
+</section>
+</main>
+<footer class="max-w-7xl mx-auto px-6 py-12 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 text-slate-500 text-xs">
+<div class="flex items-center gap-4">
+<img alt="EDB Logo" class="rounded" data-alt="Export Development Bank official logo mark" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBnjcAbsgOXZq9NUgCsL_KxRucKgqMkcveaa9b1LlYAC5Ue2LoFYqcUQPxTOL_OGhNR4Zo1VsY8eaR4Mrnkfgw6MPt3ZOkuq_LC97b1ushayU4J78sH3TqQqiMcAtXvcnlVstUWmTimHTp_QNoHiEWCeMTSOAnCRtp52NLtcWp0NpeoRuYX8GpvU76Rk1e38bSw6JQbnTO3eB84OS-Fhmd4Rnpgq-xjkboF5-J93Ee5ZuTGUR1XPxiY4v6j7kKb8BGdDyW_YcIb6yp"/>
+<div>
+<p class="font-bold text-slate-900 dark:text-white">Export Development Bank</p>
+<p>© 2023 Digital Design System Prototype.</p>
+</div>
+</div>
+<div class="flex gap-8">
+<a class="hover:text-primary transition-colors" href="#">Documentation</a>
+<a class="hover:text-primary transition-colors" href="#">Component Library</a>
+<a class="hover:text-primary transition-colors" href="#">Security Specs</a>
+</div>
+</footer>
+
+```</body></html>

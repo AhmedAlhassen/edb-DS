@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Noto+Sans+Arabic:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1d4fd7",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111521",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "arabic": ["Noto Sans Arabic", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer components {
+            .guideline-card {
+                @apply bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden;
+            }
+            .section-title {
+                @apply text-xl font-bold flex items-center gap-2 mb-6;
+            }
+            .rtl-sample {
+                font-family: 'Noto Sans Arabic', sans-serif;
+            }
+        }
+    </style>
+<title>EDB Design System - RTL Guidelines</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<nav class="sticky top-0 z-[100] bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 py-3 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-primary p-1.5 rounded-lg text-white">
+<span class="material-icons">translate</span>
+</div>
+<div>
+<h1 class="font-bold text-lg leading-none">EDB Design System</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">Phase 5: 04 RTL Guidelines</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
+<button class="px-3 py-1 text-xs font-medium text-slate-500 hover:text-slate-800 dark:hover:text-slate-200">LTR</button>
+<button class="px-3 py-1 text-xs font-medium bg-white dark:bg-slate-700 shadow-sm rounded-md">RTL</button>
+</div>
+<div class="h-6 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/90 transition-colors">
+<span class="material-icons text-sm">menu_book</span>
+            Documentation
+        </button>
+</div>
+</nav>
+<div class="max-w-[1400px] mx-auto px-6 py-8 flex flex-col lg:flex-row gap-8">
+<aside class="w-full lg:w-64 shrink-0">
+<nav class="space-y-1 sticky top-24">
+<p class="px-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">RTL Fundamentals</p>
+<a class="flex items-center gap-3 px-3 py-2 bg-primary/10 text-primary rounded-lg font-medium" href="#mirroring">
+<span class="material-icons text-sm">flip</span>
+                Mirroring Rules
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#typography">
+<span class="material-icons text-sm">format_size</span>
+                Arabic Typography
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#mixed-content">
+<span class="material-icons text-sm">reorder</span>
+                Mixed Content
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#digits">
+<span class="material-icons text-sm">pin</span>
+                Digit Usage Policy
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#icons">
+<span class="material-icons text-sm">star_outline</span>
+                Icon Flipping
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors" href="#motion">
+<span class="material-icons text-sm">animation</span>
+                Motion Direction
+            </a>
+</nav>
+</aside>
+<main class="flex-1 space-y-16 pb-24">
+<section class="space-y-4 border-b border-slate-200 dark:border-slate-800 pb-8" id="overview">
+<h2 class="text-3xl font-bold tracking-tight">04 RTL Guidelines: Layout &amp; Content Logic</h2>
+<p class="text-lg text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed">
+                Adapting interfaces for Arabic requires more than simple translation. These guidelines ensure the EDB digital experience feels native to RTL (Right-to-Left) users while maintaining technical integrity for mixed data like IBANs and Swift codes.
+            </p>
+</section>
+<section class="space-y-6" id="mirroring">
+<h3 class="section-title">
+<span class="w-8 h-8 rounded bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-xs font-mono">01</span>
+                Mirroring Rules
+            </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="guideline-card p-6">
+<h4 class="font-bold text-sm mb-4 text-green-600 flex items-center gap-2">
+<span class="material-icons text-sm">check_circle</span> Elements That Flip
+                    </h4>
+<div class="space-y-4">
+<div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-lg">
+<p class="text-xs font-bold text-slate-400 mb-3 uppercase">Layout &amp; Navigation</p>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-2">
+<span class="text-sm">Navigation Drawer</span>
+<span class="text-xs bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded">Moves to Right</span>
+</div>
+<div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-2">
+<span class="text-sm">Back/Forward Arrows</span>
+<span class="text-xs bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded">Mirror Horizontally</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm">Page Headers</span>
+<span class="text-xs bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded">Text Right-Aligned</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="guideline-card p-6">
+<h4 class="font-bold text-sm mb-4 text-red-600 flex items-center gap-2">
+<span class="material-icons text-sm">cancel</span> Elements That Don't Flip
+                    </h4>
+<div class="space-y-4">
+<div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-lg">
+<p class="text-xs font-bold text-slate-400 mb-3 uppercase">Fixed Components</p>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-2">
+<span class="text-sm">Bank Logo</span>
+<span class="text-xs bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded">Stay LTR / Brand Lockup</span>
+</div>
+<div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-2">
+<span class="text-sm">Credit Card Numbers</span>
+<span class="text-xs bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded">Always LTR Format</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm">Media Controls</span>
+<span class="text-xs bg-slate-200 dark:bg-slate-700 px-2 py-0.5 rounded">Universal Progress Bars</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="space-y-6" id="typography">
+<h3 class="section-title">
+<span class="w-8 h-8 rounded bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-xs font-mono">02</span>
+                Arabic Typography (Noto Sans)
+            </h3>
+<div class="guideline-card">
+<div class="p-8 border-b border-slate-200 dark:border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="space-y-4">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Latin Base (Inter)</p>
+<p class="text-2xl font-medium leading-normal">The quick brown fox jumps over the lazy dog.</p>
+<div class="h-px bg-blue-500/20 relative">
+<span class="absolute -top-2 left-0 px-2 bg-blue-500 text-white text-[10px] rounded">Leading: Normal (1.5)</span>
+</div>
+</div>
+<div class="space-y-4">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Arabic (Noto Sans Arabic)</p>
+<p class="text-2xl font-medium leading-[1.8] rtl-sample" dir="rtl">الثعلب البني السريع يقفز فوق الكلب الكسول.</p>
+<div class="h-px bg-amber-500/20 relative">
+<span class="absolute -top-2 right-0 px-2 bg-amber-500 text-white text-[10px] rounded">Leading: Relaxed (1.8)</span>
+</div>
+</div>
+</div>
+<div class="p-6 bg-slate-50 dark:bg-slate-800/30">
+<div class="flex items-start gap-4">
+<span class="material-icons text-primary">info</span>
+<p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+<strong>Vertical Rhythm Adjustment:</strong> Arabic glyphs have greater vertical reach (ascenders/descenders). To maintain the same visual density as Inter at 16px, Noto Sans Arabic must use a minimum line-height of <code class="text-primary font-bold">1.8</code> compared to the standard <code class="text-primary font-bold">1.5</code>.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<section class="space-y-6" id="mixed-content">
+<h3 class="section-title">
+<span class="w-8 h-8 rounded bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-xs font-mono">03</span>
+                Mixed Content Handling
+            </h3>
+<div class="guideline-card p-8">
+<div class="max-w-2xl mx-auto space-y-8" dir="rtl">
+<div class="space-y-2">
+<p class="text-xs font-bold text-slate-400 uppercase">Example: IBAN inside Arabic Paragraph</p>
+<div class="p-4 bg-slate-100 dark:bg-slate-800 rounded-lg rtl-sample text-lg leading-loose">
+                            يرجى تحويل المبلغ المطلوب إلى رقم الحساب الدولي 
+                            <span class="font-mono bg-white dark:bg-slate-900 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-700 text-primary" dir="ltr">SD12 0001 2345 6789 0123</span>
+                            لإتمام المعاملة البنكية بنجاح.
+                        </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-right">
+<div class="p-4 border border-slate-200 dark:border-slate-700 rounded-lg">
+<p class="text-xs font-bold text-slate-400 mb-1">SWIFT CODE</p>
+<span class="font-mono text-sm" dir="ltr">EDBSDSKHXXX</span>
+</div>
+<div class="p-4 border border-slate-200 dark:border-slate-700 rounded-lg">
+<p class="text-xs font-bold text-slate-400 mb-1">EMAIL</p>
+<span class="font-mono text-sm" dir="ltr">support@edb.sd</span>
+</div>
+<div class="p-4 border border-slate-200 dark:border-slate-700 rounded-lg">
+<p class="text-xs font-bold text-slate-400 mb-1">REFERENCE</p>
+<span class="font-mono text-sm" dir="ltr">#TXN-9921-X</span>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 flex gap-4 items-center">
+<span class="material-symbols-outlined text-primary">code</span>
+<p class="text-sm italic text-slate-500">Implementation Note: Wrap all LTR strings in <code>&lt;span dir="ltr"&gt;</code> to prevent punctuation jumping and ensure logical reading order.</p>
+</div>
+</div>
+</section>
+<section class="space-y-6" id="digits">
+<h3 class="section-title">
+<span class="w-8 h-8 rounded bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-xs font-mono">04</span>
+                Digit Usage Policy
+            </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-4">
+<h4 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        Arabic-Indic Digits (٠-٩)
+                    </h4>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border-l-4 border-primary shadow-sm">
+<p class="rtl-sample text-lg leading-relaxed text-right mb-4" dir="rtl">تم استلام طلبك رقم ٥٤٣٢١ في تاريخ ١٥ مايو ٢٠٢٤.</p>
+<p class="text-xs text-slate-500">Usage: Standard body text, descriptive labels, and formal correspondence in Arabic documents.</p>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        Western Digits (0-9)
+                    </h4>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+<table class="w-full text-sm">
+<thead class="bg-slate-50 dark:bg-slate-800/50">
+<tr>
+<th class="p-3 text-right">المعاملة</th>
+<th class="p-3 text-right font-mono">Amount (SDG)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-t border-slate-100 dark:border-slate-800">
+<td class="p-3 text-right rtl-sample">تمويل تجاري</td>
+<td class="p-3 text-right font-mono font-bold">450,200.00</td>
+</tr>
+<tr class="border-t border-slate-100 dark:border-slate-800">
+<td class="p-3 text-right rtl-sample">رسوم إدارية</td>
+<td class="p-3 text-right font-mono font-bold">1,500.00</td>
+</tr>
+</tbody>
+</table>
+<div class="p-3 bg-slate-50 dark:bg-slate-800/50 text-[10px] text-slate-500 uppercase font-bold">
+                            Policy: Financial data must use Western digits for clarity and consistency in tables.
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<section class="space-y-6" id="icons">
+<h3 class="section-title">
+<span class="w-8 h-8 rounded bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-xs font-mono">05</span>
+                Icon Flipping Matrix
+            </h3>
+<div class="guideline-card overflow-hidden">
+<table class="w-full">
+<thead class="bg-slate-50 dark:bg-slate-800 text-xs font-bold uppercase text-slate-500">
+<tr>
+<th class="px-6 py-4 text-left">Icon Concept</th>
+<th class="px-6 py-4 text-center">LTR View</th>
+<th class="px-6 py-4 text-center">RTL View</th>
+<th class="px-6 py-4 text-left">Behavior</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-slate-100 dark:divide-slate-800">
+<tr>
+<td class="px-6 py-4 font-medium">Back / Navigation</td>
+<td class="px-6 py-4 text-center"><span class="material-icons">arrow_back</span></td>
+<td class="px-6 py-4 text-center"><span class="material-icons" style="transform: scaleX(-1);">arrow_back</span></td>
+<td class="px-6 py-4"><span class="text-green-600 font-bold">FLIP</span> (Indicates direction)</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-medium">Next / Chevron</td>
+<td class="px-6 py-4 text-center"><span class="material-icons">chevron_right</span></td>
+<td class="px-6 py-4 text-center"><span class="material-icons" style="transform: scaleX(-1);">chevron_right</span></td>
+<td class="px-6 py-4"><span class="text-green-600 font-bold">FLIP</span> (Indicates progress)</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-medium">Search</td>
+<td class="px-6 py-4 text-center"><span class="material-icons">search</span></td>
+<td class="px-6 py-4 text-center"><span class="material-icons">search</span></td>
+<td class="px-6 py-4"><span class="text-slate-400 font-bold">STATIC</span> (Mirroring makes it awkward)</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-medium">Checkmark / Success</td>
+<td class="px-6 py-4 text-center"><span class="material-icons text-green-500">check</span></td>
+<td class="px-6 py-4 text-center"><span class="material-icons text-green-500">check</span></td>
+<td class="px-6 py-4"><span class="text-slate-400 font-bold">STATIC</span> (Universal symbol)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="space-y-6" id="motion">
+<h3 class="section-title">
+<span class="w-8 h-8 rounded bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-xs font-mono">06</span>
+                Motion Direction
+            </h3>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="bg-slate-900 rounded-xl p-8 text-white relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-full bg-primary/20 border-l-2 border-primary/50 flex items-center justify-center">
+<span class="material-icons animate-pulse">keyboard_double_arrow_left</span>
+</div>
+<div class="relative z-10">
+<span class="px-2 py-0.5 bg-primary text-[10px] font-bold rounded uppercase mb-4 inline-block">RTL Drawers</span>
+<h4 class="text-xl font-bold mb-2">Slide from Right</h4>
+<p class="text-slate-400 text-sm leading-relaxed max-w-xs">
+                            In RTL context, modal sheets and side drawers must enter from the right edge. This aligns with the visual "start" of the layout.
+                        </p>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-8">
+<h4 class="font-bold mb-4">Breadcrumb Progress</h4>
+<div class="flex items-center gap-4 text-slate-400" dir="rtl">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">1</div>
+<div class="flex-1 h-1 bg-primary rounded-full"></div>
+<div class="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center text-xs font-bold">2</div>
+<div class="flex-1 h-1 bg-slate-100 dark:bg-slate-800 rounded-full"></div>
+<div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 flex items-center justify-center text-xs font-bold">3</div>
+</div>
+<p class="mt-6 text-sm text-slate-500 italic">
+                        Visual flow of completion must progress from Right-to-Left. Progress bars and multi-step forms fill from the right.
+                    </p>
+</div>
+</div>
+</section>
+<section class="p-8 bg-primary rounded-2xl text-white flex flex-col md:flex-row items-center gap-8 shadow-xl shadow-primary/20">
+<div class="w-20 h-20 shrink-0 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl">language</span>
+</div>
+<div class="space-y-3">
+<h4 class="text-xl font-bold">Global Design System Standards</h4>
+<p class="text-white/80 leading-relaxed">
+                    Compliance with these RTL guidelines is mandatory for all Phase 5 developments. Developers should use <code>logical properties</code> (e.g., <code>margin-inline-start</code> instead of <code>margin-left</code>) to ensure these behaviors are inherited automatically from the global <code>dir</code> attribute.
+                </p>
+</div>
+</section>
+</main>
+</div>
+
+</body></html>

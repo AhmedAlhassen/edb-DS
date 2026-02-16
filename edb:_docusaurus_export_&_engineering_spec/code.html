@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EDB Documentation | Engineering Spec</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1d4fd7",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111521",
+                        "surface-dark": "#1a1f2e",
+                        "border-dark": "#2d3548",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .code-block { font-family: 'JetBrains Mono', monospace; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #2d3548; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3e485e; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-200">
+<!-- Top Navigation Bar -->
+<nav class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-border-dark bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-3">
+<div class="flex items-center justify-between max-w-[1600px] mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="text-white font-bold text-xs">EDB</span>
+</div>
+<div>
+<h1 class="font-bold text-sm tracking-tight">Engineering Spec <span class="text-slate-400 font-normal">/ Docusaurus Export</span></h1>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-slate-100 dark:bg-surface-dark rounded-lg p-1">
+<button class="px-3 py-1 text-xs font-medium rounded bg-white dark:bg-primary shadow-sm">LTR</button>
+<button class="px-3 py-1 text-xs font-medium rounded text-slate-500">RTL</button>
+</div>
+<button class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-sm font-medium transition-all">
+<span class="material-icons text-sm">download</span>
+                    Export Manifest
+                </button>
+</div>
+</div>
+</nav>
+<div class="max-w-[1600px] mx-auto flex min-h-[calc(100vh-64px)]">
+<!-- Sidebar: Docusaurus Structure -->
+<aside class="w-64 border-r border-slate-200 dark:border-border-dark p-6 overflow-y-auto shrink-0">
+<div class="mb-8">
+<h3 class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-4">Structure Tree</h3>
+<div class="space-y-1">
+<div class="flex items-center gap-2 text-sm py-1.5 text-slate-400">
+<span class="material-icons text-sm">folder</span>
+<span>docs</span>
+</div>
+<div class="pl-4 space-y-1">
+<div class="flex items-center gap-2 text-sm py-1.5 text-slate-400">
+<span class="material-icons text-sm">folder</span>
+<span>Foundations</span>
+</div>
+<div class="flex items-center gap-2 text-sm py-1.5 text-slate-400">
+<span class="material-icons text-sm">folder</span>
+<span>Components</span>
+</div>
+<div class="pl-4 space-y-1">
+<div class="flex items-center gap-2 text-sm py-1.5 text-slate-400">
+<span class="material-icons text-sm">folder</span>
+<span>Atoms</span>
+</div>
+<div class="pl-4">
+<div class="flex items-center gap-2 text-sm py-1.5 text-primary font-medium bg-primary/10 -ml-2 pl-2 rounded">
+<span class="material-icons text-sm">description</span>
+<span>Button.mdx</span>
+</div>
+<div class="flex items-center gap-2 text-sm py-1.5 text-slate-500 hover:text-slate-300 cursor-pointer transition-colors">
+<span class="material-icons text-sm">description</span>
+<span>Input.mdx</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-sm py-1.5 text-slate-400">
+<span class="material-icons text-sm">folder</span>
+<span>Molecules</span>
+</div>
+<div class="flex items-center gap-2 text-sm py-1.5 text-slate-400">
+<span class="material-icons text-sm">folder</span>
+<span>Organisms</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-sm py-1.5 text-slate-400">
+<span class="material-icons text-sm">folder</span>
+<span>Patterns</span>
+</div>
+<div class="flex items-center gap-2 text-sm py-1.5 text-slate-400">
+<span class="material-icons text-sm">language</span>
+<span>RTL-Guidelines</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-6 border-t border-slate-200 dark:border-border-dark">
+<h3 class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-4">Configurations</h3>
+<div class="space-y-1">
+<div class="flex items-center gap-2 text-sm py-1.5 text-slate-500 hover:text-slate-300 cursor-pointer">
+<span class="material-icons text-sm">settings</span>
+<span>tailwind.config.js</span>
+</div>
+<div class="flex items-center gap-2 text-sm py-1.5 text-slate-500 hover:text-slate-300 cursor-pointer">
+<span class="material-icons text-sm">css</span>
+<span>theme-variables.css</span>
+</div>
+<div class="flex items-center gap-2 text-sm py-1.5 text-slate-500 hover:text-slate-300 cursor-pointer">
+<span class="material-icons text-sm">translate</span>
+<span>i18n-setup.js</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto bg-white dark:bg-background-dark/50">
+<!-- Header Section -->
+<div class="p-8 border-b border-slate-200 dark:border-border-dark">
+<div class="flex items-center gap-3 mb-4">
+<span class="px-2 py-0.5 rounded bg-primary/20 text-primary text-[10px] font-bold uppercase">Atom</span>
+<span class="px-2 py-0.5 rounded bg-green-500/20 text-green-500 text-[10px] font-bold uppercase tracking-wider">i18n Ready</span>
+<span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-500 text-[10px] font-bold uppercase tracking-wider">v1.2.0</span>
+</div>
+<h2 class="text-3xl font-bold mb-2">Button</h2>
+<p class="text-slate-500 max-w-2xl">The core interactive element for EDB applications. Supports multiple variants, sizes, and full RTL layout mirroring for Sudanese localizations.</p>
+</div>
+<!-- Content Tabs -->
+<div class="flex border-b border-slate-200 dark:border-border-dark px-8">
+<button class="px-6 py-4 text-sm font-medium border-b-2 border-primary text-primary">Documentation</button>
+<button class="px-6 py-4 text-sm font-medium text-slate-500 border-b-2 border-transparent hover:text-slate-300">Tokens &amp; Code</button>
+<button class="px-6 py-4 text-sm font-medium text-slate-500 border-b-2 border-transparent hover:text-slate-300">Storybook Hub</button>
+</div>
+<div class="p-8 space-y-12">
+<!-- MDX Template Section -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-semibold flex items-center gap-2">
+<span class="material-icons text-primary">article</span>
+                            MDX Structure (Button.mdx)
+                        </h3>
+<button class="text-xs text-primary hover:underline font-medium">Copy Template</button>
+</div>
+<div class="bg-surface-dark rounded-xl p-6 border border-border-dark code-block text-sm overflow-x-auto">
+<pre class="text-slate-300"><span class="text-slate-500">---</span>
+<span class="text-pink-400">title:</span> Button
+<span class="text-pink-400">description:</span> Core button component for EDB
+<span class="text-pink-400">sidebar_position:</span> 1
+<span class="text-slate-500">---</span>
+
+import Playground from '@theme/Playground';
+import PropsTable from '@site/src/components/PropsTable';
+
+## Overview
+Standard EDB interactive button with hover states.
+
+<playground>
+  <button variant="primary">Submit Application</button>
+</playground>
+
+## API Reference
+<propstable component="Button"></propstable></pre>
+</div>
+</section>
+<!-- Interactive Playground Mock -->
+<section>
+<h3 class="text-lg font-semibold mb-6 flex items-center gap-2">
+<span class="material-icons text-primary">play_circle</span>
+                        Live Playground (Storybook Embed)
+                    </h3>
+<div class="border border-slate-200 dark:border-border-dark rounded-xl overflow-hidden shadow-xl">
+<div class="bg-slate-50 dark:bg-surface-dark border-b border-slate-200 dark:border-border-dark p-3 flex justify-between items-center">
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-amber-500/50"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-icons text-sm text-slate-400">refresh</span>
+<span class="material-icons text-sm text-slate-400">settings</span>
+</div>
+</div>
+<div class="p-12 bg-white dark:bg-[#0d1117] flex items-center justify-center gap-8 min-h-[200px] relative">
+<button class="bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded shadow-lg font-medium transition-all">Primary Action</button>
+<button class="border border-slate-300 dark:border-border-dark text-slate-700 dark:text-slate-300 px-6 py-2.5 rounded font-medium transition-all">Secondary</button>
+<button class="text-primary hover:bg-primary/5 px-6 py-2.5 rounded font-medium transition-all">Ghost Button</button>
+<div class="absolute bottom-4 right-4 text-[10px] text-slate-500 font-mono">
+                                Component: EDBButton / Story: Default
+                            </div>
+</div>
+</div>
+</section>
+<!-- Props Table -->
+<section>
+<h3 class="text-lg font-semibold mb-4">Props Table</h3>
+<div class="overflow-hidden border border-slate-200 dark:border-border-dark rounded-xl">
+<table class="w-full text-sm text-left">
+<thead class="bg-slate-50 dark:bg-surface-dark border-b border-slate-200 dark:border-border-dark text-slate-400 uppercase text-[10px] font-bold">
+<tr>
+<th class="px-6 py-3">Property</th>
+<th class="px-6 py-3">Type</th>
+<th class="px-6 py-3">Default</th>
+<th class="px-6 py-3">Description</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-border-dark">
+<tr class="hover:bg-slate-50/50 dark:hover:bg-surface-dark/30 transition-colors">
+<td class="px-6 py-4 font-mono text-primary font-medium">variant</td>
+<td class="px-6 py-4 text-pink-400 italic">'primary' | 'secondary' | 'ghost'</td>
+<td class="px-6 py-4 text-slate-500">'primary'</td>
+<td class="px-6 py-4">Visual style of the button</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-surface-dark/30 transition-colors">
+<td class="px-6 py-4 font-mono text-primary font-medium">size</td>
+<td class="px-6 py-4 text-pink-400 italic">'sm' | 'md' | 'lg'</td>
+<td class="px-6 py-4 text-slate-500">'md'</td>
+<td class="px-6 py-4">Padding and font size scaling</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-surface-dark/30 transition-colors">
+<td class="px-6 py-4 font-mono text-primary font-medium">isLoading</td>
+<td class="px-6 py-4 text-pink-400 italic">boolean</td>
+<td class="px-6 py-4 text-slate-500">false</td>
+<td class="px-6 py-4">Shows a spinner and disables interaction</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Tailwind Config & CSS Variables -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<section>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-semibold">Tailwind Tokens</h3>
+<span class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded">tailwind.config.js</span>
+</div>
+<div class="bg-surface-dark rounded-xl p-6 border border-border-dark code-block text-xs overflow-x-auto h-64">
+<pre class="text-slate-300">module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: '#1d4fd7',
+          50: '#eff4ff',
+          900: '#1e3a8a',
+        },
+        background: {
+          light: '#f6f6f8',
+          dark: '#111521',
+        }
+      },
+      fontFamily: {
+        display: ['Inter', 'sans-serif'],
+      },
+      borderRadius: {
+        'xl': '0.75rem',
+      }
+    }
+  }
+}</pre>
+</div>
+</section>
+<section>
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-semibold">CSS Layer (i18n Bridge)</h3>
+<span class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded">theme.css</span>
+</div>
+<div class="bg-surface-dark rounded-xl p-6 border border-border-dark code-block text-xs overflow-x-auto h-64">
+<pre class="text-slate-300">:root {
+  --edb-primary: #1d4fd7;
+  --edb-radius: 0.25rem;
+  --edb-direction: ltr;
+}
+
+[data-theme='dark'] {
+  --edb-bg: #111521;
+}
+
+[lang='ar'] {
+  --edb-direction: rtl;
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+}</pre>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Right: Engineering Checklist Panel -->
+<aside class="w-80 border-l border-slate-200 dark:border-border-dark p-6 overflow-y-auto hidden 2xl:block shrink-0">
+<h3 class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-6">Handover Status</h3>
+<div class="space-y-6">
+<div class="bg-slate-50 dark:bg-surface-dark rounded-xl p-4 border border-slate-200 dark:border-border-dark">
+<div class="flex items-center justify-between mb-4">
+<span class="text-xs font-semibold">Design Health</span>
+<span class="text-xs text-green-500 font-bold">100%</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-green-500 h-full w-full"></div>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="text-xs font-bold text-slate-400 uppercase">Pre-flight Checklist</h4>
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<span class="material-icons text-green-500 text-lg">check_circle</span>
+<span class="text-xs font-medium">Dark Mode Variants defined</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-icons text-green-500 text-lg">check_circle</span>
+<span class="text-xs font-medium">RTL Mirroring Specs mapped</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-icons text-green-500 text-lg">check_circle</span>
+<span class="text-xs font-medium">Figma Token sync active</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-icons text-slate-600 text-lg">radio_button_unchecked</span>
+<span class="text-xs font-medium">Storybook component link updated</span>
+</div>
+</div>
+</div>
+<div class="pt-6 border-t border-slate-200 dark:border-border-dark">
+<h4 class="text-xs font-bold text-slate-400 uppercase mb-4">Docusaurus Config</h4>
+<div class="bg-slate-900 rounded-lg p-3">
+<p class="text-[10px] text-slate-500 font-mono mb-2">// docusaurus.config.js</p>
+<p class="text-[10px] text-slate-300 font-mono leading-relaxed">
+                          i18n: {<br/>
+                            defaultLocale: 'en',<br/>
+                            locales: ['en', 'ar'],<br/>
+                            localeConfigs: {<br/>
+                              ar: { direction: 'rtl' }<br/>
+                            }<br/>
+                          }
+                        </p>
+</div>
+</div>
+<div class="pt-6">
+<div class="bg-primary/10 border border-primary/20 rounded-xl p-4">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-icons text-sm">info</span>
+<span class="text-xs font-bold uppercase">Dev Tip</span>
+</div>
+<p class="text-[11px] leading-relaxed text-slate-400">
+                            Use the <code class="text-primary font-bold">@theme/Playground</code> component to enable the live editor feature for this component in MDX.
+                        </p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</body></html>
