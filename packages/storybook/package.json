@@ -1,0 +1,22 @@
+{
+  "name": "storybook",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build",
+    "lint": "eslint src .storybook --ext .ts,.tsx",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@edb/ui": "workspace:*",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^8.4.2",
+    "@storybook/react-vite": "^8.4.2",
+    "storybook": "^8.4.2",
+    "vite": "^5.4.10"
+  }
+}
