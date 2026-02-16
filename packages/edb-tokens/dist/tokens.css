@@ -1,0 +1,30 @@
+:root {
+--edb-color-bg: #ffffff;
+--edb-color-surface: #f8fafc;
+--edb-color-text: #0f172a;
+--edb-color-border: #cbd5e1;
+--edb-color-primary: #1d4ed8;
+--edb-color-success: #16a34a;
+--edb-color-warning: #d97706;
+--edb-color-error: #dc2626;
+--edb-color-focusRing: #1d4ed8;
+--edb-color-overlay: rgb(15 23 42 / 0.55);
+--edb-color-link: #1e40af;
+--edb-font-body: Inter, system-ui, sans-serif;
+--edb-font-arabic: "Noto Sans Arabic", system-ui, sans-serif;
+--edb-radius-md: 10px;
+--edb-shadow-md: 0 8px 24px rgb(15 23 42 / 0.12);
+}
+[data-theme="dark"] {
+--edb-color-bg: #020617;
+--edb-color-surface: #0f172a;
+--edb-color-text: #f8fafc;
+--edb-color-border: #334155;
+--edb-color-primary: #60a5fa;
+--edb-color-success: #4ade80;
+--edb-color-warning: #fbbf24;
+--edb-color-error: #f87171;
+--edb-color-focusRing: #93c5fd;
+--edb-color-overlay: rgb(2 6 23 / 0.68);
+--edb-color-link: #93c5fd;
+}
