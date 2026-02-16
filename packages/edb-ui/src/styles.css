@@ -1,0 +1,23 @@
+@import "@edb/tokens/tokens.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :where(html, body) {
+    background: var(--edb-color-bg);
+    color: var(--edb-color-text);
+    font-family: var(--edb-font-body);
+  }
+  :where([dir='rtl']) {
+    font-family: var(--edb-font-arabic);
+  }
+  :focus-visible {
+    outline: 2px solid var(--edb-color-focusRing);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .edb-card { @apply rounded-xl border border-[var(--edb-color-border)] bg-[var(--edb-color-surface)] p-4; }
+}
