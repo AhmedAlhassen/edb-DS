@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/atoms'
 import { Menu, X, Globe, ChevronDown, Phone } from 'lucide-react'
-import Image from 'next/image'
+import { ThemeToggle } from '@/components/atoms/ThemeToggle'
 
 // ─── Nav items definition ─────────────────────────────────────────────────────
 
@@ -285,6 +285,9 @@ const Header = () => {
             >
               <Link href="/contact">Open Account</Link>
             </Button>
+
+            {/* Theme toggle */}
+            <ThemeToggle />
 
             {/* Mobile menu button */}
             <button
