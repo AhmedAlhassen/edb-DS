@@ -1,0 +1,68 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services",
+  "info": {
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Service",
+    "description": "EDB banking services"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "pluginOptions": { "i18n": { "localized": true } },
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "shortDescription": {
+      "pluginOptions": { "i18n": { "localized": true } },
+      "type": "text",
+      "required": true,
+      "maxLength": 300
+    },
+    "description": {
+      "pluginOptions": { "i18n": { "localized": true } },
+      "type": "richtext",
+      "required": true
+    },
+    "icon": {
+      "type": "string",
+      "required": true
+    },
+    "features": {
+      "pluginOptions": { "i18n": { "localized": true } },
+      "type": "json"
+    },
+    "isHighlighted": {
+      "type": "boolean",
+      "default": false
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Corporate Banking",
+        "Trade Finance",
+        "Export Finance",
+        "Digital Banking",
+        "Treasury",
+        "SME Banking"
+      ]
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

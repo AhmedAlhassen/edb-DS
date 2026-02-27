@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "exchange_rates",
+  "info": {
+    "singularName": "exchange-rate",
+    "pluralName": "exchange-rates",
+    "displayName": "Exchange Rate",
+    "description": "Daily currency exchange rates"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "currency": {
+      "type": "string",
+      "required": true
+    },
+    "code": {
+      "type": "string",
+      "required": true,
+      "maxLength": 3
+    },
+    "buyRate": {
+      "type": "decimal",
+      "required": true
+    },
+    "sellRate": {
+      "type": "decimal",
+      "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}
